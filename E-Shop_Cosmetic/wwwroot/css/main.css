@@ -1,0 +1,733 @@
+*
+{
+	padding:0;
+	margin:0;
+	box-sizing: border-box;
+}
+body
+{
+	font-family: 'Roboto', serif;
+	font-style: normal;
+	font-weight: normal;
+}
+
+header
+{
+	margin-top: 44px;
+}
+a:hover
+{
+	cursor: pointer;
+}
+.container
+{
+
+	max-width: 1200px;
+	margin: auto;
+}
+
+.block
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.input
+{
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	border-radius: 2px;
+	line-height: 24px;
+	font-size: 16px;
+	padding: 8px;
+	padding-left: 35px;
+	background-repeat:no-repeat;
+	background-position:left 11px center;
+}
+.input-address{
+	flex:0.8;
+	background-image: url(../img/home.svg);
+}
+
+.buttons
+{
+	display: flex;
+	align-items: center;
+}
+.btn
+{
+	display:flex;
+	align-items: center;
+	padding: 8px 16px;
+	background:#fff;
+	border: 1px solid #d9d9d9;
+	box-shadow: 0px 0px 2px rgba(0, 0, 0 , 0.0015);
+	border-radius: 2px;
+	color:#595959;
+	font-size: 16px;
+	line-height: 24px;
+}
+	.btn-primary
+	{
+		background: #1890ff;
+		border: 1px solid #1890ff;
+		color:#fff;	
+		margin-right: 10px;
+	}
+
+	.btn-icon
+	{
+		margin-right: 6px;
+	}
+
+	.btn-text
+	{
+		vertical-align: middle;
+	}
+
+.main-content
+{
+	background: linear-gradient(180deg, rgba(245, 245, 245, 0) 1.04%, #F5F5F5 100%);
+}
+
+#servises{}
+
+.info
+{
+	background:#fff1b8 url(../img/bg.png) no-repeat top 50px right -26px/600px;
+	margin-top: 40px;
+	padding: 68px 0 68px 71px;
+	height: 300px;
+	box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
+}
+
+	 .info h1
+	{
+		margin: 0;
+		max-width:450px;
+		font-weight: bold;
+		font-size: 39px;
+		line-height: 46px;
+		color: #302C34;
+	}
+	.info p
+	{
+		padding-top: 15px;
+		max-width: 540px;
+		font-size: 24px;
+		line-height: 28px;
+		color: #302C34;
+	}
+
+#restaurant{}
+
+.heading
+{
+	display: flex;
+	align-items: center;
+	margin-top: 56px;
+}
+	.section-title
+	{
+		font-size: 36px;
+		font-weight: bold;
+		line-height: 42px;
+		margin: 0;
+		margin-right: 30px;
+	}
+	.input-search
+	{
+		background-image: url(../img/search.svg);
+		width:306px;
+		margin-left: auto;
+	}
+
+.cards
+{
+	margin-top: 44px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	padding-bottom: 90px;
+}
+	.card
+	{
+		background: #fff;
+		border-radius: 7px;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+		overflow: hidden;
+		margin-bottom: 30px;
+		flex-basis:31%; 
+		text-decoration: none;
+		color:#000;
+	}
+	.card-image
+	{
+		width: 384px;
+		height: 250px;
+		object-fit: cover;
+	}
+	.card-image-tanuki
+	{
+		width: 384px;
+		height: 250px;
+		object-fit: cover;
+	}
+	.text
+	{
+		padding: 20px 23px 35px 23px;
+		
+	}
+	.card-block
+	{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+		.card-title
+		{
+			margin: 0;
+			font-weight: bold;
+			font-size: 24px;
+			line-height: 32px;
+		}
+		.card-title-reg
+		{
+			font-weight: bold;
+		}
+		.card-text
+		{
+			font-size:12px;
+			line-height: 20px;
+			color: #fff;
+			background: #262626;
+			border-radius:2px;
+			padding: 1px 8px;
+		}
+
+	.card-info
+	{
+		display: flex;
+		align-items: center;
+		flex-wrap:wrap;
+	}
+
+		.raiting
+		{
+			margin-right: 26px;
+			font-weight: bold;
+			font-size: 18px;
+			line-height: 32px;
+			color:#ffc107;
+		}
+		.price, .category
+		{
+			color:#8c8c8c;
+			font-size: 18px;
+			line-height: 32px;
+		}
+		.price
+		{
+			margin-right: 15px;	
+			margin-left: 26px;
+		}
+		.category
+		{
+			text-overflow: ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			max-width: 100px;
+		}
+		.price:after
+		{
+			content: "";
+			width:5px;
+			height: 5px;
+			background-color:#8c8c8c;
+			display: inline-block;
+			vertical-align: middle;
+			border-radius: 50%;
+			margin-left: 10px;
+		}
+		.ingredients
+		{
+			color:#8c8c8c;
+			font-size: 18px;
+			line-height: 21px;
+		}
+		.card-btns
+		{
+			display: flex;
+			align-items: center;
+			margin-top: 20px;
+			margin-top: 24px;
+		}
+		.btn-card-text
+		{
+			margin-right: 10px;
+		}
+		..btn-card-text-tanuki
+		{
+			margin-right: 10px;
+		}
+		.btn-card-img
+		{
+
+		}
+		.card-price-bold
+		{
+			font-weight: bold;
+			font-size: 20px;
+			line-height: 24px;
+			margin-left: 32px;
+		}
+		.card-price-bold-tanuki
+		{
+			font-weight: bold;
+			font-size: 20px;
+			line-height: 24px;
+			margin-left: 32px;
+		}
+
+.footer
+{
+	background-color: #fff;
+	padding-top:60px;
+	padding-bottom: 60px;
+}
+.wrapper
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.footer-nav
+	{
+		margin-right: auto;
+		margin-left: 35px;
+	}
+		.footer-nav li
+		{
+			display: inline-block;
+			text-decoration: none;
+			color:#595959;
+			cursor: pointer;
+		}
+		.footer-nav li:not(:last-child)
+		{
+			margin-right: 15px;
+		}
+		.footer-nav li a
+		{
+			font-size: 20px;
+			line-height: 21px;
+		}
+
+	.social-networks
+	{
+		display: flex;
+		align-items: center;
+	}
+		.social:not(:last-child)
+		{
+			margin-right: 21px;
+		}
+
+
+.modal
+{
+	position: fixed;
+	display: flex;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.4);
+	display: none;
+	
+}
+.on-click
+{
+	display: flex;	
+}
+	.modal-body
+	{
+		margin-bottom: 55px;
+	}
+	.modal-dialog
+	{
+		margin: auto;
+		max-width: 780px;
+		width:95%;
+		background: #fff;
+		border-radius: 5px;
+		padding: 40px 45px;
+	}
+		/* header */
+		.modal-header
+		{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-bottom: 45px;
+		}
+		.modal-title
+		{
+			margin: 0;
+			font-weight: bold;
+			font-size: 36px;
+			line-height: 42px;
+		}
+		.btn-close
+		{
+			font-size: 36px;
+			border: none;
+			background-color: transparent;
+		}
+		/* body */
+		.madal-body
+		{
+			margin-bottom: 52px;
+		}
+		.food-row
+		{
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding-bottom: 8px;
+			border-bottom: 1px solid #d9d9d9;
+			margin-bottom: 15px;
+		}
+		.food-name
+		{
+			font-weight: normal;
+			font-size: 18px;
+			line-height: 32px;
+		}
+		
+		.food-price
+		{
+			margin-left: auto;
+			margin-right: 47px;
+			font-weight: bold;
+			font-size: 20px;
+			line-height: 32px;
+		}
+		.food-counter
+		{
+			display: flex;
+			align-items: center;
+		}
+		.btn-counter
+		{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 39px;
+			height: 32px;
+			background: #FFF;
+			border: 1px solid #40A9FF;
+			box-sizing: border-box;
+			border-radius: 2px;
+			line-height: 22px;
+			font-size: 22px;
+			color: #40A9FF;
+		}
+		.counter
+		{
+			font-size: 16px;
+			line-height: 24px;
+			margin:0 10px;
+		}
+
+	.modal-footer
+	{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+		.footer-btns
+		{
+			display: flex;
+			align-items: center;
+		}
+		.modal-pricetag
+		{
+			background: #262626;
+			border-radius: 5px;
+			color:#fff;
+			padding: 15px 20px;
+			font-size: 20px;
+			line-height: 23px;
+		}
+
+
+
+/* ноутбуки и компьютеры*/
+@media(max-width:1366px)
+{
+	.container
+	{
+		max-width: 960px;
+	}
+	.info
+	{
+		background-size: 450px;
+		background-position: top -62px right -100px;
+	}
+	.rating
+	{
+		margin-right: 15px;
+	}
+	.category,
+	.price
+	{
+		font-size: 14px;
+	}
+
+	.card-image-tanuki
+	{
+		width: 320px;
+		height: 240px;
+	}
+}
+/*планшеты*/
+@media(max-width:980px)
+{
+	.container
+	{
+		max-width: 700px;
+	}
+	.info
+	{
+		background-size: 400px;
+    	background-position: top -60px right -200px;
+	}
+	.info h1
+	{
+		font-size: 28px;
+		max-width: 300px;
+	}
+	.info p
+	{
+		max-width: 450px;
+		font-size: 20px;
+	}
+	.section-title
+	{
+		font-size: 26px;
+	}
+	.input-search
+	{
+		height: 36px;
+		margin-top: 10px;
+	}
+	.card
+	{
+		margin-bottom: 60px;
+	}
+	.card-image-tanuki
+	{
+		width: 240px;
+		height: 210px;
+	}
+	.card-price-bold-tanuki
+	{
+		margin-left: 7px;
+		line-height: 18px;
+		font-size: 16px;
+	}
+	.btn-card-text-tanuki
+	{
+		font-size: 14px;
+	}
+
+	.card-title
+	{
+		font-size: 14px;
+	}
+	.card-text
+	{
+		font-size: 10px;
+	}
+	.footer-nav
+	{
+		font-size: 14px;
+	}
+}
+
+@media(max-width: 767px)
+{
+	.btn-primary
+	{
+		margin-right: 5px;
+		margin-left: 5px;
+	}
+	.container
+	{
+		max-width: 90%;
+	}
+	.input-adress
+	{
+		margin-top: 15px;
+		order:5;
+		flex:1;
+	}
+	.info
+	{
+		background-size: 200px;
+    	background-position: top -60px right -200px;
+	}
+	.info h1
+	{
+		font-size: 24px;
+		max-width: 280px;
+	}
+	.info p
+	{
+		margin: 0;
+		max-width: 400px;
+		font-size: 18px;
+	}
+	.section-title
+	{
+		font-size: 20px;
+	}
+
+	.card
+	{
+		flex-basis: 47%;
+	}
+	.card-image-tanuki
+	{
+		width: 110%;
+		height: 250px;
+	}
+	.card-price-bold-tanuki
+	{
+		margin-left: 32px;
+		line-height: 18px;
+		font-size: 18px;
+	}
+	.btn-card-text-tanuki
+	{
+		font-size: 16px;
+	}
+	.card-title
+	{
+		font-size: 14px;
+	}
+	.card-text
+	{
+		font-size: 10px;
+	}
+	.footer-nav  li a
+	{
+		font-size: 12px;
+	}
+	.footer-nav li:not(:last-child)
+	{
+    	margin-right: 5px;
+	}
+}
+
+
+/*  телефоны */
+
+@media(max-width: 568px)
+{
+	.container
+	{
+		width: 90%;
+	}
+	.input-adress
+	{
+		margin-top: 15px;
+		flex:1;
+		order:6px;
+	}
+	.btn-text
+	{
+		display: none;
+	}
+	.btn-icon
+	{
+		max-width: 20px;
+		margin-right:0; 
+	}
+	.btn
+	{
+		min-height: 40px;
+		min-width: 30px;
+	}
+	.info
+	{
+		background-image: none;
+		padding: 50px 20px;
+		margin-bottom: 0px;
+		height: 260px;
+	}
+	.info h1
+	{
+		width: 250px;
+		margin-bottom: 0;
+		font-size: 18px;
+		line-height: 1.5;
+	}
+	.info p
+	{
+		width: 300px;
+		font-size: 16px;
+	}
+	.section-title
+	{
+		font-size: 22px;
+		padding-top: 6px;
+	}
+	.card
+	{
+		flex-basis: 100%;
+	}
+	.card-image
+	{
+		width: 100%;
+	}
+	.card-image-tanuki
+	{
+		width: 100%;
+	}
+	.footer-block
+	{
+		align-items: flex-start;
+	}
+	.footer-nav
+	{
+		margin-right: 0;
+		margin-left: 0;
+		order:0;
+	}
+	.footer-logo
+	{
+		margin-right: 15px;
+		order:1;
+	}
+	.footer-nav  li a
+	{
+		font-size: 10px;
+	}
+	.social-networks
+	{
+		margin-right: 15px;
+	}
+	.social
+	{
+		order:2;
+	}
+	.social:not(:last-child) 
+	{
+    	margin-right: 15px;
+	}
+}

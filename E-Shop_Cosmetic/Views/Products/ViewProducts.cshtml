@@ -1,11 +1,11 @@
 ﻿<h1>Вся косметика</h1>
-<h3>@Model.CosmeticCategory</h3>
+<h3>@Model.ProductCategory</h3>
 
 <div class="row mt-5 mb-2">
 
     <div class="cards">
         @{
-            foreach (var product in Model.GetCosmeticProducts)
+            foreach (var product in Model.GetProducts)
             {
                 <a class="card wow bounceInUp" data-wow-delay="0.2s" href="#">
 

@@ -43,6 +43,7 @@ namespace E_Shop_Cosmetic
             app.UseStatusCodePages(); // Отображение кодов запроса
             app.UseStaticFiles(); // Использование статических файлов (Картинки, html, css и т.д.)
             app.UseMvcWithDefaultRoute();
+            ObjectsDB.Initial(app);
         }
     }
 }
