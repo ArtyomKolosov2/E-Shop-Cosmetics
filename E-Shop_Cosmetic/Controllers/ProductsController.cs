@@ -1,4 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data.interfaces;
+using E_Shop_Cosmetic.Data.models;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,15 +27,17 @@ namespace E_Shop_Cosmetic.Controllers
             viewModel.ProductCategory = "Косметика";
             return View(viewModel);
         }
+        
         [HttpGet]
-        public IActionResult ViewProducts(int id)
+        public IActionResult Search(SearchParams searchParams)
         {
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = _allCosmeticProducts.GetCosmeticProducts.Where(x => x.id == id);
+            viewModel.GetProducts = _allCosmeticProducts.GetCosmeticProducts.
+                Where(x => x.id == searchParams.id);
             viewModel.ProductCategory = "Косметика";
             return View(viewModel);
         }
-        
+
     }
 }

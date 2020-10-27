@@ -1,0 +1,22 @@
+﻿@model ProductsViewModel
+<h1>Результат поиска:</h1>
+<h3>@Model.ProductCategory</h3>
+
+<div class="row mt-5 mb-2">
+
+    <div class="cards">
+        @{
+            if (Model.GetProducts.Any())
+            {
+                foreach (var product in Model.GetProducts)
+                {
+                    @await Html.PartialAsync("ShowProduct", product)
+                }
+            }
+            else
+            {
+                <p>Ничего не найдено!</p>
+            }
+        }
+    </div>
+</div>
