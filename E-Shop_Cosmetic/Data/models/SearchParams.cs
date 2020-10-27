@@ -11,6 +11,6 @@ namespace E_Shop_Cosmetic.Data.models
         public string Name { get; set; }
         public uint Price { get; set; }
         public bool IsAvailable { get; set; }
-        public virtual Category Category { get; set; }
+        public int CategoryId { get; set; }
     }
 }
