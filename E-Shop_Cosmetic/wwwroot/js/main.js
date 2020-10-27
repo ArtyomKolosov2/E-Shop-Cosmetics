@@ -60,40 +60,45 @@ function autorized(){
 }
 
 function notAutorized(){
-  console.log('Not authorized!');
+    console.log('Not authorized!');
 
-  function login(event){
-    event.preventDefault();
-    if(loginInput.value){
-      login = loginInput.value;
+    function login(event) {
+        event.preventDefault();
+        if (loginInput.value) {
+            login = loginInput.value;
 
-      localStorage.setItem('Delivery', login);
-  
-      toogleModalAuth();
-      buttonAuth.removeEventListener('click', toggleModalAuth);
-      closeAuth.removeEventListener('click', toggleModalAuth);
-      loginForm.removeEventListener('submit', login);
-      loginForm.reset();
-    
-      checkAuth();
-    }else{
-      loginInput.style.borderColor = 'red';
+            localStorage.setItem('Delivery', login);
+
+            toogleModalAuth();
+            buttonAuth.removeEventListener('click', toggleModalAuth);
+            closeAuth.removeEventListener('click', toggleModalAuth);
+            loginForm.removeEventListener('submit', login);
+            loginForm.reset();
+
+            checkAuth();
+        }
+        else {
+            loginInput.style.borderColor = 'red';
+        }
     }
-
-  }
-  
   buttonAuth.addEventListener('click', toggleModalAuth);
   closeAuth.addEventListener('click', toggleModalAuth);
   loginForm.addEventListener('submit', login);
 }
+
 function checkAuth()
 {
-  if (login){
-    autorized();
-  }
-  else{
-    notAutorized();
-  }
+    if (login){
+        autorized();
+    }
+    else{
+        notAutorized();
+    }
 }
 
 checkAuth();
+
+
+// basket
+
+const foodCounter = document.getElementById
