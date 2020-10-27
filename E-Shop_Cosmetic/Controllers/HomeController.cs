@@ -9,7 +9,7 @@ namespace E_Shop_Cosmetic.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        public IActionResult Index()
         {
             ViewBag.Title = "Main";
             var obj = new HomeViewModel

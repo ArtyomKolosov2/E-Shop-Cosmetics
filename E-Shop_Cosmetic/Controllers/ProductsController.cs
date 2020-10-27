@@ -18,8 +18,7 @@ namespace E_Shop_Cosmetic.Controllers
             _allCosmeticProducts = products;
             _allCategories = category;
         }
-
-        public ViewResult ViewProducts()
+        public IActionResult ViewProducts()
         {
             ViewBag.Title = "Товары";
             ProductsViewModel viewModel = new ProductsViewModel();
@@ -27,5 +26,15 @@ namespace E_Shop_Cosmetic.Controllers
             viewModel.ProductCategory = "Косметика";
             return View(viewModel);
         }
+        [HttpGet]
+        public IActionResult ViewProducts(int id)
+        {
+            ViewBag.Title = "Искомый товар";
+            ProductsViewModel viewModel = new ProductsViewModel();
+            viewModel.GetProducts = _allCosmeticProducts.GetCosmeticProducts.Where(x => x.id == id);
+            viewModel.ProductCategory = "Косметика";
+            return View(viewModel);
+        }
+        
     }
 }

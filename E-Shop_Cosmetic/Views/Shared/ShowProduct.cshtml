@@ -1,0 +1,22 @@
+﻿@model E_Shop_Cosmetic.Data.models.Product
+<a class="card wow bounceInUp" data-wow-delay="0.2s" href="#">
+
+    <img src="@Model.ImageURL" alt="NoImage" class="card-image">
+    <div class="text">
+        <div class="card-block">
+            <h3 class="card-title-tanuki">@Model.Name</h3>
+        </div>
+        <!-- /cards -->
+        <div class="card-info">
+            <div class="rating">
+                <img src="~/img/star.svg" alt="star">4.3
+            </div>
+            <div class="price">
+                @Model.Price
+            </div>
+            <div class="category">
+                @Model.Category.CategoryName
+            </div>
+        </div>
+    </div>
+</a>

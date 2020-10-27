@@ -7,27 +7,7 @@
         @{
             foreach (var product in Model.GetProducts)
             {
-                <a class="card wow bounceInUp" data-wow-delay="0.2s" href="#">
-
-                    <img src="@product.ImageURL" alt="NoImage" class="card-image">
-                    <div class="text">
-                        <div class="card-block">
-                            <h3 class="card-title-tanuki">@product.Name</h3>
-                        </div>
-                        <!-- /cards -->
-                        <div class="card-info">
-                            <div class="rating">
-                                <img src="~/img/star.svg" alt="star">4.3
-                            </div>
-                            <div class="price">
-                                @product.Price
-                            </div>
-                            <div class="category">
-                                @product.Category.CategoryName
-                            </div>
-                        </div>
-                    </div>
-                </a>
+                @await Html.PartialAsync("ShowProduct", product)
             }
         }
     </div>
