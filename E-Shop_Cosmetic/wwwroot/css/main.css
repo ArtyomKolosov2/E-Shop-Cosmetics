@@ -89,11 +89,11 @@ a:hover
 	background: linear-gradient(180deg, rgba(245, 245, 245, 0) 1.04%, #F5F5F5 100%);
 }
 
-#servises{}
+.servises{}
 
 .info
 {
-	background:#fff1b8 url(../img/bg.png) no-repeat top 50px right -26px/600px;
+	background:#fff1b8 url(../img/basket.svg) no-repeat top 50px right -26px/600px;
 	margin-top: 40px;
 	padding: 68px 0 68px 71px;
 	height: 300px;
