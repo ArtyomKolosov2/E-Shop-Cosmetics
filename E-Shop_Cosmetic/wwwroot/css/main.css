@@ -10,7 +10,6 @@ body
 	font-style: normal;
 	font-weight: normal;
 }
-
 header
 {
 	margin-top: 44px;
@@ -76,15 +75,14 @@ a:hover
 		margin-right: 10px;
 	}
 
-	.btn-icon
-	{
-		margin-right: 6px;
-	}
+.btn-icon {
+	margin-right: 6px;
+}
 
-	.btn-text
-	{
-		vertical-align: middle;
-	}
+.btn-text {
+	vertical-align: middle;
+	margin: auto;
+}
 
 .main-content
 {
