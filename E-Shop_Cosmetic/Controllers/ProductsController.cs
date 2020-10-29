@@ -23,7 +23,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Товары";
             ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = _allCosmeticProducts.GetCosmeticProducts;
+            viewModel.GetProducts = _allCosmeticProducts.GetProducts;
             viewModel.ProductCategory = "Косметика";
             return View(viewModel);
         }
@@ -33,7 +33,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = _allCosmeticProducts.GetCosmeticProducts.
+            viewModel.GetProducts = _allCosmeticProducts.GetProducts.
                 Where(x => x.id == searchParams.id);
             viewModel.ProductCategory = "Косметика";
             return View(viewModel);

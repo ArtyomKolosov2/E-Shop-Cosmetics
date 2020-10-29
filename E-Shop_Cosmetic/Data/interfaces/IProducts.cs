@@ -8,8 +8,8 @@ namespace E_Shop_Cosmetic.Data.interfaces
 {
     public interface IProducts
     {
-        IEnumerable<Product> GetCosmeticProducts { get; }
-        IEnumerable<Product> GetFavoriteCosmetics { get; }
+        IEnumerable<Product> GetProducts { get; }
+        IEnumerable<Product> GetFavoriteProducts { get; }
         Product GetProductById(int productId);
     }
 }

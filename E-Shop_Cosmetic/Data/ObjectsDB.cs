@@ -62,25 +62,25 @@ namespace E_Shop_Cosmetic.Data
             }
 
         }
-        private static Dictionary<string, Category> category;
+        private static Dictionary<string, Category> _categories;
         public static Dictionary<string, Category> AppCategories
         {
             get
             {
-                if (category == null)
+                if (_categories == null)
                 {
                     var list = new Category[]
                     {
                         new Category {CategoryName="CHI", Description="Косметика от CHI"},
                         new Category {CategoryName="Faberlic", Description="Косметика от faberlic"}
                     };
-                    category = new Dictionary<string, Category>();
+                    _categories = new Dictionary<string, Category>();
                     foreach (Category element in list)
                     {
-                        category.Add(element.CategoryName, element);
+                        _categories.Add(element.CategoryName, element);
                     }
                 }
-                return category;
+                return _categories;
             }
         }
     }

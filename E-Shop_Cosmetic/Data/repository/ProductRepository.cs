@@ -16,9 +16,9 @@ namespace E_Shop_Cosmetic.Data.repository
         {
             this.appDBContent = appDBContent;
         }
-        public IEnumerable<Product> GetCosmeticProducts => appDBContent.Products.Include(c => c.Category);
+        public IEnumerable<Product> GetProducts => appDBContent.Products.Include(c => c.Category);
 
-        public IEnumerable<Product> GetFavoriteCosmetics => appDBContent.Products.Where(c => c.IsFavorite).Include(p => p.Category);
+        public IEnumerable<Product> GetFavoriteProducts => appDBContent.Products.Where(c => c.IsFavorite).Include(p => p.Category);
 
         public Product GetProductById(int productId)
         {
