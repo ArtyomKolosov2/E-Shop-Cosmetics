@@ -10,9 +10,9 @@ namespace E_Shop_Cosmetic.Data.Repository
 {
     public class ProductRepository : IProducts
     {
-        private readonly AppDBContent appDBContent;
+        private readonly AppDBContext appDBContent;
 
-        public ProductRepository(AppDBContent appDBContent)
+        public ProductRepository(AppDBContext appDBContent)
         {
             this.appDBContent = appDBContent;
         }

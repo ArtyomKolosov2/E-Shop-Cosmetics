@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data
 {
-    public static class DBContextInit
+    public static class AppDBContextInit
     {
-        public async static Task InitDbContextAsync(AppDBContent appDB)
+        public async static Task InitDbContextAsync(AppDBContext appDB)
         {
             await InitCategoriesAsync(appDB);
         }
-        private static async Task InitCategoriesAsync(AppDBContent appDB)
+        private static async Task InitCategoriesAsync(AppDBContext appDB)
         {
             if (await appDB.Categories.AnyAsync())
             {

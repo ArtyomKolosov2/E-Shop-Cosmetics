@@ -27,7 +27,7 @@ namespace E_Shop_Cosmetic
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<AppDBContent>(options => options.UseSqlServer(connection));
+            services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connection));
             services.AddTransient<IProducts, ProductRepository>();
             services.AddTransient<IProductCategories, CategoryRepository>();
             services.AddMvc(options => options.EnableEndpointRouting = false);

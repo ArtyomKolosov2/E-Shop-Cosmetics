@@ -31,8 +31,8 @@ namespace E_Shop_Cosmetic
         {
             using (var scope = host.Services.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDBContent>();
-                await DBContextInit.InitDbContextAsync(dbContext);
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+                await AppDBContextInit.InitDbContextAsync(dbContext);
             }
         }
     }

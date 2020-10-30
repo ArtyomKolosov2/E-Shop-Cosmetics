@@ -9,9 +9,9 @@ namespace E_Shop_Cosmetic.Data.Repository
 {
     public class CategoryRepository : IProductCategories
     {
-        private readonly AppDBContent appDBContent;
+        private readonly AppDBContext appDBContent;
 
-        public CategoryRepository(AppDBContent appDBContent)
+        public CategoryRepository(AppDBContext appDBContent)
         {
             this.appDBContent = appDBContent;
         }
