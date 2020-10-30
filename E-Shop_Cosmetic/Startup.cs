@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using E_Shop_Cosmetic.Data;
-using E_Shop_Cosmetic.Data.interfaces;
-using E_Shop_Cosmetic.Data.repository;
+using E_Shop_Cosmetic.Data.Interfaces;
+using E_Shop_Cosmetic.Data.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -43,7 +43,7 @@ namespace E_Shop_Cosmetic
             app.UseStatusCodePages(); // Отображение кодов запроса
             app.UseStaticFiles(); // Использование статических файлов (Картинки, html, css и т.д.)
             app.UseMvcWithDefaultRoute();
-            ObjectsDB.Initial(app);
+            
         }
     }
 }

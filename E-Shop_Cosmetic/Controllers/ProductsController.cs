@@ -1,5 +1,5 @@
-﻿using E_Shop_Cosmetic.Data.interfaces;
-using E_Shop_Cosmetic.Data.models;
+﻿using E_Shop_Cosmetic.Data.Interfaces;
+using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;

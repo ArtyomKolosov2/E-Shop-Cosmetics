@@ -1,5 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data;
-using E_Shop_Cosmetic.Data.models;
+using E_Shop_Cosmetic.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace E_Shop_Cosmetic.Data
 {
-    public class ObjectsDB
+    public static class ObjectsDB
     {
         public static void Initial(IApplicationBuilder app)
         {

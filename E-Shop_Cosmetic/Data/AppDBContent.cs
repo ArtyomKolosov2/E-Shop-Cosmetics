@@ -1,4 +1,4 @@
-﻿using E_Shop_Cosmetic.Data.models;
+﻿using E_Shop_Cosmetic.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
