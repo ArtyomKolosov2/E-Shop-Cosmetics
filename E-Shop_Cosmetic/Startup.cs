@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,8 +29,14 @@ namespace E_Shop_Cosmetic
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connection));
+            services.AddRazorPages();
             services.AddTransient<IProducts, ProductRepository>();
             services.AddTransient<IProductCategories, CategoryRepository>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => //CookieAuthenticationOptions
+                {
+                    options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                });
             services.AddMvc(options => options.EnableEndpointRouting = false);
         }
 
@@ -42,6 +49,8 @@ namespace E_Shop_Cosmetic
             }
             app.UseStatusCodePages(); // Отображение кодов запроса
             app.UseStaticFiles(); // Использование статических файлов (Картинки, html, css и т.д.)
+            app.UseAuthentication();    // аутентификация
+            app.UseAuthorization();
             app.UseMvcWithDefaultRoute();
             
         }

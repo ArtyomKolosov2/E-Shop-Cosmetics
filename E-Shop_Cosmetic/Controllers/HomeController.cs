@@ -1,4 +1,5 @@
 ﻿using E_Shop_Cosmetic.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
