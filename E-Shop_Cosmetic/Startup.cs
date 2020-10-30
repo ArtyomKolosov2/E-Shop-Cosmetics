@@ -22,37 +22,40 @@ namespace E_Shop_Cosmetic
         {
             Configuration = configuration;
         }
+
         public IConfiguration Configuration { get; }
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connection));
-            services.AddRazorPages();
-            services.AddTransient<IProducts, ProductRepository>();
-            services.AddTransient<IProductCategories, CategoryRepository>();
+
+            // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
-            services.AddMvc(options => options.EnableEndpointRouting = false);
+            services.AddControllersWithViews();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            app.UseStatusCodePages(); // Отображение кодов запроса
-            app.UseStaticFiles(); // Использование статических файлов (Картинки, html, css и т.д.)
+            app.UseDeveloperExceptionPage();
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
+
             app.UseAuthentication();    // аутентификация
-            app.UseAuthorization();
-            app.UseMvcWithDefaultRoute();
-            
+            app.UseAuthorization();     // авторизация
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }

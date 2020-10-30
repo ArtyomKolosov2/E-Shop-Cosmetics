@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace E_Shop_Cosmetic.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private AppDBContext db;
