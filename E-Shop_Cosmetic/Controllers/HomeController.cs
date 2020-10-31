@@ -15,7 +15,7 @@ namespace E_Shop_Cosmetic.Controllers
             ViewBag.Title = "Main";
             var obj = new HomeViewModel
             {
-                Message = "Приветствую на сайте, UserName"
+                Message = $"Приветствую на сайте, {User.Identity.Name}"
             };
             return View(obj);
         }

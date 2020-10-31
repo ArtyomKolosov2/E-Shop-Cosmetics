@@ -16,7 +16,7 @@ namespace E_Shop_Cosmetic.Controllers
 {
     public class AccountController : Controller
     {
-        private AppDBContext db;
+        private readonly AppDBContext db;
         public AccountController(AppDBContext context)
         {
             db = context;
@@ -28,7 +28,6 @@ namespace E_Shop_Cosmetic.Controllers
             return View();
         }
         [HttpPost]
-        
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
@@ -68,7 +67,9 @@ namespace E_Shop_Cosmetic.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 else
+                {
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
+                }
             }
             return View(model);
         }
@@ -89,7 +90,7 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

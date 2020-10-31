@@ -18,12 +18,25 @@
                 <a href="#" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
                 <input type="text" class="input-address input animated bounceInRight" placeholder="Адрес доставки">
                 <div class="buttons animated bounceInRight">
-                    <a href="/Account/Login">
-                        <button class="btn btn-primary">
-                            <img src="~/img/user.svg" alt="user" class="btn-icon">
-                            <p class="btn-text">Войти</p>
-                        </button>
-                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Account/Logout">
+                            <button class="btn btn-primary">
+                                <img src="~/img/user.svg" alt="user" class="btn-icon">
+                                <p class="btn-text">Выйти</p>
+                            </button>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login">
+                            <button class="btn btn-primary">
+                                <img src="~/img/user.svg" alt="user" class="btn-icon">
+                                <p class="btn-text">Войти</p>
+                            </button>
+                        </a>
+                    }
+
                     <button class="btn" id="basket">
                         <img src="~/img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
