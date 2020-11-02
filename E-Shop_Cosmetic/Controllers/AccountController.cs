@@ -11,26 +11,31 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace E_Shop_Cosmetic.Controllers
 {
     public class AccountController : Controller
     {
         private readonly AppDBContext db;
-        public AccountController(AppDBContext context)
+        private readonly ILogger _logger;
+        public AccountController(AppDBContext context, ILogger<AccountController> logger)
         {
             db = context;
+            _logger = logger;
         }
 
         [HttpGet]
         public IActionResult Login()
         {
+            _logger.LogInformation("Http Get Account\\Login called");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
+            _logger.LogInformation("Http Post Account\\Login called");
             if (ModelState.IsValid)
             {
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);

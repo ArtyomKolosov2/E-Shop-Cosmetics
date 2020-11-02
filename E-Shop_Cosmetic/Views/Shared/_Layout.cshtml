@@ -15,7 +15,7 @@
     <header class="header">
         <div class="container">
             <div class="block">
-                <a href="#" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
+                <a asp-action="Index" asp-controller="Home" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
                 <input type="text" class="input-address input animated bounceInRight" placeholder="Адрес доставки">
                 <div class="buttons animated bounceInRight">
                     @if (User.Identity.IsAuthenticated)
@@ -54,7 +54,7 @@
 
         <div class="container">
             <div class="wrapper">
-                <a href="#"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
+                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
                 <nav class="footer-nav">
                     <ul class="animated rotateInDownRight">
                         <li><a href="#"></a>Ресторанам</li>

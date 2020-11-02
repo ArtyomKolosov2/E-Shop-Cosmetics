@@ -23,7 +23,7 @@ namespace E_Shop_Cosmetic.Data.Repository
         public Product GetProductById(int productId)
         {
 
-            return appDBContent.Products.FirstOrDefault(p => p.id == productId);
+            return appDBContent.Products.FirstOrDefault(p => p.Id == productId);
         }
     }
 }

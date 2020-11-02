@@ -1,13 +1,13 @@
-﻿using System;
+﻿using E_Shop_Cosmetic.Data.AbstractClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Models
 {
-    public class Product
+    public class Product : Entity
     {
-        public int id { get; set; }
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
