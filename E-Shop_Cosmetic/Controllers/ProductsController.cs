@@ -43,10 +43,12 @@ namespace E_Shop_Cosmetic.Controllers
         public IActionResult Search(SearchParams searchParams)
         {
             ViewBag.Title = "Искомый товар";
-            ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = _allCosmeticProducts.GetProducts.
-                Where(x => x.Id == searchParams.SearchProductId);
-            viewModel.ProductCategory = "Косметика";
+            ProductsViewModel viewModel = new ProductsViewModel
+            {
+                GetProducts = _allCosmeticProducts.GetProducts.
+                Where(x => x.Id == searchParams.SearchProductId),
+                ProductCategory = "Косметика"
+            };
             _logger.LogInformation("Products\\Search is executed");
             if (!viewModel.GetProducts.Any())
             {
