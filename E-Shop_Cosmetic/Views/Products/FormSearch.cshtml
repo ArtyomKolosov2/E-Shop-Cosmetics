@@ -1,36 +1,50 @@
-﻿<section class="search">
-    <div class="container">
-        <form method="get" class="form-search" name="form-search">
-            <p>
-                Введите Id<input type="text" name="id" />
-            </p>
-            <p>
-                Введите Имя<input type="text" name="name" />
-            </p>
-            <p>
-                Введите стоимость<input type="text" name="price" />
-            </p>
-            <p>
-                Введите id категории:<input type="text" name="category-id">
-            </p>
-            <div class="checkboxes">
-                <div class="max-price">
-                    <span>Максимальная цена:</span>
-                    <select name="select">
-                        <option value="1">Yes</option>
-                        <option value="2">No</option>
-                    </select>
-                </div>
-                <div class="is-available">
-                    <span>Есть в наличии:</span>
-                    <select name="select">
-                        <option value="1">Yes</option>
-                        <option value="2">No</option>
-                    </select>
-                </div>
-            </div>
+﻿@model ProductsViewModel
 
-            <button type="submit" class="btn btn-form">Отправить</button>
+<section class="modal-search">
+    <div class="modal-filter">
+        <div class="modal-header modal-header-filter">
+            <h3 class="modal-title">Фильтр</h3>
+            <button class="btn-close-filter">&times;</button>
+        </div>
+        <form method="get" class="form-search" name="form-search" class="form-search__property">
+            <p>
+                <input type="text" name="id" placeholder="Введите артикул" class="form-search__property" />
+            </p>
+            <p>
+                <input type="text" name="name" placeholder="Введите название товара" class="form-search__property" />
+            </p>
+            <div class="filter-cost">
+                <input type="text" class="js-range-slider" name="my_range" value="$" />
+                <span class="filter-cost__head">Цена изделия в рублях</span>
+                <div class="table">
+                    <div class="table-block">
+                        <span>от</span>
+                        <div class="table-cell">
+                            <input id="priceMin" type="text" value="1" class="form-control">
+                        </div>
+                        <span>руб</span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="table-block">
+                        <span>до</span>
+                        <div class="table-cell">
+                            <input id="priceMax" type="text" value="10" class="form-control">
+                        </div>
+                        <span>руб</span>
+                    </div>
+                </div>
+                <div class="checkboxes">
+                    <div class="under-order">
+                        <p>Под заказ:</p><input type="checkbox" class="search__under-order" />
+                    </div>
+                    <div class="is-available">
+                        <p>Есть в наличии:</p><input type="checkbox" class="search__is-available"></input>
+                    </div>
+                </div>
+                <div class="modal-filter__footer">
+                    <button class="btn btn-primary">Отправить</button>
+                    <button class="btn btn-cancel-filter">Очистить</button>
+                </div>
         </form>
     </div>
 </section>
