@@ -71,7 +71,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             await _dbContext.Products.AddAsync(newProduct);
             await _dbContext.SaveChangesAsync();
-            return View();
+            return RedirectToAction("Products", "ViewProducts");
         }
 
     }
