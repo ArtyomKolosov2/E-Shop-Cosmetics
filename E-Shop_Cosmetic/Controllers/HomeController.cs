@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Controllers
@@ -18,10 +19,19 @@ namespace E_Shop_Cosmetic.Controllers
         }
         public IActionResult Index()
         {
-            ViewBag.Title = "Main";
+            StringBuilder messageBuilder = new StringBuilder($"Приветствуем на сайте");
+            ViewBag.Title = "Добро пожаловать";
+            if (User.Identity.IsAuthenticated)
+            {
+                messageBuilder.Append($", {User.Identity.Name}!");
+            }
+            else
+            {
+                messageBuilder.Append("!");
+            }
             var obj = new HomeViewModel
             {
-                Message = $"Приветствую на сайте, {User.Identity.Name}"
+                Message = messageBuilder.ToString(),
             };
             _logger.LogInformation("Home/Index is executed");
             return View(obj);
