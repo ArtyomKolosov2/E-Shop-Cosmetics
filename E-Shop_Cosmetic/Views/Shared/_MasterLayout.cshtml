@@ -4,24 +4,39 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/css/bootstrap.min.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/css/normalize.css" type="text/css">
-    <link rel="stylesheet" href="~/css/animate.css" type="text/css">
-    <link rel="stylesheet" href="css/ion.rangeSlider.min.css" type="text/css">
-    <link rel="stylesheet" href="~/css/styles.css" type="text/css">
+    <link rel="stylesheet" href="~/css/normalize.css">
+    <link rel="stylesheet" href="~/css/animate.css">
+    <link rel="stylesheet" href="~/css/main.css">
+    <link href="~/css/bootstrap.min.css" type="text/css" />
+    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <header class="header">
         <div class="container">
             <div class="block">
-                <a href="#" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
-                <input type="text" class="input-address input animated bounceInRight" placeholder="Адрес доставки">
+                <a asp-action="Index" asp-controller="Home" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
+                <input type="text" class="input-address input animated bounceInRight" placeholder="Поиск по названию">
                 <div class="buttons animated bounceInRight">
-                    <button class="btn btn-primary">
-                        <img src="~/img/user.svg" alt="user" class="btn-icon">
-                        <p class="btn-text">Войти</p>
-                    </button>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <a href="/Account/Logout">
+                            <button class="btn btn-primary">
+                                <img src="~/img/user.svg" alt="user" class="btn-icon">
+                                <p class="btn-text">Выйти</p>
+                            </button>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Account/Login">
+                            <button class="btn btn-primary">
+                                <img src="~/img/user.svg" alt="user" class="btn-icon">
+                                <p class="btn-text">Войти</p>
+                            </button>
+                        </a>
+                    }
+
                     <button class="btn" id="basket">
                         <img src="~/img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
@@ -36,15 +51,12 @@
     </div>
 
     <footer class="footer">
-
         <div class="container">
             <div class="wrapper">
-                <a href="#"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
+                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
                 <nav class="footer-nav">
                     <ul class="animated rotateInDownRight">
-                        <li><a href="#"></a>Ресторанам</li>
-                        <li><a href="#"></a>Курьерам</li>
-                        <li><a href="#"></a>Пресс-центр</li>
+                        <li><a href="#"></a>Салонам</li>
                         <li><a href="#"></a>Контакты</li>
                     </ul>
                 </nav>
@@ -57,7 +69,7 @@
             </div>
         </div>
     </footer>
-    <section class="modal-cart">
+    <section class="modal">
         <div class="modal-dialog">
             <div class="modal-header">
                 <h3 class="modal-title">Корзина</h3>
@@ -157,7 +169,6 @@
         </div>
     </section>
     <script src="~/js/jquery.min.js"></script>
-    <script src="js/ion.rangeSlider.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/wow.min.js"></script>
     <script src="~/js/main.js"></script>

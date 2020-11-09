@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Shop_Cosmetic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20201026084353_Initial")]
-    partial class Initial
+    [Migration("20201030183520_UserTableAdded")]
+    partial class UserTableAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,7 +20,7 @@ namespace E_Shop_Cosmetic.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("E_Shop_Cosmetic.Data.models.Category", b =>
+            modelBuilder.Entity("E_Shop_Cosmetic.Data.Models.Category", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -38,7 +38,7 @@ namespace E_Shop_Cosmetic.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("E_Shop_Cosmetic.Data.models.Product", b =>
+            modelBuilder.Entity("E_Shop_Cosmetic.Data.Models.Product", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -76,9 +76,27 @@ namespace E_Shop_Cosmetic.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("E_Shop_Cosmetic.Data.models.Product", b =>
+            modelBuilder.Entity("E_Shop_Cosmetic.Data.Models.User", b =>
                 {
-                    b.HasOne("E_Shop_Cosmetic.Data.models.Category", "Category")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("E_Shop_Cosmetic.Data.Models.Product", b =>
+                {
+                    b.HasOne("E_Shop_Cosmetic.Data.Models.Category", "Category")
                         .WithMany("ProductsOfCurrentCategory")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -1,5 +1,5 @@
-﻿@model E_Shop_Cosmetic.Data.models.Product
-<a class="card wow bounceInUp" data-wow-delay="0.2s" href="#">
+﻿@model E_Shop_Cosmetic.Data.Models.Product
+<a class="card wow bounceInUp" data-wow-delay="0.2s" asp-action="Product" asp-controller="Products" asp-route-id="@Model.Id">
 
     <img src="@Model.ImageURL" alt="NoImage" class="card-image">
     <div class="text">
