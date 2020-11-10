@@ -59,6 +59,10 @@ namespace E_Shop_Cosmetic.Controllers
             }
             return View(viewModel);
         }
+        public JsonResult GetMinMaxPrices()
+        {
+            return Json(new {Max=1000, Min=1});
+        }
 
         [HttpGet]
         public IActionResult AddProduct()
@@ -71,7 +75,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             await _dbContext.Products.AddAsync(newProduct);
             await _dbContext.SaveChangesAsync();
-            return RedirectToAction("Products", "ViewProducts");
+            return RedirectToAction("ViewProducts", "Products");
         }
 
     }
