@@ -1,13 +1,13 @@
-﻿using System;
+﻿using E_Shop_Cosmetic.Data.AbstractClasses;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace E_Shop_Cosmetic.Data.models
+namespace E_Shop_Cosmetic.Data.Models
 {
-    public class Category
+    public class Category : Entity
     {
-        public int id { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public List<Product> ProductsOfCurrentCategory { get; set; }
