@@ -14,89 +14,46 @@ close.addEventListener("click", eventModalCart);
 
 cancel.addEventListener("click", eventModalCart);
 
-
-// day 1
-
-const buttonAuth = document.querySelector('.button-auth');
-const modalAuth = document.querySelector('.modal-auth');
-const closeAuth = document.querySelector('.close-auth');
-const loginForm = document.querySelector('#logInForm');
-const loginInput = document.querySelector('#login');
-const username = document.querySelector('.user-name');
-const buttonOut = document.querySelector('.button-out');
-
-
-let login = localStorage.getItem('Delivery');
-
-function toggleModalAuth()
-{
-  loginInput.style.borderColor = '';
-  modalAuth.classList.toggle("is-open");
+// modal search
+function eventModalFilter() {
+    modalSearch.classList.toggle("on-click");
 }
+const filterBtn = document.querySelector('#btn-filter');
+const modalSearch = document.querySelector(".modal-search");
+const closeFilter = document.querySelector(".btn-close-filter");
+const cancelFilter = document.querySelector(".btn-cancel-filter");
 
-function autorized(){
-  console.log('Authorized');
+filterBtn.addEventListener("click", eventModalFilter);
 
-  userName.textContent = login;
+closeFilter.addEventListener("click", eventModalFilter);
 
-  buttonAuth.style.display = "none";
-  username.style.display = 'inline';
-  buttonOut.style.display = 'block';
-  buttonOut.addEventListener('click', logOut);
+cancelFilter.addEventListener("click", eventModalFilter);
 
-  function logOut(){
-    login = null;
-    localStorage.removeItem('Delivery');
-    buttonAuth.style.display = '';
-    username.style.display = '';
-    buttonOut.style.display = '';
-    buttonOut.removeEventListener('click', logOut);
-    
-    checkAuth();
-  }
-}
+// slider for filter
+const priceMin = document.getElementById("priceMin");
+const priceMax = document.getElementById("priceMax");
+const $data = $(".js-range-slider");
 
-function notAutorized(){
-    console.log('Not authorized!');
+/*priceMin.addEventListener("change", priceMin.value = $data.from);
+priceMax.addEventListener("change", priceMax.value = $data.to);*/
 
-    function login(event) {
-        event.preventDefault();
-        if (loginInput.value) {
-            login = loginInput.value;
+$data.ionRangeSlider({
+    type: "double",
+    grid: true,
+    min: 1,
+    max: 1000,
+    postfix: "br",
+    onStart: function (data) {
+        data.from = document.getElementById("priceMin").value;
+        data.to = document.getElementById("priceMin").value;
+    },
+    onChange: function (data) {
+        document.getElementById("priceMin").value = data.from_pretty;
+        document.getElementById("priceMax").value = data.to_pretty;
+    },
 
-            localStorage.setItem('Delivery', login);
-
-            toogleModalAuth();
-            buttonAuth.removeEventListener('click', toggleModalAuth);
-            closeAuth.removeEventListener('click', toggleModalAuth);
-            loginForm.removeEventListener('submit', login);
-            loginForm.reset();
-
-            checkAuth();
-        }
-        else {
-            loginInput.style.borderColor = 'red';
-        }
-    }
-  buttonAuth.addEventListener('click', toggleModalAuth);
-  closeAuth.addEventListener('click', toggleModalAuth);
-  loginForm.addEventListener('submit', login);
-}
-
-function checkAuth()
-{
-    if (login){
-        autorized();
-    }
-    else{
-        notAutorized();
-    }
-}
-
-checkAuth();
-
-
-// basket
+});
+//!slider for filter
 
 //длинна анимации
 new WOW().init();
