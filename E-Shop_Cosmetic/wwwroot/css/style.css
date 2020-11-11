@@ -270,7 +270,7 @@ a:hover
 		{
 			margin-right: 10px;
 		}
-		..btn-card-text-tanuki
+		.btn-card-text-tanuki
 		{
 			margin-right: 10px;
 		}
@@ -520,52 +520,51 @@ a:hover
 	    margin-right: 4px;
 	    margin-bottom: -4px;
 	}
-		.table-block
-		{
-			display: inline-block;
-			margin-right: 5px;
-		}
-		.filter-cost__head
-		{
-		    display: flex;
-		    align-items: center;
-		    justify-content: center;
-		    margin-bottom: 20px;
-		}
-		.table-block
-		{
-			padding-bottom: 10px;
-		}
-		.table-cell
-		{
-			display: inline-block;
-		}
-		.form-control
-		{
-			width: 50px;
-			padding: 5px 0 5px 0;
-		}
+	.filter-cost__head
+	{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
+	}
+	.table-block {
+		font-style: italic;
+		padding-bottom: 10px;
+	}
+	.table-cell
+	{
+		display: inline-block;
+	}
+	.form-control
+	{
+		width: 50px;
+		padding: 5px 0 5px 0;
+	}
 	/**/
 	.checkboxes {
 		margin-bottom: 20px;
 		display: flex;
 		justify-content: center;
 	}
-		.checkboxes p
-		{
-    		display: inline-block;
-		}
-		.checkboxes input
-		{    
-			margin-left: 5px;
-			padding-top: 10px;
-		}
+
+	.checkboxes p
+	{
+    	display: inline-block;
+	}
+	.checkboxes input
+	{    
+		margin-left: 5px;
+		padding-top: 10px;
+	}
+
 	.under-order {
     	margin-left: 20px;
 	}
+
 	.is-available {
    		margin-left: 20px;
 	}
+
 	.form-search__property
 	{
 		display: block;

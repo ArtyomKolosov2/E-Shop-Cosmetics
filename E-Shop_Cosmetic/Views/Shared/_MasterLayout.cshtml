@@ -7,10 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/css/normalize.css">
     <link rel="stylesheet" href="~/css/animate.css">
-    <link rel="stylesheet" href="~/css/main.css">
     <link rel="stylesheet" href="~/css/ion.rangeSlider.min.css">
     <link href="~/css/bootstrap.min.css" type="text/css" />
-    <link href="~/css/styles.css" rel="stylesheet" type="text/css" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -39,7 +37,7 @@
                         </a>
                     }
 
-                    <button class="btn" id="basket">
+                    <button class="btn" id="btn-basket">
                         <img src="~/img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
                     </button>
@@ -67,20 +65,19 @@
                     <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/facebook.png" alt="facebook"></a>
                     <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/vk.png" alt="vk"></a>
                 </div>
-
             </div>
         </div>
     </footer>
     <button class="btn" id="btn-filter">
         <p class="btn-text">Фильтр</p>
-    </button>    
+    </button>
     <section class="modal-search">
         <div class="modal-filter">
             <div class="modal-header modal-header-filter">
                 <h3 class="modal-title">Фильтр</h3>
                 <button class="btn-close-filter">&times;</button>
             </div>
-            <form method="get" class="form-search" name="form-search" >
+            <form method="get" class="form-search" name="form-search" class="form-search__property">
                 <p>
                     <input type="text" name="id" placeholder="Введите артикул" class="form-search__property" />
                 </p>
@@ -112,42 +109,101 @@
                             <p>Под заказ:</p><input type="checkbox" class="search__under-order" />
                         </div>
                         <div class="is-available">
-                            <p>Есть в наличии:</p><input type="checkbox" class="search__is-available"><input>
+                            <p>Есть в наличии:</p><input type="checkbox" class="search__is-available"></input>
                         </div>
                     </div>
                     <div class="modal-filter__footer">
                         <button class="btn btn-primary">Отправить</button>
                         <button class="btn btn-cancel-filter">Очистить</button>
                     </div>
-                </div>
             </form>
         </div>
     </section>
-    <section class="modal">
+    <section class="modal-cart">
         <div class="modal-dialog">
-            <div class="modal-header">
+            <div class="modal-header modal-header-cart">
                 <h3 class="modal-title">Корзина</h3>
                 <button class="btn-close">&times;</button>
             </div>
-
             <div class="modal-body">
-
-            </div>
-
-
-            <div class="modal-footer">
-                <span class="modal-pricetag">1250 ₽</span>
-
-                <div class="footer-btns">
-                    <button class="btn btn-primary">Оформить заказ</button>
-                    <button class="btn cancel">Отмена</button>
+                <div class="food-row">
+                    <span class="food-name">
+                        Ролл угорь стандарт
+                    </span>
+                    <strong class="food-price">550 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
+                </div>
+                <div class="food-row">
+                    <span class="food-name">
+                        Ролл с лососем
+                    </span>
+                    <strong class="food-price">1250 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
+                </div>
+                <div class="food-row">
+                    <span class="food-name">
+                        Окинава стандарт
+                    </span>
+                    <strong class="food-price">400 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
+                </div>
+                <div class="food-row">
+                    <span class="food-name">
+                        Цезарь маки xl
+                    </span>
+                    <strong class="food-price">500 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
+                </div>
+                <div class="food-row">
+                    <span class="food-name">
+                        Ясай маки стандарт 185 г
+                    </span>
+                    <strong class="food-price">600 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
+                </div>
+                <div class="food-row">
+                    <span class="food-name">
+                        Ролл с креветкой стандарт
+                    </span>
+                    <strong class="food-price">800 ₽</strong>
+                    <div class="food-counter">
+                        <button class="btn-counter">-</button>
+                        <span class="counter">1</span>
+                        <button class="btn-counter">+</button>
+                    </div>
                 </div>
             </div>
-
+            <div class="modal-footer">
+                <span class="modal-pricetag">1250 ₽</span>
+                <div class="footer-btns">
+                    <button class="btn btn-primary">Оформить заказ</button>
+                    <button class="btn btn-cancel">Отмена</button>
+                </div>
+            </div>
         </div>
     </section>
-    <script src="~/js/ion.rangeSlider.min.js"></script>
     <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/ion.rangeSlider.min.js"></script>
     <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/wow.min.js"></script>
     <script src="~/js/main.js"></script>
