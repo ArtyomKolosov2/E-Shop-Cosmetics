@@ -46,7 +46,11 @@ a:hover
 }
 .input-address{
 	flex:0.8;
+<<<<<<< HEAD
 	background-image: url(../img/home.svg);
+=======
+	background-image: url(../img/search.svg);
+>>>>>>> 7f28eb114295f4555a8b09189328675c7f0d5f7a
 }
 
 .buttons
