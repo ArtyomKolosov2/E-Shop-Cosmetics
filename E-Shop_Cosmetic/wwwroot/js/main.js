@@ -1,33 +1,8 @@
-function eventModalCart() {
-    modalCart.classList.toggle("on-click");
-}
+import { modalCart } from "./modules/modalCart.js";
+modalCart();
 
-const cardBtn = document.querySelector("#btn-basket");
-const modalCart = document.querySelector(".modal-cart");
-const close = document.querySelector(".btn-close");
-const cancel = document.querySelector(".btn-cancel");
-
-//modal cart
-cardBtn.addEventListener("click", eventModalCart);
-
-close.addEventListener("click", eventModalCart);
-
-cancel.addEventListener("click", eventModalCart);
-
-// modal search
-function eventModalFilter() {
-    modalSearch.classList.toggle("on-click");
-}
-const filterBtn = document.querySelector('#btn-filter');
-const modalSearch = document.querySelector(".modal-search");
-const closeFilter = document.querySelector(".btn-close-filter");
-const cancelFilter = document.querySelector(".btn-cancel-filter");
-
-filterBtn.addEventListener("click", eventModalFilter);
-
-closeFilter.addEventListener("click", eventModalFilter);
-
-cancelFilter.addEventListener("click", eventModalFilter);
+import { modalFilter } from "./modules/modalFilter.js";
+modalFilter();
 
 // slider for filter
 const priceMin = document.getElementById("priceMin");
@@ -46,7 +21,9 @@ $data.ionRangeSlider({
     onStart: function(data)
     {
         data.from = document.getElementById("priceMin").value;
-        data.to = document.getElementById("priceMin").value;
+        data.to = document.getElementById("priceMax").value;
+        data.min = document.getElementById("priceMin").value;
+        data.max = document.getElementById("priceMax").value;
     },
     onChange: function(data) {
         document.getElementById("priceMin").value = data.from_pretty;
