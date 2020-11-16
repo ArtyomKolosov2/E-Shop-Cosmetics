@@ -44,9 +44,7 @@ namespace E_Shop_Cosmetic
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
             app.UseDeveloperExceptionPage();
-
             app.UseStaticFiles();
-
             app.UseRouting();
 
             app.UseAuthentication();    // аутентификация

@@ -43,11 +43,12 @@ $data.ionRangeSlider({
     min: 1,
     max: 1000,
     postfix: "br",
-    onStart: function (data) {
+    onStart: function(data)
+    {
         data.from = document.getElementById("priceMin").value;
         data.to = document.getElementById("priceMin").value;
     },
-    onChange: function (data) {
+    onChange: function(data) {
         document.getElementById("priceMin").value = data.from_pretty;
         document.getElementById("priceMax").value = data.to_pretty;
     },

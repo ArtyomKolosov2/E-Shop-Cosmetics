@@ -27,17 +27,24 @@ namespace E_Shop_Cosmetic.Controllers
         {
             return await _context.Products.ToListAsync();
         }
-
+        // GET: api/ProductsApi/MinPrice
         [HttpGet("MinPrice")]
         public async Task<JsonResult> GetMinPrice()
         {
             return new JsonResult(new {Min = await _context.Products.MinAsync(p => p.Price) });
         }
-
+        // GET: api/ProductsApi/MaxPrice
         [HttpGet("MaxPrice")]
         public async Task<JsonResult> GetMaxPrice()
         {
             return new JsonResult(new { Max = await _context.Products.MaxAsync(p => p.Price) });
+        }
+
+        // GET: api/ProductsApi/MaxPrice
+        [HttpGet("MinMaxPrice")]
+        public async Task<JsonResult> GetMinMaxPrice()
+        {
+            return new JsonResult(new { Max = await _context.Products.MaxAsync(p => p.Price), Min = await _context.Products.MinAsync(p => p.Price) });
         }
         // GET: api/ProductsApi/5
         [HttpGet("{id}")]
