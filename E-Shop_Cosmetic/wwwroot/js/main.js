@@ -20,14 +20,14 @@ $data.ionRangeSlider({
     postfix: "br",
     onStart: function(data)
     {
-        data.from = document.getElementById("priceMin").value;
-        data.to = document.getElementById("priceMax").value;
-        data.min = document.getElementById("priceMin").value;
-        data.max = document.getElementById("priceMax").value;
+        data.from = priceMin.value;
+        data.to = priceMax.value;
+        data.min = priceMin.value;
+        data.max = priceMax.value;
     },
     onChange: function(data) {
-        document.getElementById("priceMin").value = data.from_pretty;
-        document.getElementById("priceMax").value = data.to_pretty;
+        priceMin.value = data.from_pretty;
+        priceMax.value = data.to_pretty;
     },
 
 });
