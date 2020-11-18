@@ -4,14 +4,16 @@ using E_Shop_Cosmetic.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace E_Shop_Cosmetic.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContentModelSnapshot : ModelSnapshot
+    [Migration("20201117081713_UserRolesAdded")]
+    partial class UserRolesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
