@@ -1,37 +1,28 @@
 import { modalCart } from "./modules/modalCart.js";
 modalCart();
 
+// slider for filter
 import { modalFilter } from "./modules/modalFilter.js";
 modalFilter();
 
-// slider for filter
-const priceMin = document.getElementById("priceMin");
-const priceMax = document.getElementById("priceMax");
-const $data = $(".js-range-slider");
+import { GetMinPrice, GetMaxPrice } from "./modules/getDataFromDB.js";
 
-/*priceMin.addEventListener("change", priceMin.value = $data.from);
-priceMax.addEventListener("change", priceMax.value = $data.to);*/
+const priceMinRange = GetMinPrice();
+const priceMaxRange = GetMaxPrice();
+let priceMin = 0, priceMax = 0;
+const slider = $(".js-range-slider");
 
-$data.ionRangeSlider({
-    type: "double",
-    grid: true,
-    min: 1,
-    max: 1000,
-    postfix: "br",
-    onStart: function(data)
-    {
-        data.from = priceMin.value;
-        data.to = priceMax.value;
-        data.min = priceMin.value;
-        data.max = priceMax.value;
-    },
-    onChange: function(data) {
-        priceMin.value = data.from_pretty;
-        priceMax.value = data.to_pretty;
-    },
+import { buildSlider } from "./modules/slider.js";
 
-});
+buildSlider(priceMinRange, priceMaxRange, priceMin, priceMax, slider);
+
 //!slider for filter
+
+// basket
+import { basketLogic } from "./modules/basket.js";
+basketLogic();
+
+//!basket
 
 //длинна анимации
 new WOW().init();

@@ -202,21 +202,6 @@
             </div>
         </div>
     </section>
-    <script>
-        async function GetMinMaxPrice() {
-            const response = await fetch("/api/ProductsApi/MinMaxPrice", {
-                method: "GET",
-                headers: { "Accept": "application/json" }
-            });
-            if (response.ok === true) {
-                const user = await response.json();
-                const form = document.forms["form_search"];
-                form.elements["priceMax"].value = user.max;
-                form.elements["priceMin"].value = user.min;
-            }
-        }
-        GetMinMaxPrice();
-    </script>
     <script src="~/js/other/jquery.min.js"></script>
     <script src="~/js/other/ion.rangeSlider.min.js"></script>
     <script src="~/js/other/bootstrap.min.js"></script>
