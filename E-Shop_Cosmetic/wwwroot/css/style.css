@@ -14,6 +14,9 @@ header
 {
 	margin-top: 44px;
 }
+a{
+	text-decoration:none;
+}
 a:hover
 {
 	cursor: pointer;
@@ -46,11 +49,8 @@ a:hover
 }
 .input-address{
 	flex:0.8;
-<<<<<<< HEAD
 	background-image: url(../img/home.svg);
-=======
 	background-image: url(../img/search.svg);
->>>>>>> 7f28eb114295f4555a8b09189328675c7f0d5f7a
 }
 
 .buttons
@@ -582,6 +582,44 @@ a:hover
 	.btn-cancel-filter
 	{
 	}
+
+/* Login and Autorization */
+.register {
+	background-color: lavender;
+}
+.form-register {
+	margin: 20px 0 20px 0;
+	padding: 40px 0 20px 0;
+}
+
+.login {
+	background-color: lavender;
+}
+
+.form {
+}
+
+.form-login {
+	margin: 20px 0 20px 0;
+	padding: 40px 0 20px 0;
+}
+
+.form-header {
+	display: flex;
+	justify-content: center;
+	margin-top:10px;
+}
+.form-group
+{
+	display:flex;
+	justify-content:center;
+	padding-top:10px;
+}
+.form-footer {
+	margin-top:10px;
+	display: flex;
+	justify-content: center;
+}
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px)
 {
