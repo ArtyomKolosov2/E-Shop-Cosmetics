@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Models
 {
-    public class User : Entity
+    public class Role : Entity
     {
-        public string Email { get; set; }
-        public string Password { get; set; }
-
-        public int? RoleId { get; set; }
-        public Role Role { get; set; }
+        public string Name { get; set; }
+        public List<User> Users { get; set; }
+        public Role()
+        {
+            Users = new List<User>();
+        }
     }
 }

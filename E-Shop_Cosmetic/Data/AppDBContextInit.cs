@@ -12,6 +12,7 @@ namespace E_Shop_Cosmetic.Data
         public async static Task InitDbContextAsync(AppDBContext appDB)
         {
             await InitCategoriesAsync(appDB);
+            await InitRolesAsync(appDB);
         }
         private static async Task InitCategoriesAsync(AppDBContext appDB)
         {
@@ -26,6 +27,23 @@ namespace E_Shop_Cosmetic.Data
                 new Category {CategoryName="Faberlic", Description="Косметика от faberlic"}
             };
             await appDB.Categories.AddRangeAsync(categories);
+            await appDB.SaveChangesAsync();
+        }
+        private static async Task InitRolesAsync(AppDBContext appDB)
+        {
+            if (await appDB.Roles.AnyAsync())
+            {
+                return;
+            }
+
+            var categories = new Role[]
+            {
+                new Role {Name="user"},
+                new Role {Name="admin"}
+            };
+            User user = new User { Email = "artyomkolosov2@yandex.ru", Password="228228", RoleId = 2 };
+            await appDB.Users.AddAsync(user);
+            await appDB.Roles.AddRangeAsync(categories);
             await appDB.SaveChangesAsync();
         }
     }

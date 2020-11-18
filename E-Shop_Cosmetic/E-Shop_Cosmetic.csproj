@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\CategoriesApi\**" />
+    <Content Remove="Views\CategoriesApi\**" />
+    <EmbeddedResource Remove="Views\CategoriesApi\**" />
+    <None Remove="Views\CategoriesApi\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Views\Products\FormSearch.html" />
   </ItemGroup>
 

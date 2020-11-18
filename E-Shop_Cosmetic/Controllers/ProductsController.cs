@@ -2,6 +2,7 @@
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -64,12 +65,15 @@ namespace E_Shop_Cosmetic.Controllers
             return Json(new {Max=1000, Min=1});
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public IActionResult AddProduct()
         {
             ViewBag.Categories = new SelectList(_allCategories.GetAllCategories, "Id", "CategoryName");
             return View();
         }
+
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product newProduct)
         {
