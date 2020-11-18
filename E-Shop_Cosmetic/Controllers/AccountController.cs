@@ -97,7 +97,7 @@ namespace E_Shop_Cosmetic.Controllers
 
         public IActionResult AccessDenied()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
