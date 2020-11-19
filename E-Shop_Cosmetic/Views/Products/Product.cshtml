@@ -1,4 +1,30 @@
 ﻿@model Product
-<h1>@Model.Name</h1>
-<img src = "@Model.ImageURL"/>
-<p>@Model.Price$</p>
+
+<section class="product">
+    <div class="container">
+        <hr class="line-bold" />
+        <div class="product-info">
+            <h1 class="product-info__header">@Model.Name</h1>
+        </div>
+        <hr />
+        <div class="offer">
+            <div class="offers-figure">
+                <img src="@Model.ImageURL" class="offers-figure__img" />
+            </div>
+            <div class="offer-info">
+                <span class="offer-info__description">
+                    <h3>Описание</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </span>
+                <p class="offer-info__cost">@Model.Price р.</p>
+                <a href="#"><button class="btn btn-primary">Оформить заказ</button></a>
+            </div>
+        </div>
+        <hr />
+    </div>
+</section>

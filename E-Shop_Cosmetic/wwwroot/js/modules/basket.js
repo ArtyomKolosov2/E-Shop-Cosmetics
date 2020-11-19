@@ -29,3 +29,6 @@ export function basketLogic() {
         });
     });
 }
+export function basketData() {
+
+}

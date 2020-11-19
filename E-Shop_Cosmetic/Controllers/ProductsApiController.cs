@@ -126,3 +126,8 @@ namespace E_Shop_Cosmetic.Controllers
         }
     }
 }
+
+/*adress
+wish
+phone
+cost*/
