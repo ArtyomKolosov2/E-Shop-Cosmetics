@@ -3,25 +3,27 @@
 <section class="login">
     <div class="container">
         <form class="form form-login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
-            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
             <div class="form-header">
                 <h3>Вход на сайт</h3>
             </div>
             <div class="form-body">
                 <div class="form-group">
-                    <label asp-for="Email">Введите Email</label>
+                    <label asp-for="Email" class="email">Введите Email</label>
                     <input type="text" asp-for="Email" placeholder="user@gmail.com" />
                     <span asp-validation-for="Email" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password">Введите пароль</label>
+                    <label asp-for="Password" class="password">Введите пароль</label>
                     <input asp-for="Password" placeholder="1234" />
                     <span asp-validation-for="Password" />
+                </div>
+                <div class="form-group">
+                    Если не зарегестрирован → <a asp-action="Register" asp-controller="Account" class="register-link">Регистрация</a>
                 </div>
             </div>
             <div class="form-footer">
                 <input type="submit" value="Войти" class="btn btn-outline-dark" />
-                <a asp-action="Register" asp-controller="Account" class="btn btn-danger">Регистрация</a>
             </div>
         </form>
     </div>
