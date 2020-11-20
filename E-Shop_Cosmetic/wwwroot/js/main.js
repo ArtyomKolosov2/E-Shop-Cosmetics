@@ -9,11 +9,11 @@ import { GetMinPrice, GetMaxPrice } from "./modules/getDataFromDB.js";
 
 const priceMinRange = GetMinPrice();
 const priceMaxRange = GetMaxPrice();
-const slider = $(".js-range-slider");
+const $slider = $(".js-range-slider");
 
 import { buildSlider } from "./modules/slider.js";
 
-buildSlider(priceMinRange, priceMaxRange, slider);
+buildSlider(priceMinRange, priceMaxRange, $slider);
 //!slider for filter
 
 // basket

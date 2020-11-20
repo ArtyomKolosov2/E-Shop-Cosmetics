@@ -1,61 +1,89 @@
-﻿const countNumber = (priceMaxRange) => {
+﻿const countNumber = (Range) => {
     let sum = 0;
-    for (let i = 1; i < priceMaxRange; i *= 10) {
+    for (let i = 1; i < Range; i *= 10) {
         sum++;
     }
     return sum;
 }
 
-export function buildSlider(priceMinRange, priceMaxRange, slider) {
-    let priceMin = document.getElementById('priceMin');
-    let priceMax = document.getElementById('priceMax');
+export function buildSlider(minRange, maxRange, $slider) {
+    let $inputFrom = $("#priceMin");
+    let $inputTo = $("#priceMax");
+    let instance;
+    let from = 0;
+    let to = 0;
 
-    priceMin.oninput = function () {
-        if (priceMin.value < countNumber(priceMinRange)) {
-            priceMin.value = priceMinRange;
-        }
-        // up range
-        else if (priceMin.value > priceMaxRange) {
-            if (priceMin.value.length === countNumber(priceMaxRange)) {
-                priceMin.value = priceMaxRange - 1;
-            }
-            else {
-                priceMin.value = priceMax.value.slice(0, countNumber(priceMaxRange)) - 1;
-            }
-        }
-        slider.from_pretty = priceMin.value; render();
-    }
-    priceMax.oninput = function () {
-        if (priceMax.value > priceMaxRange) {
-            if (priceMax.value.length === countNumber(priceMaxRange)) {
-                priceMax.value = priceMaxRange;
-            }
-            else {
-                priceMax.value = priceMax.value.slice(0, countNumber(priceMaxRange));
-            }
-        }
-        slider.to_pretty = priceMax.value; render();
-    }
-
-
-    const render = () => slider.ionRangeSlider({
+    $slider.ionRangeSlider({
+        skin: "flat",
         type: "double",
         grid: true,
-        min: priceMinRange,
-        max: priceMaxRange,
-        from: priceMinRange,
-        to: priceMinRange + 10,
-        step: 1,
         postfix: "br",
-        onStart: function (data) {
-            data.min = priceMin;
-            data.max = priceMax;
-        },
-        onChange: function (data) {
-            priceMin.value = data.from_pretty;
-            priceMax.value = data.to_pretty;
-        },
-
+        min: minRange,
+        max: maxRange,
+        from: minRange,
+        to: minRange + 10,
+        onStart: updateInputs,
+        onChange: updateInputs,
+        onFinish: updateInputs
     });
-    render();
+
+    instance = $slider.data("ionRangeSlider");
+
+    function updateInputs(data) {
+        from = data.from;
+        to = data.to;
+
+        $inputFrom.prop("value", from);
+        $inputTo.prop("value", to);
+    }
+
+    $inputFrom.on("input", function () {
+        let value = $(this).prop("value");
+
+        /* validate */
+
+        // down range
+        if (value < countNumber(minRange)) {
+            value = minRange;
+        }
+        // up range
+        else if (value > maxRange) {
+            if (value.length === countNumber(maxRange)) {
+                value = maxRange - 1;
+            }
+            else {
+                value = value.slice(0, countNumber(maxRange)) - 1;
+            }
+        }
+        // if zero
+        else if (value[0] == 0, value.length > 1) {
+            value = value.slice(0, 3);
+        }
+
+        instance.update({
+            from: value
+        });
+
+        $(this).prop("value", value);
+    });
+
+    $inputTo.on("input", function () {
+        var value = $(this).prop("value");
+
+        // validate
+        if (value > maxRange) {
+            if (value.length === countNumber(maxRange)) {
+                value = maxRange;
+            }
+            else {
+                value = value.slice(0, countNumber(maxRange));
+            }
+        }
+
+        instance.update({
+            to: value
+        });
+
+        $(this).prop("value", value);
+    });
 }
