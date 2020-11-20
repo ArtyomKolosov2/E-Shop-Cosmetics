@@ -30,5 +30,7 @@ export function basketLogic() {
     });
 }
 export function basketData() {
-
+    foodPrice = [5, 4.99, 2, 3, 2.45, 1.49];
+    conter = [0, 0, 0, 0, 0, 0];
+    cost = 0;
 }
