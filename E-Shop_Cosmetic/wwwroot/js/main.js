@@ -1,26 +1,35 @@
 import { modalCart } from "./modules/modalCart.js";
-modalCart();
-
-// slider for filter
 import { modalFilter } from "./modules/modalFilter.js";
-modalFilter();
-
-import { GetMinPrice, GetMaxPrice } from "./modules/getDataFromDB.js";
-
-const priceMinRange = GetMinPrice();
-const priceMaxRange = GetMaxPrice();
-const $slider = $(".js-range-slider");
-
+import { GetMinPrice, GetMaxPrice, SetMinMaxPrice } from "./modules/getDataFromDB.js";
+import { basketLogic } from "./modules/basket.js";
 import { buildSlider } from "./modules/slider.js";
 
-buildSlider(priceMinRange, priceMaxRange, $slider);
-//!slider for filter
+main();
 
-// basket
-import { basketLogic } from "./modules/basket.js";
-basketLogic();
+async function main() {
+    
+    modalCart();
 
-//!basket
+    // slider for filter
+    
+    modalFilter();
 
-//длинна анимации
-new WOW().init();
+    SetMinMaxPrice();
+
+    //!slider for filter
+    const maxPrice = await GetMaxPrice();
+    const minPrice = await GetMinPrice();
+
+    const $slider = $(".js-range-slider");
+
+    buildSlider(minPrice, maxPrice, $slider);
+
+    // basket
+    
+    basketLogic();
+
+    //!basket
+
+    //длинна анимации
+    new WOW().init();
+}

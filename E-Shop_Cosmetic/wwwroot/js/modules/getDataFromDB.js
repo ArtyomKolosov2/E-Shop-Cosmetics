@@ -1,4 +1,4 @@
-﻿async function SetMinMaxPrice() {
+﻿export async function SetMinMaxPrice() {
     const response = await fetch("/api/ProductsApi/MinMaxPrice", {
         method: "GET",
         headers: { "Accept": "application/json" }
@@ -10,11 +10,23 @@
         form.elements["priceMax"].value = user.max;
     }
 }
-SetMinMaxPrice();
 
-export function GetMinPrice() {
-    return 1;
+export async function GetMinPrice() {
+    const response = await fetch("/api/ProductsApi/MinPrice", {
+        method: "GET",
+        headers: { "Accept": "application/json" }
+    });
+    let data = await response.json();
+    let d = data.min;
+    return d;
 }
-export function GetMaxPrice() {
-    return 432;
+
+export async function GetMaxPrice() {
+    const response = await fetch("/api/ProductsApi/MaxPrice", {
+        method: "GET",
+        headers: { "Accept": "application/json" }
+    });
+    let data = await response.json();
+    let d = data.max;
+    return d;
 }
