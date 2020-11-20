@@ -1,8 +1,42 @@
-﻿export function buildSlider(priceMinRange, priceMaxRange, priceMin, priceMax, slider) {
-    document.getElementById('priceMin').oninput = function () { document.getElementById('priceMin').value = slider.from; render(); }
-    document.getElementById('priceMax').oninput = function () { document.getElementById('priceMax').value = slider.to; render(); }
-    let priceMin = document.getElementById('priceMin').value;
-    let priceMax = document.getElementById('priceMax').value;
+﻿const countNumber = (priceMaxRange) => {
+    let sum = 0;
+    for (let i = 1; i < priceMaxRange; i *= 10) {
+        sum++;
+    }
+    return sum;
+}
+
+export function buildSlider(priceMinRange, priceMaxRange, slider) {
+    let priceMin = document.getElementById('priceMin');
+    let priceMax = document.getElementById('priceMax');
+
+    priceMin.oninput = function () {
+        if (priceMin.value < countNumber(priceMinRange)) {
+            priceMin.value = priceMinRange;
+        }
+        // up range
+        else if (priceMin.value > priceMaxRange) {
+            if (priceMin.value.length === countNumber(priceMaxRange)) {
+                priceMin.value = priceMaxRange - 1;
+            }
+            else {
+                priceMin.value = priceMax.value.slice(0, countNumber(priceMaxRange)) - 1;
+            }
+        }
+        slider.from_pretty = priceMin.value; render();
+    }
+    priceMax.oninput = function () {
+        if (priceMax.value > priceMaxRange) {
+            if (priceMax.value.length === countNumber(priceMaxRange)) {
+                priceMax.value = priceMaxRange;
+            }
+            else {
+                priceMax.value = priceMax.value.slice(0, countNumber(priceMaxRange));
+            }
+        }
+        slider.to_pretty = priceMax.value; render();
+    }
+
 
     const render = () => slider.ionRangeSlider({
         type: "double",
@@ -18,8 +52,8 @@
             data.max = priceMax;
         },
         onChange: function (data) {
-            priceMin = data.from_pretty;
-            priceMax = data.to_pretty;
+            priceMin.value = data.from_pretty;
+            priceMax.value = data.to_pretty;
         },
 
     });
