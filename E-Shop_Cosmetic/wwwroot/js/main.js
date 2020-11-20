@@ -1,8 +1,9 @@
 import { modalCart } from "./modules/modalCart.js";
 import { modalFilter } from "./modules/modalFilter.js";
-import { GetMinPrice, GetMaxPrice, SetMinMaxPrice } from "./modules/getDataFromDB.js";
+import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
 import { basketLogic } from "./modules/basket.js";
 import { buildSlider } from "./modules/slider.js";
+import { autorized } from "./modules/getDataFromCookie.js";
 
 async function main() {
     
@@ -12,18 +13,18 @@ async function main() {
     
     modalFilter();
 
-    SetMinMaxPrice();
+    setMinMaxPrice();
 
-    //!slider for filter
-    const maxPrice = await GetMaxPrice();
-    const minPrice = await GetMinPrice();
+    const maxPrice = await getMaxPrice();
+    const minPrice = await getMinPrice();
 
     const $slider = $(".js-range-slider");
 
     buildSlider(minPrice, maxPrice, $slider);
+    //!slider for filter
 
     // basket
-    
+
     basketLogic();
 
     //!basket

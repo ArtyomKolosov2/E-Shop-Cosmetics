@@ -1,4 +1,4 @@
-﻿export async function SetMinMaxPrice() {
+﻿export async function setMinMaxPrice() {
     const response = await fetch("/api/ProductsApi/MinMaxPrice", {
         method: "GET",
         headers: { "Accept": "application/json" }
@@ -11,7 +11,18 @@
     }
 }
 
-export async function GetMinPrice() {
+export async function getFoodPriceProducts() {
+    const response = await fetch("/api/FoodPrice", {
+        method: "GET",
+        headers: { "Accept": "application/json" }
+    });
+    if (response.ok === true) {
+        let data = await response.json();
+        return data.max;
+    }
+}
+
+export async function getMinPrice() {
     const response = await fetch("/api/ProductsApi/MinPrice", {
         method: "GET",
         headers: { "Accept": "application/json" }
@@ -20,7 +31,7 @@ export async function GetMinPrice() {
     return data.min;
 }
 
-export async function GetMaxPrice() {
+export async function getMaxPrice() {
     const response = await fetch("/api/ProductsApi/MaxPrice", {
         method: "GET",
         headers: { "Accept": "application/json" }

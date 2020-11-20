@@ -21,7 +21,7 @@ export function buildSlider(minRange, maxRange, $slider) {
         min: minRange,
         max: maxRange,
         from: minRange,
-        to: maxRange,
+        to: minRange + 10,
         onStart: updateInputs,
         onChange: updateInputs,
         onFinish: updateInputs
@@ -52,7 +52,7 @@ export function buildSlider(minRange, maxRange, $slider) {
                 value = maxRange - 1;
             }
             else {
-                value = value.slice(0, countNumber(maxRange)) - 1;
+                value = String(maxRange).slice(0, countNumber(maxRange)) - 1;
             }
         }
         // if zero
