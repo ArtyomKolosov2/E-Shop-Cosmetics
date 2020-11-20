@@ -17,8 +17,7 @@ export async function GetMinPrice() {
         headers: { "Accept": "application/json" }
     });
     let data = await response.json();
-    let d = data.min;
-    return d;
+    return data.min;
 }
 
 export async function GetMaxPrice() {
@@ -27,6 +26,5 @@ export async function GetMaxPrice() {
         headers: { "Accept": "application/json" }
     });
     let data = await response.json();
-    let d = data.max;
-    return d;
+    return data.max;
 }

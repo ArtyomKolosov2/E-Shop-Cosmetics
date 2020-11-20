@@ -4,8 +4,6 @@ import { GetMinPrice, GetMaxPrice, SetMinMaxPrice } from "./modules/getDataFromD
 import { basketLogic } from "./modules/basket.js";
 import { buildSlider } from "./modules/slider.js";
 
-main();
-
 async function main() {
     
     modalCart();
@@ -33,3 +31,5 @@ async function main() {
     //длинна анимации
     new WOW().init();
 }
+
+main();
