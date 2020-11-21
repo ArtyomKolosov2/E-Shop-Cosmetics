@@ -8,22 +8,48 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Repository
 {
-    public class ProductRepository : IProducts
+    public class ProductRepository : Repository<Product>, IProductsRepository
     {
-        private readonly AppDBContext appDBContent;
-
-        public ProductRepository(AppDBContext appDBContent)
+        public ProductRepository(AppDBContext appDBContext) : base(appDBContext)
         {
-            this.appDBContent = appDBContent;
+
         }
-        public IEnumerable<Product> GetProducts => appDBContent.Products.Include(c => c.Category);
 
-        public IEnumerable<Product> GetFavoriteProducts => appDBContent.Products.Where(c => c.IsFavorite).Include(p => p.Category);
-
-        public Product GetProductById(int productId)
+        public async Task AddProduct(Product product)
         {
+            await AddAsync(product);
+        }
 
-            return appDBContent.Products.FirstOrDefault(p => p.Id == productId);
+        public async Task<IReadOnlyList<Product>> GetFavoriteProductsAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Product> GetProductByIdAsync(int productId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Product> GetProductByNameAsync(string name)
+        {
+            var collection = await GetAllAsync();
+            return collection.FirstOrDefault(n => n.Name.Equals(name));
+        }
+
+        public async Task<Product> GetProductByPriceAsync(int price)
+        {
+            var collection = await GetAllAsync();
+            return collection.FirstOrDefault(n => n.Price == price);
+        }
+
+        public async Task<IReadOnlyList<Product>> GetProducts()
+        {
+            return await GetAllAsync();
+        }
+
+        public Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange)
+        {
+            throw new NotImplementedException();
         }
     }
 }
