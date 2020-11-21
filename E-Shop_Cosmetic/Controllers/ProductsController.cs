@@ -1,6 +1,7 @@
 ﻿using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -31,22 +32,22 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Товары";
             ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = await _allCosmeticProducts.GetProducts();
+            viewModel.GetProducts = await _allCosmeticProducts.GetProducts(new ProductSpecification().IncludeCategory());
             viewModel.ProductCategory = "Косметика";
             _logger.LogInformation("Products\\ViewProducts is executed");
             return View(viewModel);
         }
         [HttpGet]
-        public IActionResult Product(int id)
+        public async Task<IActionResult> Product(int id)
         {
             _logger.LogInformation("Products\\Product is executed");
-            return View(_allCosmeticProducts.GetProductByIdAsync(id));
+            return View(await _allCosmeticProducts.GetProductByIdAsync(id));
         }
 
         [HttpGet]
         public async Task<IActionResult> Search(SearchParams searchParams)
         {
-            var products = await _allCosmeticProducts.GetProducts();
+            var products = await _allCosmeticProducts.GetProducts(new ProductSpecification().IncludeCategory());
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel
             {

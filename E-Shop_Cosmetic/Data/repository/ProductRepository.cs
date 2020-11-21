@@ -1,5 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,9 +26,9 @@ namespace E_Shop_Cosmetic.Data.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Product> GetProductByIdAsync(int productId)
+        public async Task<Product> GetProductByIdAsync(int productId)
         {
-            throw new NotImplementedException();
+            return await GetByIdAsync(productId);
         }
 
         public async Task<Product> GetProductByNameAsync(string name)
@@ -45,6 +46,16 @@ namespace E_Shop_Cosmetic.Data.Repository
         public async Task<IReadOnlyList<Product>> GetProducts()
         {
             return await GetAllAsync();
+        }
+
+        public async Task<IReadOnlyList<Product>> GetProducts(ISpecification<Product> specification)
+        {
+            return await GetAllAsync(specification);
+        }
+
+        public async Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification)
+        {
+            return await GetAllAsync(specification);
         }
 
         public Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange)

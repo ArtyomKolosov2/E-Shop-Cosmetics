@@ -1,5 +1,7 @@
 ﻿using E_Shop_Cosmetic.Data.AbstractClasses;
 using E_Shop_Cosmetic.Data.Interfaces;
+using E_Shop_Cosmetic.Data.Specifications;
+using E_Shop_Cosmetic.Data.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -51,6 +53,16 @@ namespace E_Shop_Cosmetic.Data.Repository
         {
             Context.Entry(entity).State = EntityState.Modified;
             await Context.SaveChangesAsync();
+        }
+
+        public async Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
+        }
+
+        protected IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        {
+            return SpecificationEvaluator.ApplySpecification(Context.Set<T>().AsQueryable(), spec);
         }
     }
 }
