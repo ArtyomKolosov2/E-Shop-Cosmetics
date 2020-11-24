@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Repository
 {
-    public class CategoryRepository : IProductCategories
+    public class CategoryRepository : ICategoriesRepository
     {
         private readonly AppDBContext appDBContent;
 
@@ -15,6 +15,6 @@ namespace E_Shop_Cosmetic.Data.Repository
         {
             this.appDBContent = appDBContent;
         }
-        public IEnumerable<Category> GetAllCategories => appDBContent.Categories;
+        public IEnumerable<Category> Categories => appDBContent.Categories;
     }
 }

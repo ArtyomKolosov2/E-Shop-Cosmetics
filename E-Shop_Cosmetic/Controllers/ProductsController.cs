@@ -17,11 +17,11 @@ namespace E_Shop_Cosmetic.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductsRepository _allCosmeticProducts;
-        private readonly IProductCategories _allCategories;
+        private readonly ICategoriesRepository _allCategories;
         private readonly ILogger _logger;
         private readonly AppDBContext _dbContext;
 
-        public ProductsController(AppDBContext appDB, IProductsRepository products, IProductCategories category, ILogger<ProductsController> logger)
+        public ProductsController(AppDBContext appDB, IProductsRepository products, ICategoriesRepository category, ILogger<ProductsController> logger)
         {
             _dbContext = appDB;
             _allCosmeticProducts = products;
@@ -70,7 +70,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public IActionResult AddProduct()
         {
-            ViewBag.Categories = new SelectList(_allCategories.GetAllCategories, "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(_allCategories.Categories, "Id", "CategoryName");
             return View();
         }
 

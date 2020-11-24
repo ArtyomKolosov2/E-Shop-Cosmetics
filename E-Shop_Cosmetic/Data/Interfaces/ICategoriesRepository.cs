@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Interfaces
 {
-    public interface IProductCategories
+    public interface ICategoriesRepository
     {
-        IEnumerable<Category> GetAllCategories { get; }
+        IEnumerable<Category> Categories { get; }
     }
 }
