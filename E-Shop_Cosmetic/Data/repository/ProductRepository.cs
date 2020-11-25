@@ -62,5 +62,10 @@ namespace E_Shop_Cosmetic.Data.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task UpdateProductAsync(Product product)
+        {
+            await UpdateAsync(product);
+        }
     }
 }

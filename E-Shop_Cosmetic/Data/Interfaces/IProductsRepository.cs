@@ -17,5 +17,6 @@ namespace E_Shop_Cosmetic.Data.Interfaces
         Task<Product> GetProductByNameAsync(string name);
         Task<Product> GetProductByPriceAsync(int price);
         Task AddProduct(Product product);
+        Task UpdateProductAsync(Product product);
     }
 }

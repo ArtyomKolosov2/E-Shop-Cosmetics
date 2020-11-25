@@ -16,15 +16,13 @@ namespace E_Shop_Cosmetic.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly IProductsRepository _allCosmeticProducts;
+        private readonly IProductsRepository _cosmeticProductsRepository;
         private readonly ICategoriesRepository _allCategories;
         private readonly ILogger _logger;
-        private readonly AppDBContext _dbContext;
 
-        public ProductsController(AppDBContext appDB, IProductsRepository products, ICategoriesRepository category, ILogger<ProductsController> logger)
+        public ProductsController(IProductsRepository products, ICategoriesRepository category, ILogger<ProductsController> logger)
         {
-            _dbContext = appDB;
-            _allCosmeticProducts = products;
+            _cosmeticProductsRepository = products;
             _allCategories = category;
             _logger = logger;
         }
@@ -32,7 +30,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Товары";
             ProductsViewModel viewModel = new ProductsViewModel();
-            viewModel.GetProducts = await _allCosmeticProducts.GetProducts(new ProductSpecification().IncludeCategory());
+            viewModel.GetProducts = await _cosmeticProductsRepository.GetProducts(new ProductSpecification().IncludeCategory());
             viewModel.ProductCategory = "Косметика";
             _logger.LogInformation("Products\\ViewProducts is executed");
             return View(viewModel);
@@ -41,13 +39,13 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Product(int id)
         {
             _logger.LogInformation("Products\\Product is executed");
-            return View(await _allCosmeticProducts.GetProductByIdAsync(id));
+            return View(await _cosmeticProductsRepository.GetProductByIdAsync(id));
         }
 
         [HttpGet]
         public async Task<IActionResult> Search(SearchParams searchParams)
         {
-            var products = await _allCosmeticProducts.GetProducts(new ProductSpecification().IncludeCategory());
+            var products = await _cosmeticProductsRepository.GetProducts(new ProductSpecification().IncludeCategory());
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel
             {
@@ -60,10 +58,6 @@ namespace E_Shop_Cosmetic.Controllers
                 _logger.LogWarning("Search unsuccesful!");
             }
             return View(viewModel);
-        }
-        public JsonResult GetMinMaxPrices()
-        {
-            return Json(new {Max=1000, Min=1});
         }
 
         [Authorize(Roles = "admin")]
@@ -78,7 +72,33 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product newProduct)
         {
-            await _allCosmeticProducts.AddProduct(newProduct);
+            await _cosmeticProductsRepository.AddProduct(newProduct);
+            return RedirectToAction("ViewProducts", "Products");
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        public async Task<IActionResult> UpdateProduct(int id)
+        {
+            var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            if (searchResult is null)
+            {
+                return NoContent();
+            }
+            ViewBag.Categories = new SelectList(_allCategories.Categories, "Id", "CategoryName");
+            return View(searchResult);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateProduct(int id, Product product)
+        {
+            if (id != product.Id)
+            {
+                return BadRequest();
+            }
+
+            await _cosmeticProductsRepository.UpdateProductAsync(product);
             return RedirectToAction("ViewProducts", "Products");
         }
 
