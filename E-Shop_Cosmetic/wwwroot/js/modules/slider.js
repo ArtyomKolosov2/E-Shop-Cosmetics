@@ -1,4 +1,6 @@
-﻿const countNumber = (Range) => {
+﻿import { getCounterProducts, getCostProducts } from "./getDataFromCookie";
+
+const countNumber = (Range) => {
     let sum = 0;
     for (let i = 1; i < Range; i *= 10) {
         sum++;
