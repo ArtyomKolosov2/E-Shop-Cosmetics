@@ -1,30 +1,28 @@
 ﻿@model E_Shop_Cosmetic.ViewModels.LoginViewModel
 
 <section class="login">
-    <div class="container">
-        <form class="form form-login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
-            <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
-            <div class="form-header">
-                <h3>Вход на сайт</h3>
+    <form class="form form-login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+        <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
+
+        <h3 class="form-header">Вход на сайт</h3>
+
+        <div class="form-body">
+            <div class="form-group">
+                <label asp-for="Email" class="form-group__header">Введите Email</label>
+                <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
+                <span asp-validation-for="Email" />
             </div>
-            <div class="form-body">
-                <div class="form-group">
-                    <label asp-for="Email" class="email">Введите Email</label>
-                    <input type="text" asp-for="Email" placeholder="user@gmail.com" />
-                    <span asp-validation-for="Email" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password" class="password">Введите пароль</label>
-                    <input asp-for="Password" placeholder="1234" />
-                    <span asp-validation-for="Password" />
-                </div>
-                <div class="form-group">
-                    Если не зарегестрирован → <a asp-action="Register" asp-controller="Account" class="register-link">Регистрация</a>
-                </div>
+            <div class="form-group">
+                <label asp-for="Password" class="form-group__header">Введите пароль</label>
+                <input asp-for="Password" class="form-group__input" placeholder="1234" />
+                <span asp-validation-for="Password" />
             </div>
-            <div class="form-footer">
-                <input type="submit" value="Войти" class="btn btn-outline-dark" />
+            <div class="form-group">
+                Если не зарегестрирован → <a asp-action="Register" asp-controller="Account" class="register-link">Регистрация</a>
             </div>
-        </form>
-    </div>
+        </div>
+        <div class="btn-block">
+            <input type="submit" value="Войти" class="btn btn-outline-dark" />
+        </div>
+    </form>
 </section>
