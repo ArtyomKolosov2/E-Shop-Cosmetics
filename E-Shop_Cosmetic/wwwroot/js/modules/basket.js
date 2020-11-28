@@ -1,29 +1,29 @@
-﻿function sumArr(arr) {
+﻿function Sum(arr) {
     let sum = 0;
-    for (let el in arr) {
-        sum += Number(arr[el].textContent);
+    for (let el of arr) {
+        sum += el;
     }
     return sum;
 }
-
 export function basketLogic() {
     $().ready(function () {
-        $('.btn-counter').click(function () {
-            const arrConters = document.querySelectorAll('.food-counter');
-            const arrFoodPrice = document.querySelectorAll('.food-price');
-            parseFoodPrice(arrFoodPrice);
-            const index = this.index | 0;
+        $('.btn-counter').click(function (e) {
+            const FoodCounter = document.querySelectorAll('.food-counter');
+            const FoodPrice = document.querySelectorAll('.food-price');
+            let arrFoodPrice = [];
+            for (let i = 0; i < FoodPrice.length; i++) {
+                arrFoodPrice.push( Number(FoodPrice[i].textContent.slice(0, -2)) );
+            }
+            let index = FoodPrice(e.target);
             if (this.textContent === '+') {
-                arrConters[index]++;
+                FoodCounter[index].innerHTML++;
             }
             else {
-                arrConters[index]--;
+                FoodCounter[index].innerHTML--;
             }
-            for (let i = 0; i < arrConters.length - 1; i++) {
-                arrFoodPrice[i].innerHTML = arrFoodPrice[i] * arrConters[i];
-            }
+            FoodPrice[index].innerHTML = arrFoodPrice[index] * FoodCounter[index].innerHTML;
             
-            let priceTag = sumArr(arrFoodPrice) | null;
+            let priceTag = Sum(arrFoodPrice) | null;
 
             document.querySelector('.modal-pricetag').innerHTML = `${priceTag} ₽`;
         });

@@ -593,84 +593,77 @@ a:hover
 	{
 	}
 
-
-/* Login and Autorization */
-.register {
-	background-color: #F5F5DC;
+/* common forms */
+.form {
+	margin: auto;
+	border: 2px solid #ccc;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	width: 600px;
 }
 
-.register input
-{
-	padding: 2px 0;
-}
-.register .email
-{
-	margin-right: 28px;
-}
-
-.register .password
-{
-	margin-right: 14px;
-}
-
-.register input {
-	margin-left: 10px;
-}
-
-.repeat-password {
-	margin-right: -4px;
-}
-.form-register {
-	margin: 20px 0 20px 0;
-	padding: 40px 0 20px 0;
-}
-
-.login {
-	background-color: #F5F5DC;
+.form-header {
+	text-transform: uppercase;
+	font-size: 18px;
+	text-align: center;
+	padding-top: 10px;
 }
 
 .validation-fix {
+	padding-top: 10px;
 	display: flex;
 	justify-content: center;
 	text-decoration: underline;
 }
 
-.form {
+.form-group {
+	display: flex;
+	justify-content: center;
+	padding-top: 10px;
+	width: 400px;
+	margin: auto;
+}
+
+.form-group__header {
+	margin: 10px;
+	width: 34%;
+}
+
+.form-group__input {
+	background: #fff;
+	border: 1px solid #d9d9d9;
+	border-radius: 2px;
+	line-height: 16px;
+	font-size: 14px;
+	padding: 8px;
+	width: 45%;
+	max-height: 40px;
+}
+
+.btn-block {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 0;
+}
+
+.btn-block__select {
+	padding:5px;
+	border-radius: 2px;
+	font-size: 16px;
+	width: 90px;
+}
+.btn-block__header {
+	margin: 10px;
+	width: 34%;
+}
+/* !common forms */
+/* Login and Autorization */
+.register-fix {
+	width: 138px;
 }
 
 .form-login {
-	margin: 20px 0 20px 0;
-	padding: 40px 0 20px 0;
-}
-
-.form-header {
-	display: flex;
-	justify-content: center;
-	margin-top:10px;
-}
-.form-group
-{
-	display:flex;
-	justify-content: center;
-	padding-top:10px;
-}
-
-.email {
-	margin-right: 25px;
-}
-
-.password
-{
-	margin-right: 11px;
-}
-.form-footer {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-}
-.register-link
-{
-	margin-left:12px;
+	margin: 30px auto 0 auto;
 }
 
 .btn-outline-dark {
@@ -681,9 +674,33 @@ a:hover
 	opacity: 0.8;
 }
 
-.btn-outline-dark:hover {
+.btn-outline-dark :hover {
 	background-color: #8c8c8c;
 }
+
+/* admin form */
+.admin-panel {
+	margin: 30px auto 0 auto;
+}
+.form-admin {
+	margin: auto;
+	border: 2px solid #ccc;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	width: 600px;
+}
+
+.btn-admin {
+	margin-top: -25px;
+	justify-content: center;
+	width: 100px;
+	background-color: #ccc;
+}
+
+.btn-admin: hover {
+	background-color: #ff2400;
+}
+
+/* !admin form */
 
 /* Products*/
 .product
@@ -707,10 +724,14 @@ a:hover
 
 }
 
-.offer{ display: inline-flex; }
+.offer{
+	display: inline-flex;
+}
+
 .offers-figure {
 	display: inline-block;
 }
+
 .offers-figure__img {
 	width: 80px;
 	height: 200px;
@@ -918,9 +939,7 @@ a:hover
 	}
 }
 
-
 /*  телефоны */
-
 @media(max-width: 568px)
 {
 	.container
