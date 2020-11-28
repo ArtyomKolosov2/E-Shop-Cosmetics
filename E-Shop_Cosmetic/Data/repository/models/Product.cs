@@ -13,7 +13,11 @@ namespace E_Shop_Cosmetic.Data.Models
         public string Name { get; set; }
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
+
+        [DataType(DataType.ImageUrl)]
         public string ImageURL { get; set; }
+
+        [DataType(DataType.Currency)]
         [Required(ErrorMessage = "Цена не указана!")]
         public double Price { get; set; }
         public bool IsFavorite { get; set; }
