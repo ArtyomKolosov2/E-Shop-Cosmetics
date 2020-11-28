@@ -16,7 +16,7 @@ namespace E_Shop_Cosmetic.Data.Repository
 
         }
 
-        public async Task AddProduct(Product product)
+        public async Task AddProductAsync(Product product)
         {
             await AddAsync(product);
         }
@@ -61,6 +61,11 @@ namespace E_Shop_Cosmetic.Data.Repository
         public Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task DeleteProductAsync(Product product)
+        {
+            await DeleteAsync(product);
         }
 
         public async Task UpdateProductAsync(Product product)

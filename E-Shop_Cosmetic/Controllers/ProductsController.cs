@@ -72,7 +72,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product newProduct)
         {
-            await _cosmeticProductsRepository.AddProduct(newProduct);
+            await _cosmeticProductsRepository.AddProductAsync(newProduct);
             return RedirectToAction("ViewProducts", "Products");
         }
 
@@ -99,6 +99,27 @@ namespace E_Shop_Cosmetic.Controllers
             }
 
             await _cosmeticProductsRepository.UpdateProductAsync(product);
+            return RedirectToAction("ViewProducts", "Products");
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        public async Task<IActionResult> DeleteProduct(int id)
+        {
+            var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            if (searchResult is null)
+            {
+                return NoContent();
+            }
+            
+            return View(searchResult);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(int id, Product product)
+        {
+            await _cosmeticProductsRepository.DeleteProductAsync(product); 
             return RedirectToAction("ViewProducts", "Products");
         }
 

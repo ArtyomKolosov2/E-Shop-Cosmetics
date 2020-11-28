@@ -61,7 +61,7 @@ namespace E_Shop_Cosmetic.Controllers
                 User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    user = new User { Email = model.Email, Password = model.Password, RoleId = 1, Role = await db.Roles.FirstOrDefaultAsync(i => i.Id == 1) };
+                    user = new User { Email = model.Email, Password = model.Password, UserRoleId = 1, Role = await db.Roles.FirstOrDefaultAsync(i => i.Id == 1) };
                     db.Users.Add(user);
                     await db.SaveChangesAsync();
 
@@ -79,7 +79,7 @@ namespace E_Shop_Cosmetic.Controllers
 
         private async Task Authenticate(User user)
         {
-            var roleName = await db.Roles.FirstOrDefaultAsync(i => i.Id == user.RoleId);
+            var roleName = await db.Roles.FirstOrDefaultAsync(i => i.Id == user.UserRoleId);
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),

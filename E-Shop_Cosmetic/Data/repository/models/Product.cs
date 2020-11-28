@@ -12,7 +12,7 @@ namespace E_Shop_Cosmetic.Data.Models
         public string ShortDescription { get; set; }
         public string LongDescription { get; set; }
         public string ImageURL { get; set; }
-        public uint Price { get; set; }
+        public double Price { get; set; }
         public bool IsFavorite { get; set; }
         public bool IsAvailable { get; set; }
         public int CategoryId { get; set; }
