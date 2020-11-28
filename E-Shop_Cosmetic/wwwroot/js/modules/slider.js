@@ -82,7 +82,7 @@ export function buildSlider(minRange, maxRange, $slider) {
         min: minRange,
         max: maxRange,
         from: minRange,
-        to: minRange + 10,
+        to: maxRange,
         onStart: updateInputs,
         onChange: updateInputs,
         onFinish: updateInputs

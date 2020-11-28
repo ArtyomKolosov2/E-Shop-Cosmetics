@@ -1,4 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Repository.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace E_Shop_Cosmetic.Data
         {
         }
 
+        public DbSet<Order> Orders { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
