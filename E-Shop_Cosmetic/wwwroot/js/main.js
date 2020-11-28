@@ -3,6 +3,7 @@ import { modalFilter } from "./modules/modalFilter.js";
 import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
 import { basketLogic } from "./modules/basket.js";
 import { buildSlider } from "./modules/slider.js";
+//import { autorized } from "./modules/getDataFromCookie.js";
 
 async function main() {
     
