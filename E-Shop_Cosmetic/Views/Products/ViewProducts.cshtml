@@ -12,6 +12,14 @@
             }
         }
     </div>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="AddProduct" asp-controller="Products">
+            <button class="btn btn-primary">
+                <p class="btn-text">Add</p>
+            </button>
+        </a>
+    }
 </div>
 
 
