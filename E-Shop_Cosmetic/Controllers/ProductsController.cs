@@ -4,6 +4,7 @@ using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
@@ -116,9 +117,11 @@ namespace E_Shop_Cosmetic.Controllers
         }
 
         [Authorize(Roles = "admin")]
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct(int id, Product product)
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> DeleteProduct(int id, IFormCollection collection)
         {
+            var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
             await _cosmeticProductsRepository.DeleteProductAsync(product); 
             return RedirectToAction("ViewProducts", "Products");
         }

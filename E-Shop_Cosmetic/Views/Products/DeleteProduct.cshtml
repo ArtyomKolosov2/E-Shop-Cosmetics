@@ -19,8 +19,8 @@
         </dd>
     </dl>
 
-    <form asp-action="DeleteProduct" asp-controller="Products">
-        <input type="submit" value="Delete" class="btn btn-default" /> |
+    <form asp-action="DeleteProduct" asp-controller="Products" asp-antiforgery="true">
+        <input type="submit" value="Delete" class="btn btn-default" /> 
         <a asp-action="ViewProducts" asp-controller="Products">Back to List</a>
     </form>
 </div>
