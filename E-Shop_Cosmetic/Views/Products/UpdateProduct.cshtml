@@ -1,34 +1,39 @@
 ﻿@model Product
-<form  asp-action="UpdateProduct" asp-controller="Products" asp-antiforgery="true">
-    <div>
-        <div>
-            <label asp-for="Name"></label>
-            <input type="text" asp-for="Name" />
+<section class="admin-panel">
+    <form class="form form-admin" asp-action="UpdateProduct" asp-controller="Products" asp-antiforgery="true">
+        <h3 class="form-header">Добро пожаловать в админ панель!</h3>
+
+        <div class="form-group">
+            <h3>Изменить товар:</h3>
         </div>
-        <div>
-            <label asp-for="Price"></label>
-            <input asp-for="Price"/>
+        <div class="form-group">
+            <label asp-for="Name" class="form-group__header"></label>
+            <input type="text" asp-for="Name" class="form-group__input" />
         </div>
-        <div>
-            <label asp-for="ShortDescription"></label>
-            <input type="text" asp-for="ShortDescription" />
+        <div class="form-group">
+            <label asp-for="Price" class="form-group__header"></label>
+            <input asp-for="Price" class="form-group__input" />
         </div>
-        <div>
-            <label asp-for="LongDescription"></label>
-            <input type="text" asp-for="LongDescription" />
+        <div class="form-group">
+            <label asp-for="ShortDescription" class="form-group__header"></label>
+            <input type="text" asp-for="ShortDescription" class="form-group__input" />
+        </div>
+        <div class="form-group">
+            <label asp-for="LongDescription" class="form-group__header"></label>
+            <input type="text" asp-for="LongDescription" class="form-group__input" />
         </div>
 
-        <div>
-            <label asp-for="ImageURL"></label>
-            <input type="url" asp-for="ImageURL"/>
+        <div class="form-group">
+            <label asp-for="ImageURL" class="form-group__header"></label>
+            <input type="url" asp-for="ImageURL" class="form-group__input" />
         </div>
-        <div>
-            <label asp-for="CategoryId"></label>
-            <select asp-for="CategoryId" asp-items="ViewBag.Categories">
+        <div class="btn-block">
+            <label asp-for="CategoryId" class="btn-block__header"></label>
+            <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
             </select>
         </div>
-        <div>
-            <input type="submit" value="Save" />
+        <div class="btn-block">
+            <input type="submit" value="Save" class="btn btn-admin" />
         </div>
-    </div>
-</form>
+    </form>
+</section>

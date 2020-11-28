@@ -23,16 +23,18 @@
         <hr />
         @if (User.IsInRole("admin"))
         {
-            <a href="/Products/UpdateProduct/@Model.Id">
-                <button class="btn btn-primary">
-                    <p class="btn-text">Update</p>
-                </button>
-            </a>
-            <a href="/Products/DeleteProduct/@Model.Id">
-                <button class="btn btn-primary">
-                    <p class="btn-text">Delete</p>
-                </button>
-            </a>
+            <div>
+                <a href="/Products/UpdateProduct/@Model.Id">
+                    <button class="btn btn-primary">
+                        <p class="btn-text">Update</p>
+                    </button>
+                </a>
+                <a href="/Products/DeleteProduct/@Model.Id">
+                    <button class="btn btn-primary">
+                        <p class="btn-text">Delete</p>
+                    </button>
+                </a>
+            </div>
         }
     </div>
 </section>
