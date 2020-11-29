@@ -1,73 +1,4 @@
-﻿function setCookie(name, value, exp_y, exp_m, exp_d, path = null, domain = null, secure = null) {
-    let cookieString = name + "=" + escape(value);
-
-    if (exp_y) {
-        let expires = new Date(exp_y, exp_m, exp_d);
-        cookieString += "; expires=" + expires.toGMTString();
-    }
-    if (path) {
-        cookieString += "; path=" + escape(path);
-    }
-    if (domain) {
-        cookieString += "; domain=" + escape(domain);
-    }
-    if (secure) {
-        cookieString += "; secure";
-    }
-
-    document.cookie = cookieString;
-}
-
-function deleteCookie(cookieName) {
-    let cookieDate = new Date();  // Текущая дата и время
-    cookieDate.setTime(cookieDate.getTime() - 1);
-    document.cookie = cookieName += "=; expires=" + cookieDate.toGMTString();
-}
-
-function getCookie(cookieName) {
-    let results = document.cookie.match('(^|;) ?' + cookieName + '=([^;]*)(;|$)');
-
-    if (results) {
-        return (unescape(results[2]));
-    }
-    else {
-        return null;
-    }
-}
-
-export function setBasketData(userName) {
-    if (!getCookie(userName)) {
-        if (userName) {
-            const currentDate = new Date;
-            const cookieYear = currentDate.getFullYear() + 1;
-            const cookieMonth = currentDate.getMonth();
-            const cookieDay = currentDate.getDate();
-            const data = [0, 0, 0, 0, 0, 0];
-            SetCookie("BasketData", userName, data, cookieYear, cookieMonth, cookieDay);
-        }
-    }
-
-    conter = [0, 0, 0, 0, 0, 0];
-    cost = 0;
-}
-
-export async function getCounterProducts(userName) {
-    return await getCookie(userName);
-}
-
-export async function getCostProducts(userName) {
-    return await getCookie(userName);
-}
-
-const countNumber = (Range) => {
-    let sum = 0;
-    for (let i = 1; i < Range; i *= 10) {
-        sum++;
-    }
-    return sum;
-}
-
-export function buildSlider(minRange, maxRange, $slider) {
+﻿export function buildSlider(minRange, maxRange, $slider) {
     let $inputFrom = $("#priceMin");
     let $inputTo = $("#priceMax");
     let instance;
@@ -81,21 +12,23 @@ export function buildSlider(minRange, maxRange, $slider) {
         postfix: "br",
         min: minRange,
         max: maxRange,
-        from: minRange,
-        to: maxRange,
-        onStart: updateInputs,
-        onChange: updateInputs,
-        onFinish: updateInputs
+        from: localStorage.getItem("SliderFrom") | minRange,
+        to: localStorage.getItem("SliderTo") | minRange + 10,
+        onStart: updateScroll,
+        onChange: updateScroll,
+        onFinish: updateScroll
     });
 
     instance = $slider.data("ionRangeSlider");
 
-    function updateInputs(data) {
+    function updateScroll(data) {
         from = data.from;
         to = data.to;
-
         $inputFrom.prop("value", from);
         $inputTo.prop("value", to);
+
+        localStorage.setItem("SliderFrom", from);
+        localStorage.setItem("SliderTo", to);
     }
 
     $inputFrom.on("input", function () {
@@ -104,16 +37,16 @@ export function buildSlider(minRange, maxRange, $slider) {
         /* validate */
 
         // down range
-        if (value < countNumber(minRange)) {
+        if (value < minRange.length) {
             value = minRange;
         }
         // up range
         else if (value > maxRange) {
-            if (value.length === countNumber(maxRange)) {
-                value = maxRange - 1;
+            if (value.length === maxRange.length) {
+                value = to - 1;
             }
             else {
-                value = String(maxRange).slice(0, countNumber(maxRange)) - 1;
+                value = String(to).slice(0, to.length) - 1;
             }
         }
         // if zero
@@ -126,18 +59,19 @@ export function buildSlider(minRange, maxRange, $slider) {
         });
 
         $(this).prop("value", value);
+        localStorage.setItem("SliderFrom", value);
     });
 
     $inputTo.on("input", function () {
-        var value = $(this).prop("value");
+        let value = $(this).prop("value");
 
         // validate
         if (value > maxRange) {
-            if (value.length === countNumber(maxRange)) {
+            if (value.length === maxRange.length) {
                 value = maxRange;
             }
             else {
-                value = value.slice(0, countNumber(maxRange));
+                value = value.slice(0, maxRange.length);
             }
         }
 
@@ -146,5 +80,6 @@ export function buildSlider(minRange, maxRange, $slider) {
         });
 
         $(this).prop("value", value);
+        localStorage.setItem("SliderTo", value);
     });
 }
