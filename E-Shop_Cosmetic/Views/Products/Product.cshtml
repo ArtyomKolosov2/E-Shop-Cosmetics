@@ -12,32 +12,47 @@
                 <img src="@Model.ImageURL" class="offers-figure__img" />
             </div>
             <div class="offer-info">
-                <span class="offer-info__description">
+                <div class="offer-info__description">
                     <h2>Описание</h2>
-                    <h3>@Model.ShortDescription</h3>
-                    <p>@Model.LongDescription</p>
-                </span>
+                    <h3>
+                        @Model.ShortDescription
+                        Lorem, ipsum, dolor sit amet consectetur adipisicing elit. Ratione culpa tenetur
+                        
+                    </h3>
+                    <p>
+                        @Model.LongDescription
+                        ipsam odio nulla architecto nesciunt minus suscipit aperiam rerum, fuga officia
+                        vero laboriosam a sunt nemo voluptas itaque nobis quo quidem! Rerum ut vitae voluptatum
+                        temporibus exercitationem odit fugit cumque molestias ab inventore, debitis harum
+                        quisquam voluptas
+                    </p>
+                </div>
+                <div class="offer-footer">
+                    <a href="#" class="offer-footer__btn">
+                        <button class="btn btn-primary">В корзину</button>
+                    </a>
+                    <p class="offer-footer__cost">@Model.Price р.</p>
+                </div>
             </div>
-        </div>
-        <div class="offer-footer">
-            <a href="#" class="offer-footer__btn"><button class="btn btn-primary">В корзину</button></a>
-            <p class="offer-footer__cost">@Model.Price р.</p>
         </div>
         <hr />
         @if (User.IsInRole("admin"))
         {
-            <div>
-                <a href="/Products/UpdateProduct/@Model.Id">
-                    <button class="btn btn-primary">
-                        <p class="btn-text">Update</p>
-                    </button>
-                </a>
-                <a href="/Products/DeleteProduct/@Model.Id">
-                    <button class="btn btn-primary">
-                        <p class="btn-text">Delete</p>
-                    </button>
-                </a>
-            </div>
+            <section>
+                <h3 style="text-align:center;padding-top:10px;">Хотите что-нибудь поменять?</h3>
+                <div class="btn-block">
+                    <a href="/Products/UpdateProduct/@Model.Id">
+                        <button class="btn btn-primary">
+                            <p class="btn-text">Изменить</p>
+                        </button>
+                    </a>
+                    <a href="/Products/DeleteProduct/@Model.Id">
+                        <button class="btn btn-primary">
+                            <p class="btn-text">Удалить</p>
+                        </button>
+                    </a>
+                </div>
+            </section>
         }
     </div>
 </section>

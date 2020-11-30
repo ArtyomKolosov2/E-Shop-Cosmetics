@@ -1,25 +1,82 @@
 ﻿@model ProductsViewModel
-<h1>Вся косметика</h1>
-<h3>@Model.ProductCategory</h3>
+<section class="view-products-header">
+    <hr />
+    <div class="view-products__block">
+        <h1 class="view-products__block__title">Вся косметика</h1>
+        <button class="btn btn-filter" id="btn-filter">
+            <img src="~/img/user.svg" alt="user" class="btn-icon">
+            <p class="btn-text">Фильтр</p>
+        </button>
+    </div>
+    <h3 class="view-products-header__category">@Model.ProductCategory</h3>
+</section>
 
-<div class="row mt-5 mb-2">
-
+<section class="row mt-5 mb-2">
     <div class="cards">
-        @{
-            foreach (var product in Model.GetProducts)
-            {
-                @await Html.PartialAsync("ShowProduct", product)
-            }
+    @{
+        foreach (var product in Model.GetProducts)
+        {
+            @await Html.PartialAsync("ShowProduct", product)
         }
+    }
     </div>
     @if (User.IsInRole("admin"))
     {
         <a asp-action="AddProduct" asp-controller="Products">
             <button class="btn btn-primary">
-                <p class="btn-text">Add</p>
+                <p class="btn-text">Добавить</p>
             </button>
         </a>
     }
-</div>
+</section>
 
-
+<section class="modal-search">
+    <div class="modal-filter">
+        <div class="modal-header modal-header-filter">
+            <h3 class="modal-title">Фильтр</h3>
+            <button class="btn-close-filter">&times;</button>
+        </div>
+        <form method="get" class="form-search form-search__property" name="form_search">
+            <p>
+                <input type="text" name="id" placeholder="Введите артикул" class="form-search__property" />
+            </p>
+            <p>
+                <input type="text" name="name" placeholder="Введите название товара" class="form-search__property" />
+            </p>
+            <div class="filter-cost">
+                <input type="text" class="js-range-slider" name="my_range" value="$" />
+                <span class="filter-cost__head">Цена изделия в рублях</span>
+                <div class="table">
+                    <div class="table-block">
+                        <span>от</span>
+                        <div class="table-cell">
+                            <input name="priceMin" id="priceMin" type="text" class="form-control">
+                        </div>
+                        <span>руб</span>
+                        <span class="line"></span>
+                    </div>
+                    <div class="table-block">
+                        <span>до</span>
+                        <div class="table-cell">
+                            <input name="priceMax" id="priceMax" type="text" class="form-control">
+                        </div>
+                        <span>руб</span>
+                    </div>
+                </div>
+                <div class="checkboxes">
+                    <div class="under-order">
+                        <p>Под заказ:</p><input type="checkbox" class="search__under-order" />
+                    </div>
+                    <div class="is-available">
+                        <p>Есть в наличии:</p>
+                        <input type="checkbox" class="search__is-available">
+                    </div>
+                </div>
+                <div class="modal-filter__footer">
+                    <button class="btn btn-primary">Отправить</button>
+                    <button class="btn btn-cancel-filter">Очистить</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

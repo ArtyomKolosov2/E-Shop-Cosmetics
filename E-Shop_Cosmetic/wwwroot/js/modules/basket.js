@@ -112,7 +112,7 @@ export function basketLogic() {
 
     let newProducts = JSON.parse(getCookie("products"));
 
-    modalPricetag.innerHTML = getCookie("priceTag");
+    modalPricetag.innerHTML = getCookie("priceTag") ? getCookie("priceTag") : "0 br";
 
     $().ready(function () {
         $('.btn-counter').on('click', function () {

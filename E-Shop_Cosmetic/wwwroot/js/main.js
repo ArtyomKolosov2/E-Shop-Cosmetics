@@ -10,17 +10,19 @@ async function main() {
     modalCart();
 
     // slider for filter
-    
-    modalFilter();
+    const filterBtn = document.querySelector('#btn-filter');
+    if (filterBtn) {
+        modalFilter(filterBtn);
 
-    setMinMaxPrice();
+        setMinMaxPrice();
 
-    const maxPrice = await getMaxPrice();
-    const minPrice = await getMinPrice();
+        const maxPrice = await getMaxPrice();
+        const minPrice = await getMinPrice();
 
-    const $slider = $(".js-range-slider");
+        const $slider = $(".js-range-slider");
 
-    buildSlider(minPrice, maxPrice, $slider);
+        buildSlider(minPrice, maxPrice, $slider);
+    }
     //!slider for filter
 
     // basket
