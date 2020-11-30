@@ -21,7 +21,7 @@
 function deleteCookie(cookieName) {
     let cookieDate = new Date();  // Текущая дата и время
     cookieDate.setTime(cookieDate.getTime() - 1);
-    document.cookie = String(`${cookieName}=; expires=${cookieDate.toGMTString()}`);
+    document.cookie = `${cookieName}=; expires=${cookieDate.toGMTString()}`;
 }
 function getCookie(cookieName) {
     let results = document.cookie.match(`(^|;) ?${cookieName}=([^;]*)(;|$)`);
@@ -42,9 +42,12 @@ function parseFoodPrice(arrFoodPrice, foodPrice) {
         arrFoodPrice.push(Number(foodPrice[i].textContent.slice(0, -2)));
     }
 }
-// буду передовать куки продукта
+function createProducts(product) {
+    for (let i in product) {
+        addProduct(product[i]);
+    }
+}
 function addProduct(product) {
-    let blocksArray = getCookie('products') ? JSON.parse(getCookie('products')) : [];
     const products = document.getElementById('products');
     const block = document.createElement('div');
     block.innerHTML = `
@@ -58,22 +61,20 @@ function addProduct(product) {
         </div>
     </div>
     `;
-    blocksArray.push(block.outerHTML);
     products.appendChild(block);
-
-    setCookie("products", JSON.stringify(blocksArray));
 }
 
-function delProduct(productArray, index) {
-    let blocksArray = getCookie("products") ? JSON.parse(localStorage.getItem('products')) : [];
+function delProduct(productArray, index)
+{
+    //let blocksArray = getCookie("products") ? JSON.parse(getCookie('products')) : [];
     const products = document.getElementById('products');
     const block = `
     <div class="food-row">
-        <span class="food-name">${productArray[index].name}</span>
-        <strong class="food-price">${productArray[index].cost}</strong>
+        <span class="food-name">${ productArray[index].name }</span>
+        <strong class="food-price">${ productArray[index].cost }</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
-            <span class="counter" min="0" max="10000">${productArray[index].number}</span>
+            <span class="counter" min="0" max="10000">${ productArray[index].number }</span>
             <button class="btn-counter">+</button>
         </div>
     </div>
@@ -81,39 +82,39 @@ function delProduct(productArray, index) {
     blocksArray.removeChild(block.outerHTML);
     products.removeChild(block);
 
-    setCookie("products", JSON.stringify(blocksArray));
-}
-
-function setProducts(productArray) {
-    for (let i in productArray) {
-        addProduct(productArray[i]);
-    }
+    //setCookie("products", JSON.stringify(blocksArray));
 }
 
 export function basketLogic() {
-    $().ready(function () {
-        let rowObj = [
-            {
-                name: "Ролл угорь стандарт",
-                number: 3,
-                cost: "6 br",
-                index: 0
-            },
-            {
-                name: "Да угорь",
-                number: 1,
-                cost: "5 br",
-                index: 1
-            },
-            {
-                name: "Хай гэйс",
-                number: 3,
-                cost: "2 br",
-                index: 2
-            },
-        ];
-        setProducts(rowObj);
+    const modalPricetag = document.querySelector('.modal-pricetag');
+    let basketObj = [
+        {
+            name: "Ролл угорь стандарт",
+            number: 3,
+            cost: "6 br",
+            id: 0
+        },
+        {
+            name: "Да угорь",
+            number: 1,
+            cost: "5 br",
+            id: 1
+        },
+        {
+            name: "Хай гэйс",
+            number: 3,
+            cost: "2 br",
+            id: 2
+        },
+        // priceTag = "0 br"
+    ];
+    createProducts(getCookie("products") ? JSON.parse(getCookie("products")) : basketObj);
 
+    let newProducts = JSON.parse(getCookie("products"));
+
+    modalPricetag.innerHTML = getCookie("priceTag");
+
+    $().ready(function () {
         $('.btn-counter').on('click', function () {
             const foodPrice = document.querySelectorAll('.food-price');
             const counter = document.querySelectorAll('.counter');
@@ -136,7 +137,13 @@ export function basketLogic() {
 
             let priceTag = sumProducts(arrFoodPrice, counter) | null;
 
-            document.querySelector('.modal-pricetag').innerHTML = `${priceTag} br`;
+            modalPricetag.innerHTML = `${priceTag} br`;
+            newProducts[index].number = counter[index].innerHTML;
+
+            setCookie("priceTag", modalPricetag.innerHTML);
+            setCookie("products", JSON.stringify(newProducts));
+
+            console.log(JSON.parse(getCookie("products")));
         });
     });
 }

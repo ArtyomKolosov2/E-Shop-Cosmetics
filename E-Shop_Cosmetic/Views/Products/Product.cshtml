@@ -13,12 +13,15 @@
             </div>
             <div class="offer-info">
                 <span class="offer-info__description">
-                    <h3>Описание</h3>
+                    <h2>Описание</h2>
+                    <h3>@Model.ShortDescription</h3>
                     <p>@Model.LongDescription</p>
                 </span>
-                <p class="offer-info__cost">@Model.Price р.</p>
-                <a href="#"><button class="btn btn-primary">Оформить заказ</button></a>
             </div>
+        </div>
+        <div class="offer-footer">
+            <a href="#" class="offer-footer__btn"><button class="btn btn-primary">В корзину</button></a>
+            <p class="offer-footer__cost">@Model.Price р.</p>
         </div>
         <hr />
         @if (User.IsInRole("admin"))

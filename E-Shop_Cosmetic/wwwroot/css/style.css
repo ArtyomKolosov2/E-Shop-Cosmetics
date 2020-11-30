@@ -732,10 +732,10 @@ a:hover
 }
 
 .offers-figure__img {
-	width: 100px;
-	height: 200px;
+	width: 200px;
+	height: 280px;
 	margin: 20px;
-	box-shadow: 5px 4px 15px #666;
+	box-shadow: 5px 4px 5px #666;
 }
 
 .offer-info
@@ -748,9 +748,14 @@ a:hover
 	display: block;
 	width: 450px;
 }
-.offer-info__description h3
+.offer-info__description h2                                                                            
 {
 	font-size: 18px;
+	padding-bottom: 10px;
+}
+.offer-info__description h3 {
+	font-size: 16px;
+	padding-top: 10px;
 	padding-bottom: 10px;
 }
 .offer-info__description p
@@ -770,8 +775,20 @@ a:hover
 .offer-info__cost:hover {
 	color: #d9622b;
 }
-/* !Product */
 
+.offer-footer
+{
+
+}
+.offer-footer__btn
+{
+
+}
+.offer-footer__cost
+{
+
+}
+/* !Product */
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
 	.container
