@@ -2,12 +2,22 @@
 
 <section class="order">
     <div class="container">
-        <form class="form form-login" asp-action="Login" asp-controller="Account" asp-anti-forgery="true">
+        <form class="form form-login" asp-action="PlaceOrder" asp-controller="Orders">
             <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
             <div class="form-header">
                 <h3>Регистрация</h3>
             </div>
             <div class="form-body">
+                <div class="form-group">
+                    <label asp-for="Name">Введите Ваше Имя</label><br />
+                    <input type="text" asp-for="Name" placeholder="Иван" />
+                    <span asp-validation-for="Name" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="LastName">Введите Вашу фамилию</label><br />
+                    <input type="text" asp-for="LastName" placeholder="Иванов" />
+                    <span asp-validation-for="LastName" />
+                </div>
                 <div class="form-group">
                     <label asp-for="Address">Введите Adress</label><br />
                     <input type="text" asp-for="Address" placeholder="г.Москва ул Ленина 77" />
