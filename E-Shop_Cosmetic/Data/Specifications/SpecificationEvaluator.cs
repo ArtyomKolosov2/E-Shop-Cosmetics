@@ -30,10 +30,14 @@ namespace E_Shop_Cosmetic.Data.Specifications
 
 			//Adding pagination
 			if (specification.Skip > 0)
+			{
 				query = query.Skip(specification.Skip);
+			}
 
 			if (specification.Take > 0)
+			{
 				query = query.Take(specification.Take);
+			}
 
 
 			return query;

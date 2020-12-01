@@ -25,8 +25,8 @@ namespace E_Shop_Cosmetic.ViewModels
         public string Address { get; set; }
         [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = "Не указан телефон")]
-        public string Phone { get; set; } 
-        public string Wish { get; set; }
+        public string PhoneNumber { get; set; } 
+        public string Information { get; set; }
         public double TotalPrice { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
     }

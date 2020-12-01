@@ -24,14 +24,19 @@
                     <span asp-validation-for="Address" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Phone">Введите телефон</label><br />
-                    <input asp-for="Phone" placeholder="*********" />
-                    <span asp-validation-for="Phone" />
+                    <label asp-for="Email">Введите Adress</label><br />
+                    <input type="text" asp-for="Email" placeholder="user@gmail.com" />
+                    <span asp-validation-for="Email" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Wish">Введите ваши пожелания</label><br />
-                    <input asp-for="Wish" class="" placeholder="Некоторый текст" />
-                    <span asp-validation-for="Wish" />
+                    <label asp-for="PhoneNumber">Введите телефон</label><br />
+                    <input asp-for="PhoneNumber" placeholder="*********" />
+                    <span asp-validation-for="PhoneNumber" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Information">Введите ваши пожелания</label><br />
+                    <textarea asp-for="Information" class="" placeholder="Некоторый текст"></textarea>
+                    <span asp-validation-for="Information" />
                 </div>
             </div>
             <div class="form-footer">
