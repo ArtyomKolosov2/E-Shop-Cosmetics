@@ -82,7 +82,9 @@
             <div class="modal-footer" >
                 <span class="modal-pricetag"></span>
                 <div class="footer-btns">
-                    <button class="btn btn-primary">Оформить заказ</button>
+                    <a asp-controller="Orders" asp-action="PlaceOrder">
+                        <button class="btn btn-primary">Оформить заказ</button>
+                    </a>
                     <button class="btn btn-cancel">Отмена</button>
                 </div>
             </div>
