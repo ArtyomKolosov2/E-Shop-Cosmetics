@@ -665,9 +665,18 @@ justify-content: space-between;
 	opacity: 0.8;
 }
 
-.btn-outline-dark :hover {
+.btn-outline-dark:hover {
 	background-color: #8c8c8c;
 }
+/* Login and Autorization */
+
+/* form del product */
+.form-delete-product 
+{
+	margin-top: 20px;
+}
+
+/* !form del product */
 
 /* form add product */
 .add-product {

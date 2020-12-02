@@ -3,20 +3,25 @@
 @{
     ViewData["Title"] = "Delete";
 }
-<section class="delete-product">
-    <h3>Вы правда хотите удалить это?</h3>
-    <form asp-action="DeleteProduct" asp-controller="Products" asp-antiforgery="true" class="form-delete-product">
+<section id="delete-product">
+    <form asp-action="DeleteProduct" asp-controller="Products" asp-antiforgery="true" class="form form-delete-product">
+        <h3 class="form-header">Вы правда хотите удалить это?</h3>
         <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.Name)
+            <dt class="form-group" style="font-size:16px">
+                Название товара:@Model.Name
             </dt>
-            <dd>
-                @Html.DisplayFor(model => model.Price)
-            </dd>
+            <dt class="form-group">
+                <img src="@Model.ImageURL" style="width:250px;height:300px" alt="Alternate Text"/>
+            </dt>
+            <dt class="form-group" style="font-size:16px">
+                Цена товара:@Model.Price
+            </dt>
         </dl>
+        <div class="form-group">
+            <a asp-action="ViewProducts" asp-controller="Products" class="btn-link">Back to List →</a>
+        </div>
         <div class="btn-block">
             <input type="submit" value="Delete" class="btn btn-default" />
-            <a asp-action="ViewProducts" asp-controller="Products" class="btn-link">Back to List</a>
         </div>
     </form>
 </section>
