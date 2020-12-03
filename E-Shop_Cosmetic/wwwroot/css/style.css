@@ -665,22 +665,31 @@ justify-content: space-between;
 	opacity: 0.8;
 }
 
-.btn-outline-dark :hover {
+.btn-outline-dark:hover {
 	background-color: #8c8c8c;
 }
+/* Login and Autorization */
 
-/* admin form */
-.admin-panel {
+/* form del product */
+.form-delete-product 
+{
+	margin-top: 20px;
+}
+
+/* !form del product */
+
+/* form add product */
+.add-product {
 	margin: 30px auto 0 auto;
 }
-.form-admin {
+.form-add-product {
 	margin: auto;
 	border: 2px solid #ccc;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
 	width: 600px;
 }
 
-.btn-admin {
+.btn-product {
 	margin-top: -25px;
 	justify-content: center;
 	width: 100px;
@@ -690,10 +699,10 @@ justify-content: space-between;
 	border-radius: 4px;
 }
 
-.btn-admin:hover {
+.btn-product:hover {
 	opacity: 0.8;
 }
-/* !admin form */
+/* !form add product */
 
 /* Products*/
 .product
