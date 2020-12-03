@@ -1,8 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data
@@ -12,7 +10,6 @@ namespace E_Shop_Cosmetic.Data
         public async static Task InitDbContextAsync(AppDBContext appDB)
         {
             await InitCategoriesAsync(appDB);
-            await InitRolesAsync(appDB);
         }
         private static async Task InitCategoriesAsync(AppDBContext appDB)
         {
@@ -30,7 +27,7 @@ namespace E_Shop_Cosmetic.Data
             await appDB.SaveChangesAsync();
         }
 
-        private static async Task InitRolesAsync(AppDBContext appDB)
+        public static async Task InitRolesAsync(AppDBContext appDB, IConfiguration configuration)
         {
             if (await appDB.Roles.AnyAsync())
             {
@@ -40,9 +37,18 @@ namespace E_Shop_Cosmetic.Data
             var categories = new Role[]
             {
                 new Role {Name="user"},
-                new Role {Name="admin"}
+                new Role {Name="admin"},
+                new Role {Name="developer"}
             };
-            User user = new User { Email = "artyomkolosov2@yandex.ru", Password="228228", UserRoleId = 2 };
+            var adminSection = configuration.GetSection("AdminAccount");
+            var adminPassword = adminSection["Password"];
+            var adminLogin = adminSection["Login"];
+            User user = new User 
+            { 
+                Email = adminLogin,
+                Password = adminPassword, 
+                UserRoleId = 2 
+            };
             await appDB.Users.AddAsync(user);
             await appDB.Roles.AddRangeAsync(categories);
             await appDB.SaveChangesAsync();

@@ -9,8 +9,8 @@ namespace E_Shop_Cosmetic.Data.Interfaces
 {
     public interface IProductsRepository
     {
-        Task<IReadOnlyList<Product>> GetProducts();
-        Task<IReadOnlyList<Product>> GetProducts(ISpecification<Product> specification);
+        Task<IReadOnlyList<Product>> GetProductsAsync();
+        Task<IReadOnlyList<Product>> GetProductsAsync(ISpecification<Product> specification);
         Task<IReadOnlyList<Product>> GetFavoriteProductsAsync();
         Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange);
         Task<Product> GetProductByIdAsync(int productId);

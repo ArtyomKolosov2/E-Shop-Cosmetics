@@ -43,12 +43,12 @@ namespace E_Shop_Cosmetic.Data.Repository
             return collection.FirstOrDefault(n => n.Price == price);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProducts()
+        public async Task<IReadOnlyList<Product>> GetProductsAsync()
         {
             return await GetAllAsync();
         }
 
-        public async Task<IReadOnlyList<Product>> GetProducts(ISpecification<Product> specification)
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(ISpecification<Product> specification)
         {
             return await GetAllAsync(specification);
         }
