@@ -1,4 +1,6 @@
-﻿using E_Shop_Cosmetic.Data.Interfaces;
+﻿using E_Shop_Cosmetic.Data;
+using E_Shop_Cosmetic.Data.Interfaces;
+using E_Shop_Cosmetic.Data.Repository.Models;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,9 +13,11 @@ namespace E_Shop_Cosmetic.Controllers
     public class OrdersController : Controller
     {
         private readonly ICookieCartService _cartService;
-        public OrdersController(ICookieCartService cartService)
+        private readonly AppDBContext appDB;
+        public OrdersController(ICookieCartService cartService, AppDBContext appDBContext)
         {
             _cartService = cartService;
+            appDB = appDBContext;
         }
 
         [HttpGet]
@@ -23,10 +27,30 @@ namespace E_Shop_Cosmetic.Controllers
         }
 
         [HttpPost]
-        public IActionResult PlaceOrder(OrderViewModel orderViewModel)
+        public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel) //ToDo replace with order repository
         {
-            var ordersDetails = _cartService.GetOrderDetails();
-            return View();
+            var ordersDetails = await _cartService.GetOrderDetailsAsync();
+            var newOrder = new Order()
+            {
+                Address = orderViewModel.Address,
+                IsOrderActive = true,
+                Information = orderViewModel.Information ?? "NONE",
+                Name = orderViewModel.Name,
+                LastName = orderViewModel.LastName,
+                PhoneNumber = orderViewModel.PhoneNumber,
+                TotalPrice = orderViewModel.TotalPrice,
+                OrderDetails = ordersDetails,
+                OrderDate = DateTime.Now,
+
+            };
+            await appDB.Orders.AddAsync(newOrder);
+            await appDB.SaveChangesAsync();
+            return RedirectToAction("OrderSuccessful", newOrder);
+        }
+        [HttpGet]
+        public IActionResult OrderSuccessful(Order order)
+        {
+            return View(order);
         }
     }
 }

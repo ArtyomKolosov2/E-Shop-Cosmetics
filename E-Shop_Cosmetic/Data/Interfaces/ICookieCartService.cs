@@ -8,6 +8,6 @@ namespace E_Shop_Cosmetic.Data.Interfaces
 {
     public interface ICookieCartService
     {
-        List<OrderDetail> GetOrderDetails();
+        Task<List<OrderDetail>> GetOrderDetailsAsync();
     }
 }

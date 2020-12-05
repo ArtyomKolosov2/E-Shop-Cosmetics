@@ -21,10 +21,10 @@ namespace E_Shop_Cosmetic.Data.Repository.Models
         public User User { get; set; }
         public int? UserId { get; set; }
         public string ProductsString { get; set; }      
-
         [BindNever]
         [ScaffoldColumn(false)]
         public DateTime OrderDate { get; set; }
-               
+        public List<OrderDetail> OrderDetails { get; set; }
+
     }
 }

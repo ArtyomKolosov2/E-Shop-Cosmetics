@@ -1,5 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.Data.Specifications.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -50,6 +51,12 @@ namespace E_Shop_Cosmetic.Data.Repository
 
         public async Task<IReadOnlyList<Product>> GetProductsAsync(ISpecification<Product> specification)
         {
+            return await GetAllAsync(specification);
+        }
+
+        public async Task<IReadOnlyList<Product>> GetProductsByIdsAsync(IEnumerable<int> ids)
+        {
+            var specification = new ProductSpecification(prod => ids.Contains(prod.Id));
             return await GetAllAsync(specification);
         }
 
