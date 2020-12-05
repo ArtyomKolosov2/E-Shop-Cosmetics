@@ -109,7 +109,7 @@ export function basketLogic() {
     ];
     createProducts(getCookie("products") ? JSON.parse(getCookie("products")) : basketObj);
 
-    let newProducts = JSON.parse(getCookie("products"));
+    let newProducts = getCookie("products") ? JSON.parse(getCookie("products")) : basketObj;
 
     modalPricetag.innerHTML = getCookie("priceTag") ? getCookie("priceTag") : "0 br";
 
