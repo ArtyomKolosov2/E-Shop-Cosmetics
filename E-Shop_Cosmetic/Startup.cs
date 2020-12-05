@@ -6,6 +6,7 @@ using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Repository;
+using E_Shop_Cosmetic.Data.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +35,8 @@ namespace E_Shop_Cosmetic
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connection));
             services.AddTransient<ICategoriesRepository, CategoryRepository>();
             services.AddTransient<IProductsRepository, ProductRepository>();
+            services.AddHttpContextAccessor();
+            services.AddTransient<ICookieCartService, CookieService>();
             // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
