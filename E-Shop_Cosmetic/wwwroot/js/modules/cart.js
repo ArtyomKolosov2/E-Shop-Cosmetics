@@ -29,24 +29,33 @@ function getCookie(cookieName) {
     return results ? unescape(results[2]) : null;
 }
 
-function delProduct(productArray, index) {
-    //let blocksArray = getCookie("products") ? JSON.parse(getCookie('products')) : [];
+function delProduct(product, index) {
     const products = document.getElementById('products');
     const block = `
     <div class="food-row">
-        <span class="food-name">${productArray[index].name}</span>
-        <strong class="food-price">${productArray[index].cost}</strong>
+        <span class="food-name">${product.name}</span>
+        <strong class="food-price">${product.cost}</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
-            <span class="counter" min="0" max="10000">${productArray[index].number}</span>
+            <span class="counter" min="0" max="10000">${product.number}</span>
             <button class="btn-counter">+</button>
         </div>
     </div>
     `;
-    blocksArray.removeChild(block.outerHTML);
-    products.removeChild(block);
+    products.removeChild(index);
+}
 
-    //setCookie("products", JSON.stringify(blocksArray));
+function addProductToOrder(product) {
+    const products = document.getElementById('cart-info');
+    const block = document.createElement('div');
+    block.innerHTML = `
+    <div class="form-group">
+        <span>Название: ${product.name}</span>
+        <span min="0" max="10000">Количество:${product.number}</span>
+        <strong>Стоимость: ${product.cost}</strong>
+    </div>
+    `;
+    products.appendChild(block);
 }
 
 function addProduct(product) {
@@ -119,11 +128,12 @@ export function cartHandler() {
                     counter[index].innerHTML = 0;
                 }
             }
-            let pricetag = getPricetag(foodPrice, counter);
-            let modalPricetag = document.querySelector('.modal-pricetag');
-            setCookie("pricetag", modalPricetag.innerHTML);
+            const pricetag = getPricetag(foodPrice, counter);
+            const modalPricetag = document.querySelector('.modal-pricetag');
 
             modalPricetag.innerHTML = `${pricetag} br`;
+            setCookie("pricetag", modalPricetag.innerHTML);
+
             newProducts[index].number = Number(counter[index].innerHTML);
 
             setCookie("products", JSON.stringify(newProducts));
@@ -164,15 +174,16 @@ export function addToCart(btnAddProduct)
     } else {
         product["number"] = 1;
         addProduct(product);// add to basket
-        allProducts.push(product); // push to array objects
         counter = document.querySelectorAll('.counter');
+
+        allProducts.push(product); // push to array objects
     }
     const foodPrice = document.querySelectorAll('.food-price');
 
     let pricetag = getPricetag(foodPrice, counter);
-    document.querySelector('.modal-pricetag').innerHTML = `${ pricetag } br`
+    document.querySelector('.modal-pricetag').innerHTML = `${pricetag} br`;
 
-    setCookie("pricetag", pricetag);
+    setCookie("pricetag", `${pricetag} br`);
     setCookie('products', JSON.stringify(allProducts));
 
     cartHandler();
@@ -194,7 +205,7 @@ export function removeFromCart(btnAddProduct) {
     const allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
     // The product is contained in cart
     if (isContained(allProducts, product)) {
-        delProduct(product);// del in basket
+        delProduct(product, index);// del in basket
         allProducts.splice(index); // push to array objects
     }
     const foodPrice = document.querySelectorAll('.food-price');
@@ -207,7 +218,12 @@ export function removeFromCart(btnAddProduct) {
     cartHandler();
     console.log(allProducts);
 }
-export function makingOrder(btnMakingProduct)
+
+export function makingOrder()
 {
-    (getCookie("products") ? JSON.parse(getCookie("products")) : []);
+    const products = (getCookie("products") ? JSON.parse(getCookie("products")) : []);
+    console.log(products);
+    for (let i = 0; i < products.length; i++) {
+        addProductToOrder(products[i]);
+    }
 }

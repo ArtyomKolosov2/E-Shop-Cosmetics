@@ -1,54 +1,57 @@
 ﻿@model E_Shop_Cosmetic.Data.Repository.Models.Order
-<p>Ваш заказ зарегестрирован, скоро вам позвонят</p>
 
-<h2>View</h2>
+<section class="order-successful">
+    <p>Ваш заказ зарегестрирован, скоро вам позвонят</p>
 
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Information)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Information)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.IsOrderActive)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.IsOrderActive)
-        </dd>
-    </dl>
-</div>
+    <h2>View</h2>
+
+    <div>
+        <h4>Order</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Address)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Address)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Information)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Information)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TotalPrice)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.IsOrderActive)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.IsOrderActive)
+            </dd>
+        </dl>
+    </div>
+</section>
 

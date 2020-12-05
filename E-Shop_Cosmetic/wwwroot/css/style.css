@@ -588,7 +588,7 @@ justify-content: space-between;
 	margin: auto;
 	border: 2px solid #ccc;
 	box-shadow: 0 0 10px rgba(0,0,0,0.5);
-	width: 600px;
+	width: 560px;
 }
 
 .form-header {
@@ -827,6 +827,34 @@ justify-content: space-between;
 }
 /* !view-products */
 
+/* placeOrder */
+.cart-info {
+	position: absolute;
+}
+
+.cart-info__content {
+	padding: 16px;
+	width: 300px;
+	border: 1px solid #e2e2e2;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	background-color: #fff;
+	border-radius: 5px;
+}
+
+.cart-info__title
+{
+	text-align:center;
+}
+
+.form-group__wishes {
+}
+.form-group__textarea {
+	width: 100%;
+	height: 160px;
+	resize: none; /* Запрещаем изменять размер */
+}
+
+/* !placeOrder */
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
 	.container

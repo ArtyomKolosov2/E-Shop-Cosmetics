@@ -41,9 +41,14 @@ async function main() {
             removeFromCart(btnDelProduct);
         });
     }
-
-    makingOrder();
     //!basket
+
+    // making order
+    const order = document.getElementById('order');
+    if (order) {
+        makingOrder();
+    }
+    // !making order
 
     //длинна анимации
     new WOW().init();
