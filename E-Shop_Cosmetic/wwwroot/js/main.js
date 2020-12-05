@@ -1,9 +1,10 @@
 import { modalCart } from "./modules/modalCart.js";
 import { modalFilter } from "./modules/modalFilter.js";
 import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
-import { basketLogic } from "./modules/basket.js";
+import { makingOrder, addBasket, basketLogic } from "./modules/basket.js";
 import { buildSlider } from "./modules/slider.js";
-//import { autorized } from "./modules/getDataFromCookie.js";
+// import { Product } from "./modules/product.js";
+//import {  } from "./modules/getDataFromCookie.js";
 
 async function main() {
     
@@ -29,6 +30,15 @@ async function main() {
 
     basketLogic();
 
+    const btnAddProduct = document.getElementById('btn_add_product');
+    if (btnAddProduct)
+    {
+        btnAddProduct.addEventListener('click', function () {
+            addBasket(btnAddProduct);
+        });
+    }
+
+    makingOrder();
     //!basket
 
     //длинна анимации

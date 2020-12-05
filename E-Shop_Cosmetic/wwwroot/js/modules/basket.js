@@ -91,21 +91,20 @@ export function basketLogic() {
             name: "Ролл угорь стандарт",
             number: 3,
             cost: "6 br",
-            id: 0
+            id: 1
         },
         {
             name: "Да угорь",
             number: 1,
             cost: "5 br",
-            id: 1
+            id: 2
         },
         {
             name: "Хай гэйс",
             number: 3,
             cost: "2 br",
-            id: 2
+            id: 3
         },
-        // priceTag = "0 br"
     ];
     createProducts(getCookie("products") ? JSON.parse(getCookie("products")) : basketObj);
 
@@ -137,7 +136,7 @@ export function basketLogic() {
             let priceTag = sumProducts(arrFoodPrice, counter) | null;
 
             modalPricetag.innerHTML = `${priceTag} br`;
-            newProducts[index].number = counter[index].innerHTML;
+            newProducts[index].number = Number(counter[index].innerHTML);
 
             setCookie("priceTag", modalPricetag.innerHTML);
 
@@ -146,4 +145,46 @@ export function basketLogic() {
             console.log(JSON.parse(getCookie("products")));
         });
     });
+}
+
+function isContained(allProducts, product) {
+    for (let i = 0; i < allProducts.length; i++) {
+        if (allProducts[i]["id"] === product["id"]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+export function addBasket(btnAddProduct)
+{
+    const productName = document.querySelector('.product-info__header');
+    const costArr = document.querySelector('.offer-footer__cost');
+    const counter = document.querySelectorAll('.counter');
+    const id = Number(document.location.href.slice(-1));
+    const product = new Object();
+    product["name"] = productName.innerHTML;
+    product["cost"] = costArr.innerHTML;
+    product["id"] = id;
+
+    // The product is contained in basket
+    const newProducts = getCookie("products") ? JSON.parse(getCookie("products")) : product;
+    if (isContained(newProducts, product)) {
+        counter[id - 1].innerHTML++;
+        product["number"] = counter[id - 1].innerHTML + 1;
+        newProducts[id - 1]["number"] = product["number"];
+    }
+    else {
+        counter[id - 1].innerHTML = 1;
+        product["number"] = counter[id - 1].innerHTML;
+        addProduct(product);
+        newProducts.push(product);
+    }
+
+    setCookie('products', JSON.stringify(newProducts));
+}
+
+export function makingOrder(btnAddProduct)
+{
+
 }
