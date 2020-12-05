@@ -52,11 +52,11 @@ function addProduct(product) {
     const block = document.createElement('div');
     block.innerHTML = `
     <div class="food-row">
-        <span class="food-name">${ product.name }</span>
-        <strong class="food-price">${ product.cost }</strong>
+        <span class="food-name">${product.name}</span>
+        <strong class="food-price">${product.cost}</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
-            <span class="counter" min="0" max="10000">${ product.number }</span>
+            <span class="counter" min="0" max="10000">${product.number}</span>
             <button class="btn-counter">+</button>
         </div>
     </div>
@@ -64,17 +64,16 @@ function addProduct(product) {
     products.appendChild(block);
 }
 
-function delProduct(productArray, index)
-{
+function delProduct(productArray, index) {
     //let blocksArray = getCookie("products") ? JSON.parse(getCookie('products')) : [];
     const products = document.getElementById('products');
     const block = `
     <div class="food-row">
-        <span class="food-name">${ productArray[index].name }</span>
-        <strong class="food-price">${ productArray[index].cost }</strong>
+        <span class="food-name">${productArray[index].name}</span>
+        <strong class="food-price">${productArray[index].cost}</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
-            <span class="counter" min="0" max="10000">${ productArray[index].number }</span>
+            <span class="counter" min="0" max="10000">${productArray[index].number}</span>
             <button class="btn-counter">+</button>
         </div>
     </div>
@@ -141,6 +140,7 @@ export function basketLogic() {
             newProducts[index].number = counter[index].innerHTML;
 
             setCookie("priceTag", modalPricetag.innerHTML);
+
             setCookie("products", JSON.stringify(newProducts));
 
             console.log(JSON.parse(getCookie("products")));
