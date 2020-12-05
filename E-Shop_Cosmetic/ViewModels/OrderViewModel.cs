@@ -28,6 +28,6 @@ namespace E_Shop_Cosmetic.ViewModels
         public string PhoneNumber { get; set; } 
         public string Information { get; set; }
         public double TotalPrice { get; set; }
-        public List<OrderDetail> OrderDetails { get; set; }
+        
     }
 }

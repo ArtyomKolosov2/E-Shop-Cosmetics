@@ -14,6 +14,7 @@ namespace E_Shop_Cosmetic.Data.Interfaces
         Task<IReadOnlyList<Product>> GetFavoriteProductsAsync();
         Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange);
         Task<Product> GetProductByIdAsync(int productId);
+        Task<IReadOnlyList<Product>> GetProductsByIdsAsync(IEnumerable<int> ids);
         Task<Product> GetProductByNameAsync(string name);
         Task<Product> GetProductByPriceAsync(int price);
         Task AddProductAsync(Product product);
