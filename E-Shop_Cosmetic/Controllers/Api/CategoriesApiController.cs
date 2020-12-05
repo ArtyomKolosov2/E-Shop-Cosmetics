@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Models;
 
-namespace E_Shop_Cosmetic.Controllers
+namespace E_Shop_Cosmetic.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]

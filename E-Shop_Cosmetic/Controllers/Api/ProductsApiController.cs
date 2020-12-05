@@ -10,7 +10,7 @@ using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 
-namespace E_Shop_Cosmetic.Controllers
+namespace E_Shop_Cosmetic.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]   
