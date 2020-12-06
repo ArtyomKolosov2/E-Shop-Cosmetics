@@ -6,15 +6,21 @@
             <h3 class="modal-title">Фильтр</h3>
             <button class="btn-close-filter">&times;</button>
         </div>
-        <form method="get" class="form-search form-search__property" name="form_search">
+        <form method="get" asp-action="Search" asp-controller="Products" class="form-search form-search__property" name="form_search">
             <p>
                 <input type="text" name="id" asp-for="SearchProductId" placeholder="Введите артикул" class="form-search__property" />
             </p>
             <p>
                 <input type="text" name="name" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
             </p>
+            <div class="btn-block">
+                <label class="btn-block__header">Категория: </label>
+                <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
+                </select>
+                <span asp-validation-for="CategoryId"></span>
+            </div>
             <div class="filter-cost">
-                <input type="text" class="js-range-slider" name="my_range" value="$" />
+                <input class="js-range-slider" value="$" />
                 <span class="filter-cost__head">Цена изделия в рублях</span>
                 <div class="table">
                     <div class="table-block">
@@ -43,7 +49,7 @@
                     </div>
                 </div>
                 <div class="modal-filter__footer">
-                    <a asp-action="Search" asp-controller="Products"><button class="btn btn-primary">Отправить</button></a>
+                    <button class="btn btn-primary">Отправить</button>
                     <button class="btn btn-cancel-filter">Очистить</button>
                 </div>
             </div>

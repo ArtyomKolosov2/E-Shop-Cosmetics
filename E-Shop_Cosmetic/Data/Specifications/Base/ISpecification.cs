@@ -14,6 +14,7 @@ namespace E_Shop_Cosmetic.Data.Specifications.Base
 
         List<Expression<Func<T, object>>> OrderByExpressions { get; }
         List<Expression<Func<T, object>>> OrderByDescendingExpressions { get; }
+        List<Expression<Func<T, bool>>> WhereExpressions { get; }
 
         int Take { get; set; }
         int Skip { get; set; }

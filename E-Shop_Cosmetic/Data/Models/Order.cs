@@ -1,19 +1,20 @@
 ﻿using E_Shop_Cosmetic.Data.AbstractClasses;
-using E_Shop_Cosmetic.Data.Models;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Models
 {
     public class Order : Entity
     {
         public string Name { get; set; }        
-        public string LastName { get; set; }    
-        public string Address { get; set; }    
+        public string LastName { get; set; }   
+        
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }    
+        public string Address { get; set; }
+        [DataType(DataType.PhoneNumber)]
         public string PhoneNumber { get; set; }    
         public string Information { get; set; }
         public double TotalPrice { get; set; }

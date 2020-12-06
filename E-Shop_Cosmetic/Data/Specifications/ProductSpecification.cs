@@ -25,6 +25,16 @@ namespace E_Shop_Cosmetic.Data.Specifications
             return this;
         }
 
+        public ProductSpecification WhereInPriceRange(double min, double max)
+        {
+            if (min > max)
+            {
+                throw new ArgumentException("Min is greater than max!");
+            }
+            AddWhere(product => product.Price >= min && product.Price <= max);
+            return this;
+        }
+
         public ProductSpecification SortByPrice()
         {
             AddDescendingOrdering(product => product.Price);
