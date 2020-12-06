@@ -11,8 +11,8 @@ namespace E_Shop_Cosmetic.Data.Specifications
     public class CategorySpecification : Specification<Category>
     {
         public CategorySpecification() : base() { }
-        public CategorySpecification(int id) : this(product => product.Id == id) { }
-        public CategorySpecification(string name) : this(product => product.CategoryName.ToLower().Contains(name.ToLower())) { }
+        public CategorySpecification(int id) : this(category => category.Id == id) { }
+        public CategorySpecification(string name) : this(category => category.CategoryName.ToLower().Contains(name.ToLower())) { }
         public CategorySpecification(Expression<Func<Category, bool>> expression) : base(expression) { }
         public CategorySpecification SortByName()
         {

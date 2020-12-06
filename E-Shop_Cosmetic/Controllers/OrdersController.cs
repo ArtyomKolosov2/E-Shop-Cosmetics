@@ -34,7 +34,7 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 Address = orderViewModel.Address,
                 IsOrderActive = true,
-                Information = orderViewModel.Information ?? "NONE",
+                Information = orderViewModel.Information ?? "None",
                 Name = orderViewModel.Name,
                 LastName = orderViewModel.LastName,
                 PhoneNumber = orderViewModel.PhoneNumber,

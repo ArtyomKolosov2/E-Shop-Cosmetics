@@ -33,8 +33,12 @@ namespace E_Shop_Cosmetic
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDBContext>(options => options.UseSqlServer(connection));
+
             services.AddTransient<ICategoriesRepository, CategoryRepository>();
             services.AddTransient<IProductsRepository, ProductRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<IRoleRepository, RoleRepository>();
+
             services.AddHttpContextAccessor();
             services.AddTransient<ICookieService, CookieService>();
             // установка конфигурации подключения

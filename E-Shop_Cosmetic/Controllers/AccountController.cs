@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using E_Shop_Cosmetic.Data;
+using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -15,12 +17,14 @@ namespace E_Shop_Cosmetic.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly AppDBContext db;
         private readonly ILogger _logger;
-        public AccountController(AppDBContext context, ILogger<AccountController> logger)
+        private readonly IUserRepository _userRepository;
+        private readonly IRoleRepository _roleRepository;
+        public AccountController(IUserRepository userRepository, IRoleRepository roleRepository, ILogger<AccountController> logger)
         {
-            db = context;
             _logger = logger;
+            _userRepository = userRepository;
+            _roleRepository = roleRepository;
         }
 
         [HttpGet]
@@ -36,7 +40,8 @@ namespace E_Shop_Cosmetic.Controllers
             _logger.LogInformation("Http Post Account\\Login called");
             if (ModelState.IsValid)
             {
-                var user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
+                var users = await _userRepository.GetUsersAsync();
+                var user = users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {
                     await Authenticate(user); 
@@ -57,12 +62,12 @@ namespace E_Shop_Cosmetic.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await db.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+                var users = await _userRepository.GetUsersAsync();
+                var user = users.FirstOrDefault(u => u.Email == model.Email);
                 if (user == null)
                 {
-                    user = new User { Email = model.Email, Password = model.Password, UserRoleId = 1, Role = await db.Roles.FirstOrDefaultAsync(i => i.Id == 1) };
-                    db.Users.Add(user);
-                    await db.SaveChangesAsync();
+                    user = new User { Email = model.Email, Password = model.Password, UserRoleId = 1, Role = await _roleRepository.GetRoleByIdAsync(1) };
+                    await _userRepository.AddUserAsync(user);
 
                     await Authenticate(user); 
 
@@ -78,7 +83,8 @@ namespace E_Shop_Cosmetic.Controllers
 
         private async Task Authenticate(User user)
         {
-            var roleName = await db.Roles.FirstOrDefaultAsync(i => i.Id == user.UserRoleId);
+            var roles = await _roleRepository.GetRolesAsync();
+            var roleName = roles.FirstOrDefault(i => i.Id == user.UserRoleId);
             var claims = new List<Claim>
             {
                 new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
