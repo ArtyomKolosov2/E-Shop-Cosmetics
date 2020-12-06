@@ -12,5 +12,8 @@ namespace E_Shop_Cosmetic.Data.Interfaces
         Task<IReadOnlyList<Category>> GetCategoriesAsync();
         Task<IReadOnlyList<Category>> GetCategoriesAsync(ISpecification<Category> specification);
         Task<Category> GetCategoryByIdAsync(int id);
+        Task UpdateCategoryAsync(Category category);
+        Task AddCategoryAsync(Category category);
+        Task DeleteCategoryAsync(Category category);
     }
 }

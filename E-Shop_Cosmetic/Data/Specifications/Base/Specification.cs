@@ -24,6 +24,7 @@ namespace E_Shop_Cosmetic.Data.Specifications.Base
 
         public List<Expression<Func<T, object>>> OrderByExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
         public List<Expression<Func<T, object>>> OrderByDescendingExpressions { get; private set; } = new List<Expression<Func<T, object>>>();
+        public List<Expression<Func<T, bool>>> WhereExpressions { get; private set; } = new List<Expression<Func<T, bool>>>();
 
         public ISpecification<T> AddPagination(int take = 0, int skip = 0)
         {
@@ -35,6 +36,8 @@ namespace E_Shop_Cosmetic.Data.Specifications.Base
 
         public int Skip { get; set; }
         public int Take { get; set; }
+
+        
 
         protected void AddOrdering(Expression<Func<T, object>> expression)
         {
@@ -49,6 +52,11 @@ namespace E_Shop_Cosmetic.Data.Specifications.Base
         protected void AddInclude(Expression<Func<T, object>> includeExpression)
         {
             Includes.Add(includeExpression);
+        }
+
+        protected void AddWhere(Expression<Func<T, bool>> selectExpression)
+        {
+            WhereExpressions.Add(selectExpression);
         }
 
         protected void AddInclude(string includeString)

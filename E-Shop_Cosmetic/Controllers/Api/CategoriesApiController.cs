@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Interfaces;
 
 namespace E_Shop_Cosmetic.Controllers.Api
 {
@@ -12,25 +10,25 @@ namespace E_Shop_Cosmetic.Controllers.Api
     [ApiController]
     public class CategoriesApiController : ControllerBase
     {
-        private readonly AppDBContext _context;
+        private readonly ICategoriesRepository _categoriesRepository;
 
-        public CategoriesApiController(AppDBContext context)
+        public CategoriesApiController(ICategoriesRepository categoriesRepository)
         {
-            _context = context;
+            _categoriesRepository = categoriesRepository;
         }
 
         // GET: api/CategoriesApi
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return new ActionResult<IEnumerable<Category>>(await _categoriesRepository.GetCategoriesAsync());
         }
 
         // GET: api/CategoriesApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoriesRepository.GetCategoryByIdAsync(id);
 
             if (category == null)
             {
@@ -50,23 +48,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _categoriesRepository.UpdateCategoryAsync(category);
 
             return NoContent();
         }
@@ -76,8 +58,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            await _categoriesRepository.AddCategoryAsync(category);
 
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
         }
@@ -86,21 +67,13 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _categoriesRepository.GetCategoryByIdAsync(id);
             if (category == null)
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
-
             return NoContent();
-        }
-
-        private bool CategoryExists(int id)
-        {
-            return _context.Categories.Any(e => e.Id == id);
         }
     }
 }

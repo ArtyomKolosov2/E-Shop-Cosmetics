@@ -9,6 +9,7 @@ namespace E_Shop_Cosmetic.ViewModels
     public class RegisterViewModel
     {
         [Required(ErrorMessage = "Не указан Email")]
+        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 

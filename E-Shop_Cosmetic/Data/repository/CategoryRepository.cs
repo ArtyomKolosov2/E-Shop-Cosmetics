@@ -14,6 +14,16 @@ namespace E_Shop_Cosmetic.Data.Repository
         {
         }
 
+        public async Task AddCategoryAsync(Category category)
+        {
+            await AddAsync(category);
+        }
+
+        public async Task DeleteCategoryAsync(Category category)
+        {
+            await DeleteAsync(category);
+        }
+
         public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
         {
             return await GetAllAsync();
@@ -27,6 +37,11 @@ namespace E_Shop_Cosmetic.Data.Repository
         public async Task<Category> GetCategoryByIdAsync(int id)
         {
             return await GetByIdAsync(id);
+        }
+
+        public async Task UpdateCategoryAsync(Category category)
+        {
+            await UpdateAsync(category);
         }
     }
 }
