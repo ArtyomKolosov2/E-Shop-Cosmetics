@@ -1,11 +1,7 @@
 ﻿@model Product
-<section class="admin-panel">
-    <form class="form form-admin" asp-action="UpdateProduct" asp-controller="Products" asp-antiforgery="true">
-        <h3 class="form-header">Добро пожаловать в админ панель!</h3>
-
-        <div class="form-group">
-            <h3>Изменить товар:</h3>
-        </div>
+<section class="update-product">
+    <form class="form form-update-product" asp-action="UpdateProduct" asp-controller="Products" asp-antiforgery="true">
+        <h3 class="form-header">Изменить товар:</h3>
         <div class="form-group">
             <label asp-for="Name" class="form-group__header"></label>
             <input type="text" asp-for="Name" class="form-group__input" />
@@ -33,7 +29,7 @@
             </select>
         </div>
         <div class="btn-block">
-            <input type="submit" value="Save" class="btn btn-admin" />
+            <input type="submit" value="Save" class="btn btn-product" />
         </div>
     </form>
 </section>

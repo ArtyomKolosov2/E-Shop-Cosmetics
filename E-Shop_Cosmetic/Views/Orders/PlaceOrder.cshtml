@@ -2,60 +2,59 @@
 
 <section class="order" id="order">
     <div class="container">
-        <div class="cart-info">
-            <div class="cart-info__content">
-                <div class="cart-info__title">
-                    Заказ
-                </div>
-                <hr />
-                @* generate products *@
-                <div id="cart_info_body">
+        <div class="order-contant">
+            <div class="cart-info">
+                <div class="cart-info__content">
+                    <div class="cart-info__title">
+                        Заказ
+                    </div>
+                    <hr />
+                    @* generate products *@
+                    <div id="cart_info_body">
 
+                    </div>
+                    @* generate total cost *@
+                    <div id="total-cost"></div>
                 </div>
-                @* generate total cost *@
-                <div id="total-cost"></div>
             </div>
+            <form class="form form-order" asp-action="PlaceOrder" asp-controller="Orders">
+                <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
+                <div class="form-header">
+                    <h3>Оформление заказа</h3>
+                </div>
+                <div class="form-body">
+                    <div class="form-group">
+                        <label asp-for="Name" class="form-group__header">Введите Имя</label>
+                        <input type="text" asp-for="Name" class="form-group__input" placeholder="Иван" />
+                        <span asp-validation-for="Name" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="form-group__header">Введите фамилию</label>
+                        <input type="text" asp-for="LastName" class="form-group__input" placeholder="Иванов" />
+                        <span asp-validation-for="LastName" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="form-group__header">Введите Adress</label>
+                        <input type="text" asp-for="Address" class="form-group__input" placeholder="г.Москва ул Ленина 77" />
+                        <span asp-validation-for="Address" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PhoneNumber" class="form-group__header">Введите телефон</label>
+                        <input asp-for="PhoneNumber" class="form-group__input" placeholder="+37529-***-**-**" />
+                        <span asp-validation-for="PhoneNumber" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Information" class="form-group__header form-group__wishes">Введите ваши пожелания:</label>
+                        <span asp-validation-for="Information" />
+                    </div>
+                    <div class="form-group">
+                        <textarea asp-for="Information" class="form-group__textarea" placeholder="Некоторый текст"></textarea>
+                    </div>
+                </div>
+                <div class="btn-block">
+                    <input type="submit" class="btn btn-outline-dark" value="Заказать" />
+                </div>
+            </form>
         </div>
-        <form class="form form-order" asp-action="PlaceOrder" asp-controller="Orders">
-            <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
-            <div class="form-header">
-                <h3>Оформление заказа</h3>
-            </div>
-            <div class="form-body">
-                <div class="form-group">
-                    <label asp-for="Name" class="form-group__header">Введите Ваше Имя</label>
-                    <input type="text" asp-for="Name" class="form-group__input" placeholder="Иван" />
-                    <span asp-validation-for="Name" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="LastName" class="form-group__header">Введите Вашу фамилию</label>
-                    <input type="text" asp-for="LastName" class="form-group__input" placeholder="Иванов" />
-                    <span asp-validation-for="LastName" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Address" class="form-group__header">Введите адрес</label>
-                    <input type="text" asp-for="Address" class="form-group__input" placeholder="г.Москва ул Ленина 77" />
-                    <span asp-validation-for="Address" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="form-group__header">Введите E-mail</label>
-                    <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
-                    <span asp-validation-for="Email" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="PhoneNumber" class="form-group__label">Введите телефон</label>
-                    <input asp-for="PhoneNumber" placeholder="+375(**)***-**-**" />
-                    <span asp-validation-for="PhoneNumber" />
-                </div>
-                <div class="form-group">
-                    <label asp-for="Information" class="form-group__label form-group__wishes">Введите ваши пожелания</label>
-                    <textarea asp-for="Information" class="form-group__textarea" placeholder="Некоторый текст"></textarea>
-                    <span asp-validation-for="Information" />
-                </div>
-            </div>
-            <div class="btn-block">
-                <input type="submit" class="btn btn-outline-dark" value="Заказать" />
-            </div>
-        </form>
     </div>
 </section>
