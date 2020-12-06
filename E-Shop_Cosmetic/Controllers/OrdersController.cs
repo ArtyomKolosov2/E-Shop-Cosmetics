@@ -48,7 +48,8 @@ namespace E_Shop_Cosmetic.Controllers
             await _orderRepository.AddOrderAsync(newOrder);
             return RedirectToAction("OrderSuccessful", newOrder);
         }
-        [HttpGet]
+
+        [HttpPost]
         public IActionResult OrderSuccessful(Order order)
         {
             return View(order);
