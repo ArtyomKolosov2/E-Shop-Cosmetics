@@ -843,10 +843,24 @@ justify-content: space-between;
 
 .cart-info__title
 {
+	font-size:18px;
+	text-transform: uppercase;
 	text-align:center;
 }
-
+.cart-info__row {
+	display: flex;
+	justify-content: space-between;
+}
+.total-cost {
+	display: flex;
+	justify-content: space-between;
+}
+.form-order
+{
+	position:relative;
+}
 .form-group__wishes {
+
 }
 .form-group__textarea {
 	width: 100%;
@@ -855,6 +869,7 @@ justify-content: space-between;
 }
 
 /* !placeOrder */
+
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
 	.container

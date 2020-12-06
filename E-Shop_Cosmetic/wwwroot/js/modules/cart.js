@@ -45,15 +45,31 @@ function delProduct(product, index) {
     products.removeChild(index);
 }
 
-function addProductToOrder(product) {
-    const products = document.getElementById('cart-info');
+function addCostToOrder(cost) {
+    const products = document.getElementById('total-cost');
     const block = document.createElement('div');
     block.innerHTML = `
-    <div class="form-group">
-        <span>Название: ${product.name}</span>
-        <span min="0" max="10000">Количество:${product.number}</span>
-        <strong>Стоимость: ${product.cost}</strong>
+    <div class="total-cost">
+        <span>Итого:</span><span>${cost}</span>
     </div>
+    `;
+    products.appendChild(block);
+}
+
+function addProductToOrder(product) {
+    const products = document.getElementById('cart_info_body');
+    const block = document.createElement('div');
+    block.innerHTML = `
+    <div class="cart-info__row">
+        <span>Имя товара:</span><span>${product.name}</span>
+    </div>
+    <div class="cart-info__row">
+        <span>Количество:</span><span>${product.number}</span>
+    </div>
+    <div class="cart-info__row">
+        <span>Стоимость:</span><span>${product.cost}</span>
+    </div>
+    <hr />
     `;
     products.appendChild(block);
 }
@@ -193,12 +209,7 @@ export function addToCart(btnAddProduct)
 export function removeFromCart(btnAddProduct) {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
-    let counter = document.querySelectorAll('.counter');
     const id = Number(document.location.href.slice(-1));
-    const product = new Object();
-    product["name"] = productName.innerHTML;
-    product["cost"] = cost.innerHTML;
-    product["id"] = id;
 
     const index = id - 1;
 
@@ -206,12 +217,14 @@ export function removeFromCart(btnAddProduct) {
     // The product is contained in cart
     if (isContained(allProducts, product)) {
         delProduct(product, index);// del in basket
-        allProducts.splice(index); // push to array objects
+        allProducts.pop(allProducts[index]); // push to array objects
     }
-    const foodPrice = document.querySelectorAll('.food-price');
+    createProducts(allProducts);
 
+    // after delete
+    let counter = document.querySelectorAll('.counter');
+    const foodPrice = document.querySelectorAll('.food-price');
     setCookie("pricetag", getPricetag(foodPrice, counter));
-    setCookie('products', JSON.stringify(allProducts));
 
     document.querySelector('.modal-pricetag').innerHTML = getCookie("pricetag") ? getCookie("pricetag") : "0 br";
 
@@ -226,4 +239,6 @@ export function makingOrder()
     for (let i = 0; i < products.length; i++) {
         addProductToOrder(products[i]);
     }
+    const pricetag = getCookie("pricetag") ? JSON.parse(getCookie("pricetag")) : '0 br';
+    addCostToOrder(pricetag);
 }
