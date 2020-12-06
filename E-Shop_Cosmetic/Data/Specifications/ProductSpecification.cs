@@ -25,6 +25,12 @@ namespace E_Shop_Cosmetic.Data.Specifications
             return this;
         }
 
+        public ProductSpecification SortByPrice()
+        {
+            AddDescendingOrdering(product => product.Price);
+            return this;
+        }
+
         public ProductSpecification IncludeCategory()
         {
             AddInclude(product => product.Category);

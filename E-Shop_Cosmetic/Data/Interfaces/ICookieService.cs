@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Interfaces
 {
-    public interface ICookieCartService
+    public interface ICookieService
     {
         Task<List<OrderDetail>> GetOrderDetailsAsync();
     }

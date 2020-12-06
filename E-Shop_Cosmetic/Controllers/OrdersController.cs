@@ -12,9 +12,9 @@ namespace E_Shop_Cosmetic.Controllers
 {
     public class OrdersController : Controller
     {
-        private readonly ICookieCartService _cartService;
+        private readonly ICookieService _cartService;
         private readonly AppDBContext appDB;
-        public OrdersController(ICookieCartService cartService, AppDBContext appDBContext)
+        public OrdersController(ICookieService cartService, AppDBContext appDBContext)
         {
             _cartService = cartService;
             appDB = appDBContext;

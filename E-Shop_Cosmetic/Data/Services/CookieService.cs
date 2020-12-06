@@ -11,12 +11,11 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Services
 {
-    public class CookieService : ICookieCartService
+    public class CookieService : ICookieService
     {
-        private readonly IRequestCookieCollection cookieCollection;
-        private readonly IProductsRepository productRepository;
+        private readonly IRequestCookieCollection _cookieCollection;
+        private readonly IProductsRepository _productRepository;
         private const string CartCookieKey = "products";
-
         private class Detail
         {
             public int id { get; set; }
@@ -26,24 +25,24 @@ namespace E_Shop_Cosmetic.Data.Services
         }
         public CookieService(IHttpContextAccessor httpContextAccessor, IProductsRepository repository)
         {
-            this.cookieCollection = httpContextAccessor.HttpContext.Request.Cookies;
-            this.productRepository = repository;
+            _cookieCollection = httpContextAccessor.HttpContext.Request.Cookies;
+            _productRepository = repository;
         }
 
         public async Task<List<OrderDetail>> GetOrderDetailsAsync()
         {
-            var cartLines = GetCookieCartLines();
-            var products = await productRepository.GetProductsByIdsAsync(cartLines.Select(p => p.id));
+            var cartLines = GetCookieOrderDetails();
+            var products = await _productRepository.GetProductsByIdsAsync(cartLines.Select(p => p.id));
             var orderDetailsList = products.Zip(cartLines,
-                (product, line) => new OrderDetail { Amount = (uint)line.number, ProductId = product.Id }).ToList();
+                (product, line) => new OrderDetail { Amount = (uint)line.number, ProductId = product.Id}).ToList();
             return orderDetailsList;
 
         }
 
-        private List<Detail> GetCookieCartLines()
+        private List<Detail> GetCookieOrderDetails()
         {
             var cookieCartLines = new List<Detail>();
-            if (cookieCollection.TryGetValue(CartCookieKey, out var cartCookieString))
+            if (_cookieCollection.TryGetValue(CartCookieKey, out var cartCookieString))
             {
                 cartCookieString ??= "[]";
                 cookieCartLines = JsonConvert.DeserializeObject<List<Detail>>(cartCookieString);

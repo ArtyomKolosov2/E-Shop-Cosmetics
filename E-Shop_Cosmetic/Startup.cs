@@ -36,7 +36,7 @@ namespace E_Shop_Cosmetic
             services.AddTransient<ICategoriesRepository, CategoryRepository>();
             services.AddTransient<IProductsRepository, ProductRepository>();
             services.AddHttpContextAccessor();
-            services.AddTransient<ICookieCartService, CookieService>();
+            services.AddTransient<ICookieService, CookieService>();
             // установка конфигурации подключения
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions

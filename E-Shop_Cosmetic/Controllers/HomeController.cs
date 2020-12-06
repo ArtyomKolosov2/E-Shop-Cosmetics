@@ -27,7 +27,7 @@ namespace E_Shop_Cosmetic.Controllers
             }
             else
             {
-                messageBuilder.Append("!");
+                messageBuilder.Append('!');
             }
             var obj = new HomeViewModel
             {

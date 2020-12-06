@@ -1,5 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,25 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Repository
 {
-    public class CategoryRepository : ICategoriesRepository
+    public class CategoryRepository : Repository<Category>, ICategoriesRepository
     {
-        private readonly AppDBContext appDBContent;
-
-        public CategoryRepository(AppDBContext appDBContent)
+        public CategoryRepository(AppDBContext appDBContext) : base(appDBContext)
         {
-            this.appDBContent = appDBContent;
         }
-        public IEnumerable<Category> Categories => appDBContent.Categories;
+
+        public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
+        {
+            return await GetAllAsync();
+        }
+
+        public async Task<IReadOnlyList<Category>> GetCategoriesAsync(ISpecification<Category> specification)
+        {
+            return await GetAllAsync(specification);
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(int id)
+        {
+            return await GetByIdAsync(id);
+        }
     }
 }

@@ -15,19 +15,19 @@ namespace E_Shop_Cosmetic.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductsRepository _cosmeticProductsRepository;
-        private readonly ICategoriesRepository _allCategories;
+        private readonly ICategoriesRepository _categoriesRepository;
         private readonly ILogger _logger;
 
         public ProductsController(IProductsRepository products, ICategoriesRepository category, ILogger<ProductsController> logger)
         {
             _cosmeticProductsRepository = products;
-            _allCategories = category;
+            _categoriesRepository = category;
             _logger = logger;
         }
         public async Task<IActionResult> ViewProducts()
         {
             ViewBag.Title = "Товары";
-            ProductsViewModel viewModel = new ProductsViewModel();
+            var viewModel = new ProductsViewModel();
             viewModel.GetProducts = await _cosmeticProductsRepository.GetProductsAsync(new ProductSpecification().IncludeCategory());
             viewModel.ProductCategory = "Косметика";
             _logger.LogInformation("Products\\ViewProducts is executed");
@@ -60,9 +60,9 @@ namespace E_Shop_Cosmetic.Controllers
 
         [Authorize(Roles = "admin")]
         [HttpGet]
-        public IActionResult AddProduct()
+        public async Task<IActionResult> AddProduct()
         {
-            ViewBag.Categories = new SelectList(_allCategories.Categories, "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
             return View();
         }
 
@@ -83,7 +83,7 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 return NoContent();
             }
-            ViewBag.Categories = new SelectList(_allCategories.Categories, "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
             return View(searchResult);
         }
 
