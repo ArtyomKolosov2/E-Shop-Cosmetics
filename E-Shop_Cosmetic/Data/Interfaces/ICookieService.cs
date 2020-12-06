@@ -1,4 +1,4 @@
-﻿using E_Shop_Cosmetic.Data.Repository.Models;
+﻿using E_Shop_Cosmetic.Data.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

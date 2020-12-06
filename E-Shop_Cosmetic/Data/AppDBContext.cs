@@ -1,5 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data.Models;
-using E_Shop_Cosmetic.Data.Repository.Models;
+using E_Shop_Cosmetic.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

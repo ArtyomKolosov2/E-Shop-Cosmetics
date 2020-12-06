@@ -29,14 +29,12 @@ namespace E_Shop_Cosmetic
                 });
         private async static Task InitContext(IHost host)
         {
-            using (var scope = host.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDBContext>();
-                var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+            using var scope = host.Services.CreateScope();
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDBContext>();
+            var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
-                await AppDBContextInit.InitDbContextAsync(dbContext);
-                await AppDBContextInit.InitRolesAsync(dbContext, configuration);
-            }
+            await AppDBContextInit.InitDbContextAsync(dbContext);
+            await AppDBContextInit.InitRolesAsync(dbContext, configuration);
         }
     }
 }

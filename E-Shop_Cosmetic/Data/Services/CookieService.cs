@@ -1,5 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
-using E_Shop_Cosmetic.Data.Repository.Models;
+using E_Shop_Cosmetic.Data.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using System;

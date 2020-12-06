@@ -1,7 +1,9 @@
 ﻿using E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
-using E_Shop_Cosmetic.Data.Repository.Models;
+using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,11 +15,11 @@ namespace E_Shop_Cosmetic.Controllers
     public class OrdersController : Controller
     {
         private readonly ICookieService _cartService;
-        private readonly AppDBContext appDB;
-        public OrdersController(ICookieService cartService, AppDBContext appDBContext)
+        private readonly IOrderRepository _orderRepository;
+        public OrdersController(ICookieService cartService, IOrderRepository orderRepository)
         {
             _cartService = cartService;
-            appDB = appDBContext;
+            _orderRepository = orderRepository;
         }
 
         [HttpGet]
@@ -27,7 +29,7 @@ namespace E_Shop_Cosmetic.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel) //ToDo replace with order repository
+        public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel)
         {
             var ordersDetails = await _cartService.GetOrderDetailsAsync();
             var newOrder = new Order()
@@ -43,14 +45,20 @@ namespace E_Shop_Cosmetic.Controllers
                 OrderDate = DateTime.Now,
 
             };
-            await appDB.Orders.AddAsync(newOrder);
-            await appDB.SaveChangesAsync();
+            await _orderRepository.AddOrderAsync(newOrder);
             return RedirectToAction("OrderSuccessful", newOrder);
         }
         [HttpGet]
         public IActionResult OrderSuccessful(Order order)
         {
             return View(order);
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        public async Task<IActionResult> ViewOrders()
+        {
+            return View(await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice()));
         }
     }
 }

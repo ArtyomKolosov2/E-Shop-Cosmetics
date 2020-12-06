@@ -10,8 +10,7 @@ namespace E_Shop_Cosmetic.Data.Interfaces
     public interface ICategoriesRepository
     {
         Task<IReadOnlyList<Category>> GetCategoriesAsync();
-        Task<Category> GetCategoryByIdAsync(int id);
         Task<IReadOnlyList<Category>> GetCategoriesAsync(ISpecification<Category> specification);
-
+        Task<Category> GetCategoryByIdAsync(int id);
     }
 }

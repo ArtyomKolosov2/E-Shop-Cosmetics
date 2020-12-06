@@ -27,9 +27,11 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> ViewProducts()
         {
             ViewBag.Title = "Товары";
-            var viewModel = new ProductsViewModel();
-            viewModel.GetProducts = await _cosmeticProductsRepository.GetProductsAsync(new ProductSpecification().IncludeCategory());
-            viewModel.ProductCategory = "Косметика";
+            var viewModel = new ProductsViewModel
+            {
+                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(new ProductSpecification().IncludeCategory()),
+                ProductCategory = "Косметика"
+            };
             _logger.LogInformation("Products\\ViewProducts is executed");
             return View(viewModel);
         }

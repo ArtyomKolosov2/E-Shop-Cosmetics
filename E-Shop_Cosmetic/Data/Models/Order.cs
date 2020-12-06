@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace E_Shop_Cosmetic.Data.Repository.Models
+namespace E_Shop_Cosmetic.Data.Models
 {
     public class Order : Entity
     {

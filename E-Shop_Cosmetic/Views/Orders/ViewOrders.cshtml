@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Order>
+<section class="row mt-5 mb-2">
+    <div class="cards">
+        @{
+            foreach (var order in Model)
+            {
+                @await Html.PartialAsync("ShowOrder", order)
+            }
+        }
+    </div>
+</section>
