@@ -8,6 +8,7 @@
     $slider.ionRangeSlider({
         skin: "flat",
         type: "double",
+        step: 0.1,
         grid: true,
         postfix: "br",
         min: minRange,
