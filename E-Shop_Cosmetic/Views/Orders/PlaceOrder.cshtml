@@ -34,13 +34,18 @@
                         <span asp-validation-for="LastName" />
                     </div>
                     <div class="form-group">
-                        <label asp-for="Address" class="form-group__header">Введите Adress</label>
+                        <label asp-for="Address" class="form-group__header">Введите адрес</label>
                         <input type="text" asp-for="Address" class="form-group__input" placeholder="г.Москва ул Ленина 77" />
                         <span asp-validation-for="Address" />
                     </div>
                     <div class="form-group">
+                        <label asp-for="Email" class="form-group__header">Введите e-mail</label>
+                        <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
+                        <span asp-validation-for="Email" />
+                    </div>
+                    <div class="form-group">
                         <label asp-for="PhoneNumber" class="form-group__header">Введите телефон</label>
-                        <input asp-for="PhoneNumber" class="form-group__input" placeholder="+37529-***-**-**" />
+                        <input asp-for="PhoneNumber" class="form-group__input" placeholder="+375(**)***-**-**" />
                         <span asp-validation-for="PhoneNumber" />
                     </div>
                     <div class="form-group">

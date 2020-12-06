@@ -43,6 +43,7 @@ namespace E_Shop_Cosmetic.Controllers
                 TotalPrice = orderViewModel.TotalPrice,
                 OrderDetails = ordersDetails,
                 OrderDate = DateTime.Now,
+                Email=orderViewModel.Email
 
             };
             await _orderRepository.AddOrderAsync(newOrder);
