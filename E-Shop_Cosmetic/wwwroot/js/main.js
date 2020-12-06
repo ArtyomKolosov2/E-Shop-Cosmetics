@@ -47,7 +47,7 @@ async function main() {
     const order = document.getElementById('order');
     if (order) {
         document.getElementById("btn-basket").remove();
-        makingOrder();
+        await makingOrder();
     }
     // !making order
 

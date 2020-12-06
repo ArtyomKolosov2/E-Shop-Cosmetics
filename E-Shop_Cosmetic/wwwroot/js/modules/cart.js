@@ -232,13 +232,19 @@ export function removeFromCart(btnAddProduct) {
     console.log(allProducts);
 }
 
-export function makingOrder()
+export async function makingOrder()
 {
-    const products = (getCookie("products") ? JSON.parse(getCookie("products")) : []);
+    await makingOrderProducts();
+    await makingOrderTotalCost();
+}
+function makingOrderProducts() {
+    const products = getCookie("products") ? JSON.parse(getCookie("products")) : [];
     console.log(products);
     for (let i = 0; i < products.length; i++) {
         addProductToOrder(products[i]);
     }
-    const pricetag = getCookie("pricetag") ? JSON.parse(getCookie("pricetag")) : '0 br';
+}
+function makingOrderTotalCost() {
+    const pricetag = getCookie('pricetag') ? getCookie('pricetag') : '0 br';
     addCostToOrder(pricetag);
 }
