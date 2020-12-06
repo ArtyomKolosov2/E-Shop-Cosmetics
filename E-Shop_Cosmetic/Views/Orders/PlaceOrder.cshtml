@@ -1,48 +1,61 @@
 ﻿@model E_Shop_Cosmetic.ViewModels.OrderViewModel
 
-<section class="order">
+<section class="order" id="order">
     <div class="container">
-        <form class="form form-login" asp-action="PlaceOrder" asp-controller="Orders">
+        <div class="cart-info">
+            <div class="cart-info__content">
+                <div class="cart-info__title">
+                    Заказ
+                </div>
+                <hr />
+                @* generate products *@
+                <div id="cart_info_body">
+
+                </div>
+                @* generate total cost *@
+                <div id="total-cost"></div>
+            </div>
+        </div>
+        <form class="form form-order" asp-action="PlaceOrder" asp-controller="Orders">
             <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
             <div class="form-header">
-                <h3>Регистрация</h3>
+                <h3>Оформление заказа</h3>
             </div>
             <div class="form-body">
                 <div class="form-group">
-                    <label asp-for="Name">Введите Ваше Имя</label><br />
-                    <input type="text" asp-for="Name" placeholder="Иван" />
+                    <label asp-for="Name" class="form-group__header">Введите Ваше Имя</label>
+                    <input type="text" asp-for="Name" class="form-group__input" placeholder="Иван" />
                     <span asp-validation-for="Name" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="LastName">Введите Вашу фамилию</label><br />
-                    <input type="text" asp-for="LastName" placeholder="Иванов" />
+                    <label asp-for="LastName" class="form-group__header">Введите Вашу фамилию</label>
+                    <input type="text" asp-for="LastName" class="form-group__input" placeholder="Иванов" />
                     <span asp-validation-for="LastName" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Address">Введите Adress</label><br />
-                    <input type="text" asp-for="Address" placeholder="г.Москва ул Ленина 77" />
+                    <label asp-for="Address" class="form-group__header">Введите Adress</label>
+                    <input type="text" asp-for="Address" class="form-group__input" placeholder="г.Москва ул Ленина 77" />
                     <span asp-validation-for="Address" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Email">Введите Adress</label><br />
-                    <input type="text" asp-for="Email" placeholder="user@gmail.com" />
+                    <label asp-for="Email" class="form-group__header">Введите Adress</label>
+                    <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
                     <span asp-validation-for="Email" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="PhoneNumber">Введите телефон</label><br />
+                    <label asp-for="PhoneNumber" class="form-group__label">Введите телефон</label>
                     <input asp-for="PhoneNumber" placeholder="*********" />
                     <span asp-validation-for="PhoneNumber" />
                 </div>
                 <div class="form-group">
-                    <label asp-for="Information">Введите ваши пожелания</label><br />
-                    <textarea asp-for="Information" class="" placeholder="Некоторый текст"></textarea>
+                    <label asp-for="Information" class="form-group__label form-group__wishes">Введите ваши пожелания</label>
+                    <textarea asp-for="Information" class="form-group__textarea" placeholder="Некоторый текст"></textarea>
                     <span asp-validation-for="Information" />
                 </div>
             </div>
-            <div class="form-footer">
+            <div class="btn-block">
                 <input type="submit" class="btn btn-outline-dark" value="Заказать" />
             </div>
         </form>
     </div>
 </section>
-<script src="~/js/modules/basket.js"></script>
