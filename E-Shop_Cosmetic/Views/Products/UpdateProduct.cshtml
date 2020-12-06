@@ -1,7 +1,7 @@
 ﻿@model Product
 <section class="update-product">
     <form class="form form-update-product" asp-action="UpdateProduct" asp-controller="Products" asp-antiforgery="true">
-        <h3 class="form-header">Изменить товар:</h3>
+        <h3 class="form-header">Изменить товар</h3>
         <div class="form-group">
             <label asp-for="Name" class="form-group__header"></label>
             <input type="text" asp-for="Name" class="form-group__input" />
@@ -23,13 +23,13 @@
             <label asp-for="ImageURL" class="form-group__header"></label>
             <input type="url" asp-for="ImageURL" class="form-group__input" />
         </div>
-        <div class="btn-block">
+        <div class="btn-block" style="padding: 10px 0 0 0;">
             <label asp-for="CategoryId" class="btn-block__header"></label>
             <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
             </select>
         </div>
         <div class="btn-block">
-            <input type="submit" value="Save" class="btn btn-product" />
+            <input type="submit" value="Save" style="margin-top:0" class="btn btn-product" />
         </div>
     </form>
 </section>

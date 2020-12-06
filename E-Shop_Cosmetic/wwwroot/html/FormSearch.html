@@ -6,13 +6,10 @@
             <h3 class="modal-title">Фильтр</h3>
             <button class="btn-close-filter">&times;</button>
         </div>
-        <form method="get" class="form-search" name="form-search" class="form-search__property">
-            <p>
-                <input type="text" name="id" placeholder="Введите артикул" class="form-search__property" />
-            </p>
-            <p>
-                <input type="text" name="name" placeholder="Введите название товара" class="form-search__property" />
-            </p>
+        <form method="get" class="form-search form-search__property" name="form-search" >
+            <input type="text" name="id" placeholder="Введите артикул" class="form-search__property" />
+            <input type="text" name="name" placeholder="Введите название товара" class="form-search__property" />
+            
             <div class="filter-cost">
                 <input type="text" class="js-range-slider" name="my_range" value="$" />
                 <span class="filter-cost__head">Цена изделия в рублях</span>
@@ -45,6 +42,7 @@
                     <button class="btn btn-primary">Отправить</button>
                     <button class="btn btn-cancel-filter">Очистить</button>
                 </div>
+            </div>
         </form>
     </div>
 </section> 

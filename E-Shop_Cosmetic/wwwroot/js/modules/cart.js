@@ -69,7 +69,7 @@ function addProductToOrder(product) {
     <div class="cart-info__row">
         <span>Стоимость:</span><span>${product.cost}</span>
     </div>
-    <hr />
+    <hr class="hr"/>
     `;
     products.appendChild(block);
 }
