@@ -578,13 +578,6 @@ a:hover {
     padding-top: 10px;
 }
 
-.validation-fix {
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
-    text-decoration: underline;
-}
-
 .form-group {
     display: flex;
     justify-content: center;
@@ -875,6 +868,40 @@ a:hover {
 
 /* !Order-successful */
 
+
+/* validation */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-fix {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    text-decoration: underline;
+}
+/* !validation */
+
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {
@@ -893,6 +920,9 @@ a:hover {
     .category,
     .price {
         font-size: 14px;
+    }
+    .cart-info__content {
+        width: 200px;
     }
 }
 /*планшеты*/
@@ -939,6 +969,12 @@ a:hover {
 
     .footer-nav {
         font-size: 14px;
+    }
+    .card-info {
+        margin: 0 25%;
+    }
+    .form-order {
+        margin-top: 120px;
     }
 }
 
@@ -1087,29 +1123,4 @@ a:hover {
     .social:not(:last-child) {
         margin-right: 15px;
     }
-}
-
-/*Стили валидации*/
-.field-validation-error {
-    color: #b94a48;
-}
-
-.field-validation-valid {
-    display: none;
-}
-
-input.input-validation-error {
-    border: 1px solid #b94a48;
-}
-
-input[type="checkbox"].input-validation-error {
-    border: 0 none;
-}
-
-.validation-summary-errors {
-    color: #b94a48;
-}
-
-.validation-summary-valid {
-    display: none;
 }
