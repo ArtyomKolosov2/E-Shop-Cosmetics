@@ -34,7 +34,7 @@ function delProduct(product, index) {
     const block = `
     <div class="food-row">
         <span class="food-name">${product.name}</span>
-        <strong class="food-price">${product.cost}</strong>
+        <strong class="food-price">${product.cost} br</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
             <span class="counter" min="0" max="10000">${product.number}</span>
@@ -67,7 +67,7 @@ function addProductToOrder(product) {
         <span>Количество:</span><span>${product.number}</span>
     </div>
     <div class="cart-info__row">
-        <span>Стоимость:</span><span>${product.cost}</span>
+        <span>Стоимость:</span><span>${product.cost} br</span>
     </div>
     <hr class="hr"/>
     `;
@@ -80,7 +80,7 @@ function addProduct(product) {
     block.innerHTML = `
     <div class="food-row">
         <span class="food-name">${product.name}</span>
-        <strong class="food-price">${product.cost}</strong>
+        <strong class="food-price">${product.cost} br</strong>
         <div class="food-counter">
             <button class="btn-counter">-</button>
             <span class="counter" min="0" max="10000">${product.number}</span>
@@ -153,8 +153,6 @@ export function cartHandler() {
             newProducts[index].number = Number(counter[index].innerHTML);
 
             setCookie("products", JSON.stringify(newProducts));
-
-            console.log(JSON.parse(getCookie("products")));
         });
     });
 }
@@ -168,20 +166,20 @@ function isContained(allProducts, product) {
     return false;
 }
 
-export function addToCart(btnAddProduct)
+export function addToCart()
 {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
     let counter = document.querySelectorAll('.counter');
+
     const id = Number(document.location.href.slice(-1));
     const product = new Object();
     product["name"] = productName.innerHTML;
-    product["cost"] = cost.innerHTML;
+    product["cost"] = Number(cost.innerHTML.slice(0, -2));
     product["id"] = id;
-    
-    const index = id - 1;
 
     const allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
+    const index = allProducts.length - 1;
     // The product is contained in cart
     if (isContained(allProducts, product)) {
         counter[index].innerHTML = Number(counter[index].innerHTML) + 1;
@@ -191,7 +189,6 @@ export function addToCart(btnAddProduct)
         product["number"] = 1;
         addProduct(product);// add to basket
         counter = document.querySelectorAll('.counter');
-
         allProducts.push(product); // push to array objects
     }
     const foodPrice = document.querySelectorAll('.food-price');
@@ -206,7 +203,7 @@ export function addToCart(btnAddProduct)
     console.log(allProducts);
 }
 
-export function removeFromCart(btnAddProduct) {
+export function removeFromCart() {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
     const id = Number(document.location.href.slice(-1));
@@ -219,14 +216,14 @@ export function removeFromCart(btnAddProduct) {
         delProduct(product, index);// del in basket
         allProducts.pop(allProducts[index]); // push to array objects
     }
-    createProducts(allProducts);
 
+    createProducts(allProducts);
     // after delete
     let counter = document.querySelectorAll('.counter');
     const foodPrice = document.querySelectorAll('.food-price');
-    setCookie("pricetag", getPricetag(foodPrice, counter));
-
     document.querySelector('.modal-pricetag').innerHTML = getCookie("pricetag") ? getCookie("pricetag") : "0 br";
+
+    setCookie("pricetag", getPricetag(foodPrice, counter));
 
     cartHandler();
     console.log(allProducts);

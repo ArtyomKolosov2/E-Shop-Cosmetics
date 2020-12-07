@@ -35,10 +35,10 @@ async function main() {
     if (btnAddProduct && btnDelProduct)
     {
         btnAddProduct.addEventListener('click', function () {
-            addToCart(btnAddProduct);
+            addToCart();
         });
         btnDelProduct.addEventListener('click', function () {
-            removeFromCart(btnDelProduct);
+            removeFromCart();
         });
     }
     //!basket
