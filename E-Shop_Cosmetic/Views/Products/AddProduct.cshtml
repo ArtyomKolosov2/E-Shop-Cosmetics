@@ -2,7 +2,7 @@
 <section class="add-product">
     <form class="form form-add-product" asp-action="AddProduct" asp-controller="Products" asp-antiforgery="true">
         <h3 class="form-header">Добавить товар на страницу:</h3>
-        
+
         <div class="form-group">
             <label asp-for="Name" class="form-group__header"></label>
             <input type="text" asp-for="Name" class="form-group__input" />
@@ -32,8 +32,12 @@
             </select>
             <span asp-validation-for="CategoryId"></span>
         </div>
+        <div class="is-available">
+            <p>Есть в наличии:</p>
+            <input asp-for="IsAvailable" value="true" checked="checked" type="checkbox" class="search__is-available">
+        </div>
         <div class="btn-block">
-            <input type="submit" value="Save" class="btn btn-product"/>
+            <input type="submit" value="Save" class="btn btn-product" />
         </div>
     </form>
 </section>

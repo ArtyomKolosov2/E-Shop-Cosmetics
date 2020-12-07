@@ -38,6 +38,10 @@ namespace E_Shop_Cosmetic.Data.Services
             return orderDetailsList;
 
         }
+        public async Task<bool> IsAnyProductInCartAsync()
+        {
+            return await Task.Run(() => GetCookieOrderDetails().Any());
+        }
 
         private List<Detail> GetCookieOrderDetails()
         {

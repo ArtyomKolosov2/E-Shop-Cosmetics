@@ -11,13 +11,7 @@ namespace E_Shop_Cosmetic.Data.Specifications
     public class ProductSpecification : Specification<Product>
     {
         public ProductSpecification() : base() { }
-
-        public ProductSpecification(int id) : this(product => product.Id == id) { }
-
-        public ProductSpecification(string name) : this(product => product.Name.ToLower().Contains(name.ToLower())) { }
-
         public ProductSpecification(Expression<Func<Product, bool>> expression) : base(expression) { }
-
 
         public ProductSpecification SortByName()
         {
@@ -35,6 +29,22 @@ namespace E_Shop_Cosmetic.Data.Specifications
             return this;
         }
 
+        public ProductSpecification WhereId(int id)
+        {
+            AddWhere(product => product.Id == id);
+            return this;
+        }
+
+        public ProductSpecification WhereAvailable(bool isAvailable)
+        {
+            AddWhere(product => product.IsAvailable == isAvailable);
+            return this;
+        }
+        public ProductSpecification WhereName(string name)
+        {
+            AddWhere(product => product.Name.ToLower().Contains(name.ToLower()));
+            return this;
+        }
         public ProductSpecification SortByPrice()
         {
             AddDescendingOrdering(product => product.Price);

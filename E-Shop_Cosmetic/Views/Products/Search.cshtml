@@ -1,22 +1,36 @@
 ﻿@model ProductsViewModel
 <h1>Результат поиска:</h1>
-<h3>@Model.ProductCategory</h3>
 
-<div class="row mt-5 mb-2">
+<section class="view-products-header">
+    <hr />
+    <div class="view-products__block">
+        <h1 class="view-products__block__title">Вся косметика</h1>
+        <button class="btn btn-filter" id="btn-filter">
+            <img src="~/img/user.svg" alt="user" class="btn-icon">
+            <p class="btn-text">Фильтр</p>
+        </button>
+    </div>
+    <h3 class="view-products-header__category">@Model.ProductCategory</h3>
+</section>
 
-    <div class="cards">
-        @{
-            if (Model.GetProducts.Any())
-            {
+@if (Model.GetProducts.Any())
+{
+    <section class="row mt-5 mb-2">
+
+        <div class="cards">
+            @{
                 foreach (var product in Model.GetProducts)
                 {
                     @await Html.PartialAsync("ShowProduct", product)
                 }
             }
-            else
-            {
-                <p>Ничего не найдено!</p>
-            }
-        }
-    </div>
-</div>
+        </div>
+    </section>
+}
+else
+{
+    <p class="text-capitalize">Ничего не найдено!</p>
+}
+
+
+@await Html.PartialAsync("ProductsFilter", Model.SearchParams)

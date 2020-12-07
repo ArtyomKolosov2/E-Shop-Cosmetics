@@ -24,6 +24,13 @@ namespace E_Shop_Cosmetic.Controllers
             _categoriesRepository = category;
             _logger = logger;
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> Product(int id)
+        {
+            _logger.LogInformation("Products\\Product is executed");
+            return View(await _cosmeticProductsRepository.GetProductByIdAsync(id));
+        }
         public async Task<IActionResult> ViewProducts()
         {
             ViewBag.Title = "Товары";
@@ -33,29 +40,31 @@ namespace E_Shop_Cosmetic.Controllers
                 ProductCategory = "Косметика",
                 SearchParams = new SearchParams()
             };
-            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
             _logger.LogInformation("Products\\ViewProducts is executed");
             return View(viewModel);
         }
-        [HttpGet]
-        public async Task<IActionResult> Product(int id)
-        {
-            _logger.LogInformation("Products\\Product is executed");
-            return View(await _cosmeticProductsRepository.GetProductByIdAsync(id));
-        }
-
         [HttpGet]
         public async Task<IActionResult> Search(SearchParams searchParams)
         {
             var searchSpecification = new ProductSpecification().
                 IncludeCategory().
                 WhereInPriceRange(searchParams.StartPrice, searchParams.EndPrice);
-            var products = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification);         
+
+            if (searchParams.SearchProductId is not null)
+            {
+                searchSpecification.WhereId(searchParams.SearchProductId.Value);
+            }
+            if (searchParams.Name is not null)
+            {
+                searchSpecification.WhereName(searchParams.Name);
+            }
+            searchSpecification.WhereAvailable(searchParams.IsAvailable);
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel
             {
-                GetProducts = products,
-                ProductCategory = "Косметика"
+                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
+                ProductCategory = "Косметика",
+                SearchParams = new SearchParams()
             };
             _logger.LogInformation("Products\\Search is executed");
             if (!viewModel.GetProducts.Any())

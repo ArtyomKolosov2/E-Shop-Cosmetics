@@ -23,9 +23,14 @@ namespace E_Shop_Cosmetic.Controllers
         }
 
         [HttpGet]
-        public IActionResult PlaceOrder()
+        public async Task<IActionResult> PlaceOrder()
         {
-            return View();
+            if (await _cartService.IsAnyProductInCartAsync())
+            {
+                return View();
+            }
+            return NoContent();
+            
         }
 
         [HttpPost]
