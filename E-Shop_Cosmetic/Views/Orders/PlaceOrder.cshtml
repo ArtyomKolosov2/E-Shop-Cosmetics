@@ -16,7 +16,7 @@
                     <div id="total-cost"></div>
                 </div>
             </div>
-            <form class="form form-order" asp-action="PlaceOrder" asp-controller="Orders">
+            <form class="form form-order" method="post" asp-action="PlaceOrder" asp-controller="Orders">
                 <div class="validation validation-fix" asp-validation-summary="ModelOnly"></div>
                 <div class="form-header">
                     <h3>Оформление заказа</h3>

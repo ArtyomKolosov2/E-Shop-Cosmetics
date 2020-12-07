@@ -55,7 +55,7 @@ namespace E_Shop_Cosmetic.Controllers
             return RedirectToAction("OrderSuccessful", newOrder);
         }
 
-        [HttpPost]
+
         public IActionResult OrderSuccessful(Order order)
         {
             return View(order);
