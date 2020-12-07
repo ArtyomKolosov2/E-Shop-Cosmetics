@@ -14,19 +14,24 @@
             <div class="offer-info">
                 <div class="offer-info__description">
                     <h2>Описание</h2>
-                    <h3>
-                        @Model.ShortDescription
-                    </h3>
                     <p>
                         @Model.LongDescription
                     </p>
                 </div>
-                <div class="offer-footer">
-                    <div class="offer-footer__btn">
-                        <button class="btn btn-primary" id="btn_add_product">В корзину</button>
+                @{ if (Model.IsAvailable) 
+                    {
+                    <div class="offer-footer">
+                        <div class="offer-footer__btn">
+                            <button class="btn btn-primary" id="btn_add_product">В корзину</button>
+                        </div>
+                        <p class="offer-footer__cost">@Model.Price р.</p>
                     </div>
-                    <p class="offer-footer__cost">@Model.Price р.</p>
-                </div>
+                    }
+                    else 
+                    {
+                        <p class="text-capitalize">Товара нет в наличии!</p>
+                    }
+               }
             </div>
         </div>
         <hr />
