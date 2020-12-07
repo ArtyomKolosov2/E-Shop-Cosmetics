@@ -199,6 +199,7 @@ export function addToCart(btnAddProduct)
     setCookie("pricetag", `${pricetag} br`);
     setCookie('products', JSON.stringify(allProducts));
 
+    cartHandler();
     console.log(allProducts);
 }
 
