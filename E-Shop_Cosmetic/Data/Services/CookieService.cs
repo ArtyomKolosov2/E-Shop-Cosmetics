@@ -21,7 +21,7 @@ namespace E_Shop_Cosmetic.Data.Services
             public int id { get; set; }
             public int number { get; set; }
             public string name { get; set; }
-            public string cost { get; set; }
+            public double cost { get; set; }
         }
         public CookieService(IHttpContextAccessor httpContextAccessor, IProductsRepository repository)
         {

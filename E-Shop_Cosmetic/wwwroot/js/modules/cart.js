@@ -64,6 +64,7 @@ function createProducts(product) {
     for (let i in product) {
         addProduct(product[i]);
     }
+    console.log(JSON.parse(getCookie("products")));
 }
 
 function sumProducts(arrFoodPrice, foodPrice) {
@@ -160,7 +161,7 @@ export function addToCart()
     const cost = document.querySelector('.offer-footer__cost');
     let counter = document.querySelectorAll('.counter');
 
-    const id = document.getElementById('id_product'); //Number(document.location.href.slice(-1)); ;
+    const id = Number(document.getElementById('id_product').innerHTML); //Number(document.location.href.slice(-1)); ;
     const product = new Object();
     product["name"] = productName.innerHTML;
     product["cost"] = Number(cost.innerHTML.slice(0, -2));
