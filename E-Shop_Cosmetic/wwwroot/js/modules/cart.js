@@ -23,55 +23,23 @@ function deleteCookie(cookieName) {
     cookieDate.setTime(cookieDate.getTime() - 1);
     document.cookie = `${cookieName}=; expires=${cookieDate.toGMTString()}`;
 }
+
 function getCookie(cookieName) {
     let results = document.cookie.match(`(^|;) ?${cookieName}=([^;]*)(;|$)`);
 
     return results ? unescape(results[2]) : null;
 }
 
-function delProduct(product, index) {
-    const products = document.getElementById('products');
-    const block = `
-    <div class="food-row">
-        <span class="food-name">${product.name}</span>
-        <strong class="food-price">${product.cost} br</strong>
-        <div class="food-counter">
-            <button class="btn-counter">-</button>
-            <span class="counter" min="0" max="10000">${product.number}</span>
-            <button class="btn-counter">+</button>
-        </div>
-    </div>
-    `;
-    products.removeChild(index);
-}
-
-function addCostToOrder(cost) {
-    const products = document.getElementById('total-cost');
-    const block = document.createElement('div');
-    block.innerHTML = `
-    <div class="total-cost">
-        <span>Итого:</span><span>${cost}</span>
-    </div>
-    `;
-    products.appendChild(block);
-}
-
-function addProductToOrder(product) {
-    const products = document.getElementById('cart_info_body');
-    const block = document.createElement('div');
-    block.innerHTML = `
-    <div class="cart-info__row">
-        <span>Имя товара:</span><span>${product.name}</span>
-    </div>
-    <div class="cart-info__row">
-        <span>Количество:</span><span>${product.number}</span>
-    </div>
-    <div class="cart-info__row">
-        <span>Стоимость:</span><span>${product.cost} br</span>
-    </div>
-    <hr class="hr"/>
-    `;
-    products.appendChild(block);
+function delElement(arr, index)
+{
+    let newArr = [];
+    for (let i in arr) {
+        if (i == index) {
+            continue;
+        }
+        newArr.push(arr[i]);
+    }
+    return newArr;
 }
 
 function addProduct(product) {
@@ -79,12 +47,13 @@ function addProduct(product) {
     const block = document.createElement('div');
     block.innerHTML = `
     <div class="food-row">
+        <button class="btn-counter-close" id="btn_delete_food_row">&times;</button>
         <span class="food-name">${product.name}</span>
         <strong class="food-price">${product.cost} br</strong>
         <div class="food-counter">
-            <button class="btn-counter">-</button>
+            <button class="btn-counter" id="btn-counter">-</button>
             <span class="counter" min="0" max="10000">${product.number}</span>
-            <button class="btn-counter">+</button>
+            <button class="btn-counter" id="btn-counter">+</button>
         </div>
     </div>
     `;
@@ -113,7 +82,9 @@ function parseFoodPrice(foodPrice) {
     return arrFoodPrice;
 }
 
-function getPricetag(foodPrice, counter) {
+function getPricetag() {
+    const foodPrice = document.querySelectorAll('.food-price');
+    const counter = document.querySelectorAll('.counter');
     let arrFoodPrice = parseFoodPrice(foodPrice);
 
     return sumProducts(arrFoodPrice, counter);
@@ -127,9 +98,26 @@ export function uploadCart() {
 
 export function cartHandler() {
     $().ready(function () {
+        $('.btn-counter-close').on('click', function () {
+            let parent = $(this).parent();
+            let index = Math.round($('.food-row').find('button').parent().index(parent) / 2);
+
+            const foodRow = document.querySelectorAll(".food-row");
+            foodRow[index].remove();
+
+            let allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
+            allProducts = delElement(allProducts, index);
+
+            const pricetag = getPricetag();
+            const modalPricetag = document.querySelector('.modal-pricetag');
+
+            modalPricetag.innerHTML = `${pricetag} br`;
+
+            setCookie('products', JSON.stringify(allProducts));
+            setCookie("pricetag", modalPricetag.innerHTML);
+        });
         $('.btn-counter').on('click', function () {
             const newProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
-            const foodPrice = document.querySelectorAll('.food-price');
             const counter = document.querySelectorAll('.counter');
 
             let parent = $(this).parent();
@@ -144,14 +132,14 @@ export function cartHandler() {
                     counter[index].innerHTML = 1;
                 }
             }
-            const pricetag = getPricetag(foodPrice, counter);
+            const pricetag = getPricetag();
             const modalPricetag = document.querySelector('.modal-pricetag');
 
             modalPricetag.innerHTML = `${pricetag} br`;
-            setCookie("pricetag", modalPricetag.innerHTML);
 
             newProducts[index].number = Number(counter[index].innerHTML);
 
+            setCookie("pricetag", modalPricetag.innerHTML);
             setCookie("products", JSON.stringify(newProducts));
         });
     });
@@ -188,12 +176,10 @@ export function addToCart()
     } else {
         product["number"] = 1;
         addProduct(product);// add to basket
-        counter = document.querySelectorAll('.counter');
         allProducts.push(product); // push to array objects
     }
-    const foodPrice = document.querySelectorAll('.food-price');
 
-    let pricetag = getPricetag(foodPrice, counter);
+    let pricetag = getPricetag();
     document.querySelector('.modal-pricetag').innerHTML = `${pricetag} br`;
 
     setCookie("pricetag", `${pricetag} br`);
@@ -203,37 +189,35 @@ export function addToCart()
     console.log(allProducts);
 }
 
-export function removeFromCart() {
-    const productName = document.querySelector('.product-info__header');
-    const cost = document.querySelector('.offer-footer__cost');
-    const id = Number(document.location.href.slice(-1));
-
-    const index = id - 1;
-
-    const allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
-    // The product is contained in cart
-    if (isContained(allProducts, product)) {
-        delProduct(product, index);// del in basket
-        allProducts.pop(allProducts[index]); // push to array objects
-    }
-
-    createProducts(allProducts);
-    // after delete
-    let counter = document.querySelectorAll('.counter');
-    const foodPrice = document.querySelectorAll('.food-price');
-    document.querySelector('.modal-pricetag').innerHTML = getCookie("pricetag") ? getCookie("pricetag") : "0 br";
-
-    setCookie("pricetag", getPricetag(foodPrice, counter));
-
-    cartHandler();
-    console.log(allProducts);
+function addCostToOrder(cost) {
+    const products = document.getElementById('total-cost');
+    const block = document.createElement('div');
+    block.innerHTML = `
+    <div class="total-cost">
+        <span>Итого:</span><span>${cost}</span>
+    </div>
+    `;
+    products.appendChild(block);
 }
 
-export async function makingOrder()
-{
-    await makingOrderProducts();
-    await makingOrderTotalCost();
+function addProductToOrder(product) {
+    const products = document.getElementById('cart_info_body');
+    const block = document.createElement('div');
+    block.innerHTML = `
+    <div class="cart-info__row">
+        <span>Имя товара:</span><span>${product.name}</span>
+    </div>
+    <div class="cart-info__row">
+        <span>Количество:</span><span>${product.number}</span>
+    </div>
+    <div class="cart-info__row">
+        <span>Стоимость:</span><span>${product.cost} br</span>
+    </div>
+    <hr class="hr"/>
+    `;
+    products.appendChild(block);
 }
+
 function makingOrderProducts() {
     const products = getCookie("products") ? JSON.parse(getCookie("products")) : [];
     console.log(products);
@@ -244,4 +228,10 @@ function makingOrderProducts() {
 function makingOrderTotalCost() {
     const pricetag = getCookie('pricetag') ? getCookie('pricetag') : '0 br';
     addCostToOrder(pricetag);
+}
+
+export async function makingOrder()
+{
+    await makingOrderProducts();
+    await makingOrderTotalCost();
 }

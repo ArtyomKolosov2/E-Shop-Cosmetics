@@ -425,7 +425,21 @@ a:hover {
     font-size: 22px;
     color: #40A9FF;
 }
-
+.btn-counter-close {
+    border: 1px solid #000;
+    color: #000;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 32px;
+    background: #FFF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    line-height: 22px;
+    font-size: 22px;
+}
 .counter {
     font-size: 16px;
     line-height: 24px;
