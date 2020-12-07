@@ -140,8 +140,8 @@ export function cartHandler() {
             }
             else {
                 counter[index].innerHTML--;
-                if (counter[index].innerHTML < 0) {
-                    counter[index].innerHTML = 0;
+                if (counter[index].innerHTML < 1) {
+                    counter[index].innerHTML = 1;
                 }
             }
             const pricetag = getPricetag(foodPrice, counter);
