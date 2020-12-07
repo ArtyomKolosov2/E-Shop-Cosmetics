@@ -877,17 +877,18 @@ a:hover {
 .order-contant {
     padding: 20px;
 }
-.order-error-text {
-    position: absolute;
-    padding: 5px;
-    width: 120px
-}
 /* !Order */
 
 /* Order-successful */
 
 /* !Order-successful */
 
+/* 
+    position: absolute;
+    padding: 5px;
+    width: 120px;
+
+*/
 
 /* validation */
 .field-validation-error {
