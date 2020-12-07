@@ -166,7 +166,7 @@ function isContained(allProducts, product) {
     return false;
 }
 
-export function addToCart(btnAddProduct)
+export function addToCart()
 {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
@@ -203,7 +203,7 @@ export function addToCart(btnAddProduct)
     console.log(allProducts);
 }
 
-export function removeFromCart(btnAddProduct) {
+export function removeFromCart() {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
     const id = Number(document.location.href.slice(-1));
@@ -216,14 +216,14 @@ export function removeFromCart(btnAddProduct) {
         delProduct(product, index);// del in basket
         allProducts.pop(allProducts[index]); // push to array objects
     }
-    createProducts(allProducts);
 
+    createProducts(allProducts);
     // after delete
     let counter = document.querySelectorAll('.counter');
     const foodPrice = document.querySelectorAll('.food-price');
-    setCookie("pricetag", getPricetag(foodPrice, counter));
-
     document.querySelector('.modal-pricetag').innerHTML = getCookie("pricetag") ? getCookie("pricetag") : "0 br";
+
+    setCookie("pricetag", getPricetag(foodPrice, counter));
 
     cartHandler();
     console.log(allProducts);
