@@ -6,12 +6,30 @@
                 Онлайн магазин косметики
             </h1>
             <p>
-                Тушь, ретушь, test.
+                Тушь, ретушь, крема, масла
             </p>
         </main>
     </div>
 </section>
 <h1>@Model.Message</h1>
+<section class="row mt-5 mb-2">
+    <div class="cards">
+        @{
+            foreach (var product in Model.GetProducts)
+            {
+                @await Html.PartialAsync("ShowProduct", product)
+            }
+        }
+    </div>
+    @if (User.IsInRole("admin"))
+    {
+        <a asp-action="AddProduct" asp-controller="Products">
+            <button class="btn btn-primary">
+                <p class="btn-text">Добавить</p>
+            </button>
+        </a>
+    }
+</section>
 <a asp-controller="Products" asp-action="ViewProducts">
     <button class="btn">
         <p class="btn-text">Next</p>
