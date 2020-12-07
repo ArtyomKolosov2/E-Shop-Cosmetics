@@ -7,12 +7,9 @@
             <button class="btn-close-filter">&times;</button>
         </div>
         <form method="get" asp-action="Search" asp-controller="Products" class="form-search form-search__property" name="form_search">
-            <p>
-                <input type="number" min="1" asp-for="SearchProductId" placeholder="Введите артикул" class="form-search__property" />
-            </p>
-            <p>
-                <input type="text" name="name" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
-            </p>
+            <input type="number" min="1" asp-for="SearchProductId" placeholder="Введите артикул" class="form-search__property" />
+            <input type="text" name="name" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
+
             <div class="filter-cost">
                 <input class="js-range-slider" value="$" />
                 <span class="filter-cost__head">Цена изделия в рублях</span>
