@@ -734,21 +734,21 @@ a:hover {
     width: 450px;
 }
 
-    .offer-info__description h2 {
-        font-size: 18px;
-        padding-bottom: 10px;
-    }
+.offer-info__description h2 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
 
-    .offer-info__description h3 {
-        font-size: 16px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
+.offer-info__description h3 {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
-    .offer-info__description p {
-        font-size: 16px;
-        padding-bottom: 10px;
-    }
+.offer-info__description p {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
 
 .offer-info__cost {
     margin-top: 10%;
@@ -759,9 +759,9 @@ a:hover {
     cursor: pointer;
 }
 
-    .offer-info__cost:hover {
-        color: #d9622b;
-    }
+.offer-info__cost:hover {
+    color: #d9622b;
+}
 
 .offer-footer {
 }
@@ -790,9 +790,9 @@ a:hover {
     border-radius: 3px;
 }
 
-    .btn-filter:hover {
-        background-color: #ED8B2A;
-    }
+.btn-filter:hover {
+    background-color: #ED8B2A;
+}
 
 .view-products-header {
     margin-top: 20px;
@@ -804,9 +804,9 @@ a:hover {
     justify-content: space-between;
 }
 
-    .view-products__block __title {
-        display: inline-block;
-    }
+.view-products__block __title {
+    display: inline-block;
+}
 
 .view-products-header__category {
     font-weight: 400;
@@ -888,7 +888,16 @@ a:hover {
 .field-validation-error {
     color: #b94a48;
 }
+.order-error {
+    position: absolute;
+    top: 10px;
+    right: -91px;
+    width: 120px
+}
+.order-error-input
+{
 
+}
 .field-validation-valid {
     display: none;
 }

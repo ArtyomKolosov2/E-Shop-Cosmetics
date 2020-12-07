@@ -160,7 +160,7 @@ export function addToCart()
     const cost = document.querySelector('.offer-footer__cost');
     let counter = document.querySelectorAll('.counter');
 
-    const id = Number(document.location.href.slice(-1));
+    const id = document.getElementById('id_product'); //Number(document.location.href.slice(-1)); ;
     const product = new Object();
     product["name"] = productName.innerHTML;
     product["cost"] = Number(cost.innerHTML.slice(0, -2));
@@ -177,6 +177,7 @@ export function addToCart()
         product["number"] = 1;
         addProduct(product);// add to basket
         allProducts.push(product); // push to array objects
+        location.reload();
     }
 
     let pricetag = getPricetag();
@@ -185,7 +186,6 @@ export function addToCart()
     setCookie("pricetag", `${pricetag} br`);
     setCookie('products', JSON.stringify(allProducts));
 
-    cartHandler();
     console.log(allProducts);
 }
 
