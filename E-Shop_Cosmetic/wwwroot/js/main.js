@@ -1,7 +1,7 @@
 import { modalCart } from "./modules/modalCart.js";
 import { modalFilter } from "./modules/modalFilter.js";
 import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
-import { makingOrder, addToCart, removeFromCart, uploadCart, cartHandler } from "./modules/cart.js";
+import { makingOrder, addToCart, uploadCart, cartHandler } from "./modules/cart.js";
 import { buildSlider } from "./modules/slider.js";
 //import {  } from "./modules/getDataFromCookie.js";
 
@@ -31,14 +31,10 @@ async function main() {
     cartHandler();
 
     const btnAddProduct = document.getElementById('btn_add_product');
-    const btnDelProduct = document.getElementById('btn_del_product');
-    if (btnAddProduct && btnDelProduct)
+    if (btnAddProduct)
     {
         btnAddProduct.addEventListener('click', function () {
             addToCart();
-        });
-        btnDelProduct.addEventListener('click', function () {
-            removeFromCart();
         });
     }
     //!basket

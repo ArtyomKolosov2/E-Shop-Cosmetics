@@ -425,7 +425,21 @@ a:hover {
     font-size: 22px;
     color: #40A9FF;
 }
-
+.btn-counter-close {
+    border: 1px solid #000;
+    color: #000;
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 39px;
+    height: 32px;
+    background: #FFF;
+    box-sizing: border-box;
+    border-radius: 2px;
+    line-height: 22px;
+    font-size: 22px;
+}
 .counter {
     font-size: 16px;
     line-height: 24px;
@@ -466,7 +480,7 @@ a:hover {
     margin: auto;
     background-color: #fff;
     width: 500px;
-    height: 450px;
+    height: 500px;
 }
 
 .modal-header-filter {
@@ -477,9 +491,9 @@ a:hover {
     width: 500px;
     margin: 0;
 }
-/**/
+
 .filter-cost {
-    width: 330px;
+    width: 300px;
     display: block;
     margin: auto;
 }
@@ -522,21 +536,21 @@ a:hover {
     width: 50px;
     padding: 5px 0 5px 0;
 }
-/**/
+
 .checkboxes {
     margin-bottom: 20px;
     display: flex;
     justify-content: center;
 }
 
-    .checkboxes p {
-        display: inline-block;
-    }
+.checkboxes p {
+    display: inline-block;
+}
 
-    .checkboxes input {
-        margin-left: 5px;
-        padding-top: 10px;
-    }
+.checkboxes input {
+    margin-left: 5px;
+    padding-top: 10px;
+}
 
 .under-order {
     margin-left: 20px;
@@ -562,6 +576,7 @@ a:hover {
 
 .btn-cancel-filter {
 }
+/* !modal filter*/
 
 /* common forms */
 .form {
@@ -719,21 +734,21 @@ a:hover {
     width: 450px;
 }
 
-    .offer-info__description h2 {
-        font-size: 18px;
-        padding-bottom: 10px;
-    }
+.offer-info__description h2 {
+    font-size: 18px;
+    padding-bottom: 10px;
+}
 
-    .offer-info__description h3 {
-        font-size: 16px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
+.offer-info__description h3 {
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
 
-    .offer-info__description p {
-        font-size: 16px;
-        padding-bottom: 10px;
-    }
+.offer-info__description p {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
 
 .offer-info__cost {
     margin-top: 10%;
@@ -744,9 +759,9 @@ a:hover {
     cursor: pointer;
 }
 
-    .offer-info__cost:hover {
-        color: #d9622b;
-    }
+.offer-info__cost:hover {
+    color: #d9622b;
+}
 
 .offer-footer {
 }
@@ -775,9 +790,9 @@ a:hover {
     border-radius: 3px;
 }
 
-    .btn-filter:hover {
-        background-color: #ED8B2A;
-    }
+.btn-filter:hover {
+    background-color: #ED8B2A;
+}
 
 .view-products-header {
     margin-top: 20px;
@@ -789,9 +804,9 @@ a:hover {
     justify-content: space-between;
 }
 
-    .view-products__block __title {
-        display: inline-block;
-    }
+.view-products__block __title {
+    display: inline-block;
+}
 
 .view-products-header__category {
     font-weight: 400;
@@ -873,7 +888,16 @@ a:hover {
 .field-validation-error {
     color: #b94a48;
 }
+.order-error {
+    position: absolute;
+    top: 10px;
+    right: -91px;
+    width: 120px
+}
+.order-error-input
+{
 
+}
 .field-validation-valid {
     display: none;
 }
