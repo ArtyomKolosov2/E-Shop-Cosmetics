@@ -943,6 +943,26 @@ input[type="checkbox"].input-validation-error {
 }
 /* !validation */
 
+/* contacts */
+.contacts {
+    margin: 180px 0;
+    padding: 120px 20px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(#E2E2E2, #ECECED);
+}
+
+.contacts-group__title {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.contacts-group__block span {
+    display: block;
+}
+/* !contacts */
+
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {
