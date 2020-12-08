@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="block">
+            <div class="header-block">
                 <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
                     <img src="../img/logo.svg" alt="logo">
                 </a>
@@ -25,12 +25,14 @@
             </div>
         </div>
     </header>
+
     <main>
         <div class="container">
+            <hr />
             <div class="contacts">
                 <div class="contacts-block">
                     <div class="contacts-group">
-                        <img src="../img/home.svg" alt="Alternate Text" />
+                        <img src="../img/phone.svg" style="width:15px" alt="Alternate Text" />
                         <h3 class="contacts-group__title">телефоны</h3>
                     </div>
                 </div>
@@ -42,7 +44,7 @@
                 </div>
                 <div class="contacts-block">
                     <div class="contacts-group">
-                        <img src="../img/home.svg" alt="Alternate Text" />
+                        <img src="../img/email.svg" style="width:15px" alt="Alternate Text" />
                         <span>E-MAIL</span>
                     </div>
                 </div>
@@ -53,8 +55,10 @@
                     </div>
                 </div>
             </div>
+            <hr />
         </div>
     </main>
+
     <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
         <div class="container">
             <div class="wrapper">
@@ -76,6 +80,7 @@
             </div>
         </div>
     </footer>
+
     <section class="modal-cart">
         <div class="modal-dialog">
             <div class="modal-header modal-header-cart">
@@ -91,7 +96,7 @@
                 <span class="modal-pricetag"></span>
                 <div class="footer-btns">
                     <a asp-controller="Orders" asp-action="PlaceOrder">
-                        <button class="btn btn-primary">Оформить заказ</button>
+                        <span class="btn btn-primary">Оформить заказ</span>
                     </a>
                     <button class="btn btn-cancel">Отмена</button>
                 </div>

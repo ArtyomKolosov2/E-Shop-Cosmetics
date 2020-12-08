@@ -12,6 +12,7 @@ body {
 
 header {
     margin-top: 44px;
+    margin-bottom: 44px;
 }
 
 ul {
@@ -39,7 +40,7 @@ a:hover {
     margin: auto;
 }
 
-.block {
+.header-block {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -708,9 +709,9 @@ a:hover {
     border-radius: 4px;
 }
 
-    .btn-product:hover {
-        opacity: 0.8;
-    }
+.btn-product:hover {
+    opacity: 0.8;
+}
 /* !form add product */
 
 /* Products*/
@@ -945,8 +946,8 @@ input[type="checkbox"].input-validation-error {
 
 /* contacts */
 .contacts {
-    margin: 180px 0;
-    padding: 120px 20px;
+    margin: 80px 0;
+    padding: 60px 20px;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(#E2E2E2, #ECECED);
@@ -962,7 +963,57 @@ input[type="checkbox"].input-validation-error {
     display: block;
 }
 /* !contacts */
+/* about us */
+.about-us {
+    margin: 20px 0 20px 0;
+    padding: 20px 20px;
+}
+.about-us__title
+{
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    text-align: center;
+}
 
+.about-us__title h1
+{
+    font-size: 30px;
+    padding-bottom:10px;
+}
+
+.about-us__title h2 {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.about-us__title img {
+    width: 100%;
+}
+
+.about-us__body p {
+    padding-bottom: 20px;
+}
+
+.about-us__body__ul li {
+    list-style: none;
+    padding-left: 17px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.about-us__body__ul li::before {
+    content: "";
+    position: absolute;
+    border: 2px solid #1890ff;
+    margin-top: -4px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    top: 14px;
+    left: 0;
+}
+/* !about us*/
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {
