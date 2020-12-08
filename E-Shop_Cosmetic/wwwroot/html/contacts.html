@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <title>Contacts</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-block">
+                <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
+                    <img src="../img/logo.svg" alt="logo">
+                </a>
+                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
+                <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                    <button class="btn" id="btn-basket">
+                        <img src="../img/basket.svg" alt="basket" class="btn-icon">
+                        <p class="btn-text">Корзина</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <hr />
+            <div class="contacts">
+                <div class="contacts-block">
+                    <div class="contacts-group">
+                        <img src="../img/phone.svg" style="width:15px" alt="Alternate Text" />
+                        <h3 class="contacts-group__title">телефоны</h3>
+                    </div>
+                </div>
+                <div class="contacts-block">
+                    <div class="contacts-group__block contacts-group__phone">
+                        <span>+7 (8442) 61-28-01</span>
+                        <span>+7 (8442) 61-28-01</span>
+                    </div>
+                </div>
+                <div class="contacts-block">
+                    <div class="contacts-group">
+                        <img src="../img/email.svg" style="width:15px" alt="Alternate Text" />
+                        <span>E-MAIL</span>
+                    </div>
+                </div>
+                <div class="contacts-block">
+                    <div class="contacts-group__block contacts-group__email">
+                        <span href="#">email@mail.ru</span>
+                        <span href="#">email2@mail.ru</span>
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+    </main>
+
+    <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="wrapper">
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="../img/logo.svg" alt="logo" class="footer-logo">
+                </a>
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a href="/">Главная</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">О магазине</a></li>
+                    </ul>
+                </nav>
+                <div class="social-networks">
+                    <a href="https://www.instagram.com/" class="social"><img src="../img/instagram.png" alt="instagram"></a>
+                    <a href="https://ru-ru.facebook.com/" class="social"><img src="../img/facebook.png" alt="facebook"></a>
+                    <a href="https://vk.com" class="social"><img src="../img/vk.png" alt="vk"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <section class="modal-cart">
+        <div class="modal-dialog">
+            <div class="modal-header modal-header-cart">
+                <h3 class="modal-title">Корзина</h3>
+                <button class="btn-close">&times;</button>
+            </div>
+
+            <div class="modal-body" id="products">
+
+            </div>
+
+            <div class="modal-footer">
+                <span class="modal-pricetag"></span>
+                <div class="footer-btns">
+                    <a asp-controller="Orders" asp-action="PlaceOrder">
+                        <span class="btn btn-primary">Оформить заказ</span>
+                    </a>
+                    <button class="btn btn-cancel">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../js/libraries/jquery.min.js"></script>
+    <script src="../js/libraries/bootstrap.min.js"></script>
+    <script src="../js/libraries/wow.min.js"></script>
+    <script src="../js/main.js" type="module"></script>
+</body>
+</html>

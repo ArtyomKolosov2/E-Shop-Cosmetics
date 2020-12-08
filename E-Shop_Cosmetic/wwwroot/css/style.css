@@ -12,6 +12,7 @@ body {
 
 header {
     margin-top: 44px;
+    margin-bottom: 44px;
 }
 
 ul {
@@ -39,7 +40,7 @@ a:hover {
     margin: auto;
 }
 
-.block {
+.header-block {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -59,7 +60,6 @@ a:hover {
 
 .input-address {
     flex: 0.8;
-    background-image: url(../img/home.svg);
     background-image: url(../img/search.svg);
 }
 
@@ -105,33 +105,44 @@ a:hover {
 .servises {
 }
 
+.user-message {
+    margin-top: 40px;
+    padding: 20px;
+    text-align: center;
+    background-color: #ECECED;
+    font-size: 12px;
+}
+
 .info {
-    background-size: 340px;
-    background: #fff1b8 url(../img/basket.svg) no-repeat top -25px right 6px/600px;
+    position: relative;
     margin-top: 40px;
     padding: 68px 0 68px 71px;
     height: 300px;
+    background-size: 340px;
+    background: linear-gradient(#E2E2E2, #ECECED);
     box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
 }
-
-    .info h1 {
-        margin: 0;
-        max-width: 450px;
-        font-weight: bold;
-        font-size: 39px;
-        line-height: 46px;
-        color: #302C34;
-    }
-
-    .info p {
-        padding-top: 15px;
-        max-width: 540px;
-        font-size: 24px;
-        line-height: 28px;
-        color: #302C34;
-    }
-
-#restaurant {
+.info-title {
+    margin: 0;
+    max-width: 450px;
+    font-weight: bold;
+    font-size: 39px;
+    line-height: 46px;
+    color: #302C34;
+}
+.info-paragraph {
+    padding-top: 15px;
+    max-width: 540px;
+    font-size: 24px;
+    line-height: 28px;
+    color: #302C34;
+}
+.info-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 487px;
+    height: 300px;
 }
 
 .heading {
@@ -214,7 +225,11 @@ a:hover {
     align-items: center;
     flex-wrap: wrap;
 }
-
+.card-info__name
+{
+    color:#000;
+    font-style:italic;
+}
 .raiting {
     margin-right: 26px;
     font-weight: bold;
@@ -297,21 +312,27 @@ a:hover {
     margin-left: 35px;
 }
 
-    .footer-nav li {
-        display: inline-block;
-        text-decoration: none;
-        color: #595959;
-        cursor: pointer;
-    }
+.footer-nav li {
+    display: inline-block;
+    text-decoration: none;
+    color: #595959;
+    cursor: pointer;
+}
 
-        .footer-nav li:not(:last-child) {
-            margin-right: 15px;
-        }
+.footer-nav li:not(:last-child) {
+    margin-right: 15px;
+}
 
-        .footer-nav li a {
-            font-size: 20px;
-            line-height: 21px;
-        }
+.footer-nav li a {
+    font-size: 14px;
+    line-height: 21px;
+    color: #000;
+    text-transform: uppercase;
+}
+.footer-nav li:hover
+{
+    font-size:15px;
+}
 
 .social-networks {
     display: flex;
@@ -688,9 +709,9 @@ a:hover {
     border-radius: 4px;
 }
 
-    .btn-product:hover {
-        opacity: 0.8;
-    }
+.btn-product:hover {
+    opacity: 0.8;
+}
 /* !form add product */
 
 /* Products*/
@@ -923,6 +944,76 @@ input[type="checkbox"].input-validation-error {
 }
 /* !validation */
 
+/* contacts */
+.contacts {
+    margin: 80px 0;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: space-between;
+    background: linear-gradient(#E2E2E2, #ECECED);
+}
+
+.contacts-group__title {
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.contacts-group__block span {
+    display: block;
+}
+/* !contacts */
+/* about us */
+.about-us {
+    margin: 20px 0 20px 0;
+    padding: 20px 20px;
+}
+.about-us__title
+{
+    text-transform: uppercase;
+    padding-bottom: 20px;
+    text-align: center;
+}
+
+.about-us__title h1
+{
+    font-size: 30px;
+    padding-bottom:10px;
+}
+
+.about-us__title h2 {
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.about-us__title img {
+    width: 100%;
+}
+
+.about-us__body p {
+    padding-bottom: 20px;
+}
+
+.about-us__body__ul li {
+    list-style: none;
+    padding-left: 17px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.about-us__body__ul li::before {
+    content: "";
+    position: absolute;
+    border: 2px solid #1890ff;
+    margin-top: -4px;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    width: 3px;
+    height: 3px;
+    top: 14px;
+    left: 0;
+}
+/* !about us*/
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {

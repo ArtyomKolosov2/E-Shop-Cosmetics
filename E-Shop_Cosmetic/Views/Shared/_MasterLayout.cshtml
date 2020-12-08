@@ -11,13 +11,16 @@
     <link href="~/css/bootstrap.min.css" type="text/css" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
     <header class="header">
         <div class="container">
-            <div class="block">
-                <a asp-action="Index" asp-controller="Home" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
-                <input type="text" class="input-address input animated bounceInRight" placeholder="Поиск по названию">
-                <div class="buttons animated bounceInRight">
+            <div class="header-block">
+                <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                    <img src="~/img/logo.svg" alt="logo">
+                </a>
+                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
+                <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a href="/Account/Logout">
@@ -50,49 +53,51 @@
         @RenderBody()
     </div>
 
-    <footer class="footer">
+    <footer class="footer animated wow bounceInLeft" data-wow-duration="0.5s" data-wow-delay="0.1s">
         <div class="container">
             <div class="wrapper">
-                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="~/img/logo.svg" alt="logo" class="footer-logo">
+                </a>
                 <nav class="footer-nav">
-                    <ul class="animated rotateInDownRight">
-                        <li><a href="#"></a>Оплата</li>
-                        <li><a href="#"></a>Доставка</li>
-                        <li><a href="#"></a>Контакты</li>
-                        <li><a href="#"></a>О магазине</li>
+                    <ul>
+                        <li><a href="#">Главная</a></li>
+                        <li><a asp-controller="Products" asp-action="ViewProducts">Каталог</a></li>
+                        <li><a href="~/html/contacts.html">Контакты</a></li>
+                        <li><a href="~/html/about_store.html">О магазине</a></li>
                     </ul>
                 </nav>
                 <div class="social-networks">
-                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/instagram.png" alt="instagram"></a>
-                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/facebook.png" alt="facebook"></a>
-                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/vk.png" alt="vk"></a>
+                    <a href="https://www.instagram.com/" class="social"><img src="~/img/instagram.png" alt="instagram"></a>
+                    <a href="https://ru-ru.facebook.com/" class="social"><img src="~/img/facebook.png" alt="facebook"></a>
+                    <a href="https://vk.com/i.kuzmich2000" class="social"><img src="~/img/vk.png" alt="vk"></a>
                 </div>
             </div>
         </div>
     </footer>
+
     <section class="modal-cart">
         <div class="modal-dialog">
             <div class="modal-header modal-header-cart">
                 <h3 class="modal-title">Корзина</h3>
                 <button class="btn-close">&times;</button>
             </div>
-
+            @*Render products*@
             <div class="modal-body" id="products">
-
             </div>
 
             <div class="modal-footer">
                 <span class="modal-pricetag"></span>
                 <div class="footer-btns">
                     <a asp-controller="Orders" asp-action="PlaceOrder">
-                        <button class="btn btn-primary">Оформить заказ</button>
+                        <span class="btn btn-primary">Оформить заказ</span>
                     </a>
                     <button class="btn btn-cancel">Отмена</button>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <script src="~/js/libraries/jquery.min.js"></script>
     <script src="~/js/libraries/ion.rangeSlider.min.js"></script>
     <script src="~/js/libraries/bootstrap.min.js"></script>

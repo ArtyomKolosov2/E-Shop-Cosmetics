@@ -1,13 +1,13 @@
 ﻿@model E_Shop_Cosmetic.Data.Models.Product
 
-<a class="card wow bounceInUp" data-wow-delay="0.2s" asp-action="Product" asp-controller="Products" asp-route-id="@Model.Id">
+<a class="wow flipInX" data-wow-duration="2s" asp-action="Product" asp-controller="Products" asp-route-id="@Model.Id">
 
     <img src="@Model.ImageURL" alt="NoImage" class="card-image">
     <div class="text">
         
         <!-- /cards -->
         <div class="card-info">
-            <div class="">
+            <div class="card-info__name">
                 <h3>@Model.Name</h3>
             </div>
             <div class="price" style="color: #FA842A">
