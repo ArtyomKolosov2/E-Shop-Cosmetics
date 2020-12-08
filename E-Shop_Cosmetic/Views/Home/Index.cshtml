@@ -1,18 +1,23 @@
 ﻿@model HomeViewModel
 <section class="sevises wow bounceInLeft" data-wow-delay="0.1s">
     <div class="container">
-        <main class="info">
-            <h1>
+        <div class="user-message">
+            <h1>@Model.Message</h1>
+        </div>
+        <div class="info">
+            <h1 class="info-title">
                 Онлайн магазин косметики
             </h1>
-            <p>
+            <p class="info-paragraph">
                 Тушь, ретушь, крема, масла
             </p>
-        </main>
+            <img src="~/img/bg-cosmetic.jpg" alt="Alternate Text" class="info-img"/>
+        </div>
     </div>
 </section>
-<h1>@Model.Message</h1>
-<section class="row mt-5 mb-2">
+
+
+<section class="row mb-2">
     <div class="cards">
         @{
             foreach (var product in Model.GetProducts)
@@ -23,15 +28,12 @@
     </div>
     @if (User.IsInRole("admin"))
     {
-        <a asp-action="AddProduct" asp-controller="Products">
-            <button class="btn btn-primary">
-                <p class="btn-text">Добавить</p>
-            </button>
-        </a>
+        <div class="btn-block">
+            <a asp-action="AddProduct" asp-controller="Products">
+                <span class="btn btn-primary">
+                    <p class="btn-text">Добавить товар</p>
+                </span>
+            </a>
+        </div>
     }
 </section>
-<a asp-controller="Products" asp-action="ViewProducts">
-    <button class="btn">
-        <p class="btn-text">Next</p>
-    </button>
-</a>

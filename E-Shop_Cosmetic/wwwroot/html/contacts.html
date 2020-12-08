@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/normalize.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <title>Contacts</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="block">
+                <a asp-action="Index" asp-controller="Home" class="logo animated rubberBand"><img src="~/img/logo.svg" alt="logo"></a>
+                <input type="text" class="input-address input animated bounceInRight" placeholder="Поиск по названию">
+                <div class="buttons animated bounceInRight">
+                    <button class="btn" id="btn-basket">
+                        <img src="~/img/basket.svg" alt="basket" class="btn-icon">
+                        <p class="btn-text">Корзина</p>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="wrapper">
+                <a asp-action="Index" asp-controller="Home"><img src="~/img/logo.svg" alt="logo" class="footer-logo animated rubberBand"></a>
+                <nav class="footer-nav">
+                    <ul class="animated rotateInDownRight">
+                        <li><a href="#"></a>Оплата</li>
+                        <li><a href="#"></a>Доставка</li>
+                        <li><a href="#"></a>Контакты</li>
+                        <li><a href="#"></a>О магазине</li>
+                    </ul>
+                </nav>
+                <div class="social-networks">
+                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/instagram.png" alt="instagram"></a>
+                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/facebook.png" alt="facebook"></a>
+                    <a href="#" class="social wow wobble" data-wow-delay="0.4s"><img src="~/img/vk.png" alt="vk"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <section class="modal-cart">
+        <div class="modal-dialog">
+            <div class="modal-header modal-header-cart">
+                <h3 class="modal-title">Корзина</h3>
+                <button class="btn-close">&times;</button>
+            </div>
+
+            <div class="modal-body" id="products">
+
+            </div>
+
+            <div class="modal-footer">
+                <span class="modal-pricetag"></span>
+                <div class="footer-btns">
+                    <a asp-controller="Orders" asp-action="PlaceOrder">
+                        <button class="btn btn-primary">Оформить заказ</button>
+                    </a>
+                    <button class="btn btn-cancel">Отмена</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="../js/libraries/jquery.min.js"></script>
+    <script src="../js/libraries/bootstrap.min.js"></script>
+    <script src="../js/libraries/wow.min.js"></script>
+    <script src="../js/main.js" type="module"></script>
+</body>
+</html>
