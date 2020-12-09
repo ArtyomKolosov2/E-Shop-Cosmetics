@@ -1,11 +1,12 @@
 ﻿@model ViewOrderViewModel
 <code id="id_product" style="display:none">@Model.Order.Id</code>
+
 <section class="product">
     <div class="container">
         @if (User.IsInRole("admin"))
         {
             <section>
-                <h3 style="text-align:center;padding-top:10px;">Хотите что-нибудь поменять?</h3>
+                <h3 class="order__title">Хотите что-нибудь поменять?</h3>
                 <div class="btn-block">
                     <a href="/Orders/UpdateOrder/@Model.Order.Id">
                         <button class="btn btn-primary">

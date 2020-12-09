@@ -13,14 +13,14 @@
 </head>
 
 <body>
-    <header class="header">
+    <header class="header animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
         <div class="container">
             <div class="header-block">
-                <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                <a asp-action="Index" asp-controller="Home" class="logo">
                     <img src="~/img/logo.svg" alt="logo">
                 </a>
-                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
-                <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                <input type="text" class="input-address input" placeholder="Поиск по названию">
+                <div class="buttons">
                     @if (User.Identity.IsAuthenticated)
                     {
                         <a href="/Account/Logout">
@@ -35,7 +35,7 @@
                         <a href="/Account/Login">
                             <button class="btn btn-primary">
                                 <img src="~/img/user.svg" alt="user" class="btn-icon">
-                                <p class="btn-text">Войти</p>
+                                <span class="btn-text">Войти</span>
                             </button>
                         </a>
                     }

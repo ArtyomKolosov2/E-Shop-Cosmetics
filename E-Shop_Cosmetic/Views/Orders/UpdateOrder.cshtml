@@ -1,4 +1,5 @@
 ﻿@model Order
+
 <section class="update-product">
     <form class="form form-update-product" asp-action="UpdateOrder" asp-controller="Orders" asp-antiforgery="true">
         <h3 class="form-header">Изменить заказ</h3>
@@ -26,9 +27,11 @@
             <label asp-for="TotalPrice" class="form-group__header"></label>
             <input type="number" asp-for="TotalPrice" class="form-group__input" />
         </div>
-        <div class="is-available">
-            <p>Активный заказ:</p>
-            <input asp-for="IsOrderActive" type="checkbox" class="search__is-available">
+        <div class="form-group">
+            <div class="is-available">
+                <p>Активный заказ:</p>
+                <input asp-for="IsOrderActive" type="checkbox" class="search__is-available">
+            </div>
         </div>
         <div class="btn-block">
             <input type="submit" value="Save" style="margin-top:0" class="btn btn-product" />

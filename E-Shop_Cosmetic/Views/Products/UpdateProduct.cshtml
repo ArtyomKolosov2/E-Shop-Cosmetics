@@ -28,9 +28,11 @@
             <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
             </select>
         </div>
-        <div class="is-available">
-            <p>Есть в наличии:</p>
-            <input asp-for="IsAvailable"  type="checkbox" class="search__is-available">
+        <div class="form-group">
+            <div class="is-available">
+                <p>Есть в наличии:</p>
+                <input asp-for="IsAvailable" type="checkbox" class="search__is-available">
+            </div>
         </div>
         <div class="btn-block">
             <input type="submit" value="Save" style="margin-top:0" class="btn btn-product" />
