@@ -32,7 +32,13 @@ namespace E_Shop_Cosmetic.Controllers
             var obj = new HomeViewModel
             {
                 Message = messageBuilder.ToString(),
-                GetProducts = await _productsRepository.GetProductsAsync(new ProductSpecification().IncludeCategory().AddPagination(10)),
+                GetProducts = await _productsRepository.GetProductsAsync
+                (
+                    new ProductSpecification().
+                    IncludeCategory().
+                    SortByPrice().
+                    AddPagination(10)
+                ),
             };
             _logger.LogInformation("Home/Index is executed");
             return View(obj);

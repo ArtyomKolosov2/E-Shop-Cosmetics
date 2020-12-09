@@ -29,7 +29,12 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Product(int id)
         {
             _logger.LogInformation("Products\\Product is executed");
-            return View(await _cosmeticProductsRepository.GetProductByIdAsync(id));
+            var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            if (product is not null)
+            {
+                return View();
+            }
+            return NoContent();
         }
         public async Task<IActionResult> ViewProducts()
         {

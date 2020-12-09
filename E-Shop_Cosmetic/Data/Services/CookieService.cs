@@ -34,7 +34,14 @@ namespace E_Shop_Cosmetic.Data.Services
             var cartLines = GetCookieOrderDetails();
             var products = await _productRepository.GetProductsByIdsAsync(cartLines.Select(p => p.id));
             var orderDetailsList = products.Zip(cartLines,
-                (product, line) => new OrderDetail { Amount = (uint)line.number, ProductId = product.Id}).ToList();
+                (product, line) => new OrderDetail 
+                { 
+                    Amount = (uint)line.number, 
+                    ProductId = product.Id, 
+                    TotalPrice=product.Price * line.number,
+                    PriceOnOrderTime=line.cost
+                })
+                .ToList();
             return orderDetailsList;
 
         }

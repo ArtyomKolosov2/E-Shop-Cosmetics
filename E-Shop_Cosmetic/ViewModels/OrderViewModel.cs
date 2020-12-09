@@ -15,7 +15,7 @@ namespace E_Shop_Cosmetic.ViewModels
         [Required]
         public string LastName { get; set; }
         [Required]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
+        [EmailAddress(ErrorMessage = "Некорректный адрес")]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         [Required(ErrorMessage = "Не указан адрес")]
