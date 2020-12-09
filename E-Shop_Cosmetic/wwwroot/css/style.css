@@ -578,7 +578,10 @@ a:hover {
 .is-available {
     margin-left: 20px;
 }
-
+.is-available p
+{
+    display:inline-block;
+}
 .form-search__property {
     display: block;
     margin: 0 auto;
@@ -604,7 +607,9 @@ a:hover {
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     width: 570px;
 }
-
+.form-body {
+    position: relative;
+}
 .form-header {
     text-transform: uppercase;
     font-size: 18px;
@@ -739,10 +744,10 @@ a:hover {
 }
 
 .offers-figure__img {
-    width: 250px;
-    height: 300px;
-    margin: 20px;
-    box-shadow: 5px 4px 5px #666;
+    width: 330px;
+    height: 235px;
+    padding: 25px;
+    object-fit:cover;
 }
 
 .offer-info {
@@ -897,23 +902,56 @@ a:hover {
 .order {
     margin-top: 40px;
 }
+.order__title {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom:10px;
+}
+.order-cards {
+    border-radius: inherit;
+    display: block;
+}
 
-.order-contant {
+.order-content {
     padding: 20px;
 }
 /* !Order */
 
 /* Order-successful */
+.order-successful {
+    margin-top: 40px;
+}
+.table {
+    background: #fff; /* Цвет фона таблицы */
+    margin: auto;
+}
+.table-order-successful__body {
+    margin: auto;
+    max-width: 775px;
+}
+.table-body {
+    margin: auto;
+    width: 100%;
+}
 
+.table-row {
+    padding: 3px;
+    border: 1px solid #fff; /* Рамка вокруг ячеек */
+}
+.table-row td
+{
+    text-align: center;
+}
+.table-row-content td {
+    text-align: center;
+    height: 150px;
+}
+.table-row__information {
+    width: 300px;
+    text-align: left;
+    padding: 2px;
+}
 /* !Order-successful */
-
-/* 
-    position: absolute;
-    padding: 5px;
-    width: 120px;
-    fdsa
-
-*/
 
 /* validation */
 .field-validation-error {
@@ -969,6 +1007,7 @@ input[type="checkbox"].input-validation-error {
     display: block;
 }
 /* !contacts */
+
 /* about us */
 .about-us {
 }

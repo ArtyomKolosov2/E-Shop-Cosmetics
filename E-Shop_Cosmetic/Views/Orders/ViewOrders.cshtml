@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<Order>
+
 <section class="row mt-5 mb-2">
-    <div class="cards">
+    <h2 class="order__title">Список заказов</h2>
+    <div class="cards order-cards">
         @{
             foreach (var order in Model)
             {

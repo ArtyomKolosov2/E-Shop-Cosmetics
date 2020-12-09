@@ -9,7 +9,7 @@
         <hr />
         <div class="offer">
             <div class="offers-figure">
-                <img src="@Model.ImageURL" style="width: 330px; height: 235px; padding: 25px; "/>
+                <img src="@Model.ImageURL" class="offers-figure__img"/>
             </div>
             <div class="offer-info">
                 <div class="offer-info__description">
@@ -42,12 +42,12 @@
                 <div class="btn-block">
                     <a href="/Products/UpdateProduct/@Model.Id">
                         <button class="btn btn-primary">
-                            <p class="btn-text">Изменить</p>
+                            <span class="btn-text">Изменить</span>
                         </button>
                     </a>
                     <a href="/Products/DeleteProduct/@Model.Id">
                         <button class="btn btn-primary">
-                            <p class="btn-text">Удалить</p>
+                            <span class="btn-text">Удалить</span>
                         </button>
                     </a>
                 </div>
