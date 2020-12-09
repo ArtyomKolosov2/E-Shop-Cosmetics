@@ -108,6 +108,7 @@ a:hover {
 .user-message {
     margin-top: 40px;
     padding: 20px;
+    opacity: 0.9;
     text-align: center;
     background-color: #ECECED;
     font-size: 12px;
@@ -225,11 +226,12 @@ a:hover {
     align-items: center;
     flex-wrap: wrap;
 }
-.card-info__name
-{
-    color:#000;
-    font-style:italic;
+
+.card-info__name {
+    color: #000;
+    box-shadow: 0 0 10px rgb(0, 0, 0, 0.15);
 }
+
 .raiting {
     margin-right: 26px;
     font-weight: bold;
@@ -239,7 +241,7 @@ a:hover {
 }
 
 .price, .category {
-    color: #8c8c8c;
+    color: #FA842A;
     font-size: 18px;
     line-height: 32px;
 }
@@ -261,17 +263,11 @@ a:hover {
     content: "";
     width: 5px;
     height: 5px;
-    background-color: #8c8c8c;
+    background-color: #FA842A;
     display: inline-block;
     vertical-align: middle;
     border-radius: 50%;
     margin-left: 10px;
-}
-
-.ingredients {
-    color: #8c8c8c;
-    font-size: 18px;
-    line-height: 21px;
 }
 
 .card-btns {
@@ -495,15 +491,17 @@ a:hover {
     height: 100%;
     background: rgba(0, 0, 0, 0.4);
     display: none;
+    overflow-y: visible;
 }
 
 .modal-filter {
-    margin: auto;
-    background-color: #fff;
+    min-width: 400px;
     width: 500px;
-    height: 500px;
+    height: 450px;
+    margin: auto;
+    border-radius: 5px;
+    background-color: #fff;
 }
-
 .modal-header-filter {
     padding: 20px 20px 20px 20px;
 }
@@ -604,7 +602,7 @@ a:hover {
     margin: 20px auto;
     border: 2px solid #ccc;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    width: 560px;
+    width: 570px;
 }
 
 .form-header {
@@ -732,6 +730,8 @@ a:hover {
 
 .offer {
     display: inline-flex;
+    padding: 20px 0;
+    position: relative;
 }
 
 .offers-figure {
@@ -785,6 +785,9 @@ a:hover {
 }
 
 .offer-footer {
+    position: absolute;
+    bottom: 49px;
+    right: 37%;
 }
 
 .offer-footer__btn {
@@ -915,12 +918,16 @@ a:hover {
 /* validation */
 .field-validation-error {
     color: #b94a48;
+    position: absolute;
+    right: -10px;
+    width: 119px;
 }
 .field-validation-valid {
     display: none;
 }
 
 .input-validation-error {
+    position: relative;
     border: 1px solid #b94a48;
 }
 
@@ -950,7 +957,6 @@ input[type="checkbox"].input-validation-error {
     padding: 60px 20px;
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(#E2E2E2, #ECECED);
 }
 
 .contacts-group__title {
@@ -965,23 +971,21 @@ input[type="checkbox"].input-validation-error {
 /* !contacts */
 /* about us */
 .about-us {
-    margin: 20px 0 20px 0;
-    padding: 20px 20px;
 }
 .about-us__title
 {
     text-transform: uppercase;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     text-align: center;
 }
 
-.about-us__title h1
-{
+.about-us__title h1 {
     font-size: 30px;
-    padding-bottom:10px;
+    padding-bottom: 5px;
 }
 
 .about-us__title h2 {
+    padding-top: 10px;
     font-size: 16px;
     padding-bottom: 10px;
 }
@@ -996,6 +1000,7 @@ input[type="checkbox"].input-validation-error {
 
 .about-us__body__ul li {
     list-style: none;
+    padding-top: 6px;
     padding-left: 17px;
     margin-bottom: 15px;
     position: relative;
@@ -1123,7 +1128,7 @@ input[type="checkbox"].input-validation-error {
     }
 
     .card {
-        flex-basis: 47%;
+        flex-basis: 100%;
     }
 
     .card-title {
@@ -1170,12 +1175,14 @@ input[type="checkbox"].input-validation-error {
     }
 
     .info {
-        background-image: none;
         padding: 50px 20px;
         margin-bottom: 0px;
         height: 260px;
     }
-
+    .info-img
+    {
+        display:none;
+    }
     .info h1 {
         width: 250px;
         margin-bottom: 0;
@@ -1191,10 +1198,6 @@ input[type="checkbox"].input-validation-error {
     .section-title {
         font-size: 22px;
         padding-top: 6px;
-    }
-
-    .card {
-        flex-basis: 100%;
     }
 
     .card-image {
