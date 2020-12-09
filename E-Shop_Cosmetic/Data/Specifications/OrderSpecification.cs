@@ -36,7 +36,7 @@ namespace E_Shop_Cosmetic.Data.Specifications
 
         public OrderSpecification IncludeDetails()
         {
-            AddInclude(product => product.OrderDetails);
+            AddInclude("OrderDetails.Product");
             return this;
         }
     }
