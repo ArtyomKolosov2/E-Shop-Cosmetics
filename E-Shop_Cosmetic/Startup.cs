@@ -48,8 +48,8 @@ namespace E_Shop_Cosmetic
             app.UseStaticFiles();
             app.UseRouting();
 
-            app.UseAuthentication();    // аутентификация
-            app.UseAuthorization();     // авторизация
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

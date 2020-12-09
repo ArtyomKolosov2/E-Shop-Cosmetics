@@ -11,12 +11,12 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="header-block wow bounceInLeft" data-wow-duration="1s">
-                <a asp-action="Index" asp-controller="Home" class="logo animated">
+            <div class="header-block">
+                <a href="/Home/Index" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
                     <img src="../img/logo.svg" alt="logo">
                 </a>
-                <input type="text" class="input-address input" placeholder="Поиск по названию">
-                <div class="buttons animated">
+                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
+                <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
                     <button class="btn" id="btn-basket">
                         <img src="../img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <main class="wow bounceInLeft" data-wow-duration="1s">
+    <main>
         <div class="container">
             <hr />
             <div class="contacts">
@@ -59,17 +59,17 @@
         </div>
     </main>
 
-    <footer class="footer animated wow bounceInLeft">
+    <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
         <div class="container">
             <div class="wrapper">
-                <a asp-action="Index" asp-controller="Home">
+                <a href="/Home/Index">
                     <img src="../img/logo.svg" alt="logo" class="footer-logo">
                 </a>
                 <nav class="footer-nav">
                     <ul>
                         <li><a href="/">Главная</a></li>
-                        <li><a href="#">Контакты</a></li>
-                        <li><a href="#">О магазине</a></li>
+                        <li><a href="/html/contacts.html">Контакты</a></li>
+                        <li><a href="/html/about_store.html">О магазине</a></li>
                     </ul>
                 </nav>
                 <div class="social-networks">
@@ -95,7 +95,7 @@
             <div class="modal-footer">
                 <span class="modal-pricetag"></span>
                 <div class="footer-btns">
-                    <a asp-controller="Orders" asp-action="PlaceOrder">
+                    <a href="/Orders/PlaceOrder">
                         <span class="btn btn-primary">Оформить заказ</span>
                     </a>
                     <button class="btn btn-cancel">Отмена</button>

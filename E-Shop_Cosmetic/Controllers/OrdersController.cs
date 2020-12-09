@@ -32,27 +32,35 @@ namespace E_Shop_Cosmetic.Controllers
             return NoContent();
             
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel)
         {
             var ordersDetails = await _cartService.GetOrderDetailsAsync();
-            var newOrder = new Order()
+            if (ordersDetails.Any())
             {
-                Address = orderViewModel.Address,
-                IsOrderActive = true,
-                Information = orderViewModel.Information ?? "None",
-                Name = orderViewModel.Name,
-                LastName = orderViewModel.LastName,
-                PhoneNumber = orderViewModel.PhoneNumber,
-                TotalPrice = orderViewModel.TotalPrice,
-                OrderDetails = ordersDetails,
-                OrderDate = DateTime.Now,
-                Email=orderViewModel.Email
+                var totalPrice = ordersDetails.Sum(detail => detail.TotalPrice);
+                var newOrder = new Order()
+                {
+                    Address = orderViewModel.Address,
+                    IsOrderActive = true,
+                    Information = orderViewModel.Information ?? "None",
+                    Name = orderViewModel.Name,
+                    LastName = orderViewModel.LastName,
+                    PhoneNumber = orderViewModel.PhoneNumber,
+                    TotalPrice = totalPrice,
+                    OrderDetails = ordersDetails,
+                    OrderDate = DateTime.Now,
+                    Email = orderViewModel.Email
 
-            };
-            await _orderRepository.AddOrderAsync(newOrder);
-            return RedirectToAction("OrderSuccessful", newOrder);
+                };
+                await _orderRepository.AddOrderAsync(newOrder);
+                return RedirectToAction("OrderSuccessful", newOrder);
+            }
+            else
+            {
+                return NoContent();
+            }
         }
 
 
@@ -63,9 +71,49 @@ namespace E_Shop_Cosmetic.Controllers
 
         [Authorize(Roles = "admin")]
         [HttpGet]
+        public async Task<IActionResult> UpdateOrder(int id)
+        {
+            var order = await _orderRepository.GetOrderByIdAsync(id);
+            if (order is not null)
+            {
+                return View(order);
+            }
+
+            return NoContent();
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpPost]
+        public async Task<IActionResult> UpdateOrder(int id, Order order)
+        {
+            if (id != order.Id)
+            {
+                return BadRequest();
+            }
+
+            await _orderRepository.UpdateOrderAsync(order);
+            return RedirectToAction("ViewOrders", "Orders");
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
+        public async Task<IActionResult> Order(int id)
+        {
+            var order = await _orderRepository.GetOrderByIdAsync(id);
+            if (order is not null)
+            {
+                return View(new ViewOrderViewModel { Order = order });
+            }
+
+            return NoContent();
+        }
+
+        [Authorize(Roles = "admin")]
+        [HttpGet]
         public async Task<IActionResult> ViewOrders()
         {
-            return View(await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice()));
+            var orders = await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice());
+            return View(orders);
         }
     }
 }
