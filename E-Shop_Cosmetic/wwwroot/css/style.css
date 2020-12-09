@@ -950,7 +950,6 @@ input[type="checkbox"].input-validation-error {
     padding: 60px 20px;
     display: flex;
     justify-content: space-between;
-    background: linear-gradient(#E2E2E2, #ECECED);
 }
 
 .contacts-group__title {

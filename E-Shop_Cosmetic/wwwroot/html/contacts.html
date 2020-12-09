@@ -11,12 +11,12 @@
 <body>
     <header class="header">
         <div class="container">
-            <div class="header-block">
-                <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
+            <div class="header-block wow bounceInLeft" data-wow-duration="1s">
+                <a asp-action="Index" asp-controller="Home" class="logo animated">
                     <img src="../img/logo.svg" alt="logo">
                 </a>
-                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
-                <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
+                <input type="text" class="input-address input" placeholder="Поиск по названию">
+                <div class="buttons animated">
                     <button class="btn" id="btn-basket">
                         <img src="../img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
@@ -26,7 +26,7 @@
         </div>
     </header>
 
-    <main>
+    <main class="wow bounceInLeft" data-wow-duration="1s">
         <div class="container">
             <hr />
             <div class="contacts">
@@ -59,7 +59,7 @@
         </div>
     </main>
 
-    <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
+    <footer class="footer animated wow bounceInLeft">
         <div class="container">
             <div class="wrapper">
                 <a asp-action="Index" asp-controller="Home">
