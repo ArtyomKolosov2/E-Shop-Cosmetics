@@ -12,7 +12,7 @@
     <header class="header">
         <div class="container">
             <div class="header-block">
-                <a asp-action="Index" asp-controller="Home" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
+                <a href="/Home/Index" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
                     <img src="../img/logo.svg" alt="logo">
                 </a>
                 <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
@@ -64,14 +64,14 @@
     <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
         <div class="container">
             <div class="wrapper">
-                <a asp-action="Index" asp-controller="Home">
+                <a href="/Home/Index">
                     <img src="../img/logo.svg" alt="logo" class="footer-logo">
                 </a>
                 <nav class="footer-nav">
                     <ul>
-                        <li><a href="/">Главная</a></li>
+                        <li><a href="/Home/Index">Главная</a></li>
                         <li><a href="../html/contacts.html">Контакты</a></li>
-                        <li><a href="#">О магазине</a></li>
+                        <li><a href="../html/about_store.html">О магазине</a></li>
                     </ul>
                 </nav>
                 <div class="social-networks">
@@ -96,7 +96,7 @@
             <div class="modal-footer">
                 <span class="modal-pricetag"></span>
                 <div class="footer-btns">
-                    <a asp-controller="Orders" asp-action="PlaceOrder">
+                    <a href="/Orders/PlaceOrder">
                         <button class="btn btn-primary">Оформить заказ</button>
                     </a>
                     <button class="btn btn-cancel">Отмена</button>
