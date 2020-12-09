@@ -112,7 +112,8 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewOrders()
         {
-            return View(await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice()));
+            var orders = await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice());
+            return View(orders);
         }
     }
 }

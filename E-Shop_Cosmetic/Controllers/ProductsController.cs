@@ -32,7 +32,7 @@ namespace E_Shop_Cosmetic.Controllers
             var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
             if (product is not null)
             {
-                return View();
+                return View(product);
             }
             return NoContent();
         }

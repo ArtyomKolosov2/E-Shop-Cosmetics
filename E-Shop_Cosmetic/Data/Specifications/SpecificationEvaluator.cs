@@ -17,7 +17,7 @@ namespace E_Shop_Cosmetic.Data.Specifications
 			query = specification.Includes.Aggregate
 				(query, (current, include) => current.Include(include));
 
-            specification.IncludeStrings.Aggregate(query, (current, include) => current.Include(include));
+			query = specification.IncludeStrings.Aggregate(query, (current, include) => current.Include(include));
 
 			query = specification.OrderByExpressions.Aggregate(query,
 				(current, expression) => current.OrderBy(expression));
