@@ -16,10 +16,19 @@
     <header class="header animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
         <div class="container">
             <div class="header-block">
-                <a asp-action="Index" asp-controller="Home" class="logo">
-                    <img src="~/img/logo.svg" alt="logo">
+                <a asp-action="Index" asp-controller="Home">
+                    <img src="~/img/logo.svg" class="logo" alt="logo">
                 </a>
-                <input type="text" class="input-address input" placeholder="Поиск по названию">
+
+                <nav class="footer-nav">
+                    <ul>
+                        <li><a asp-action="Index" asp-controller="Home">Главная</a></li>
+                        <li><a asp-controller="Products" asp-action="ViewProducts">Каталог</a></li>
+                        <li><a href="~/html/contacts.html">Контакты</a></li>
+                        <li><a href="~/html/about_store.html">О магазине</a></li>
+                    </ul>
+                </nav>
+
                 <div class="buttons">
                     @if (User.Identity.IsAuthenticated)
                     {
@@ -39,12 +48,16 @@
                             </button>
                         </a>
                     }
-
                     <button class="btn" id="btn-basket">
                         <img src="~/img/basket.svg" alt="basket" class="btn-icon">
                         <p class="btn-text">Корзина</p>
                     </button>
                 </div>
+            </div>
+
+            <div class="header-input">
+                <input type="text" class="input input-address" placeholder="Поиск по названию">
+                <button class="btn btn-primary header-input__fix-btn">Искать</button>
             </div>
         </div>
     </header>
@@ -57,7 +70,7 @@
         <div class="container">
             <div class="wrapper">
                 <a asp-action="Index" asp-controller="Home">
-                    <img src="~/img/logo.svg" alt="logo" class="footer-logo">
+                    <img src="~/img/logo.svg" alt="logo" class="logo footer-logo">
                 </a>
                 <nav class="footer-nav">
                     <ul>
