@@ -15,7 +15,16 @@
                 <a href="/Home/Index" class="logo animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="1s">
                     <img src="../img/logo.svg" alt="logo">
                 </a>
-                <input type="text" class="input-address input animated wow bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s" placeholder="Поиск по названию">
+
+                <nav class="nav">
+                    <ul>
+                        <li><a asp-action="Index" asp-controller="Home">Главная</a></li>
+                        <li><a asp-controller="Products" asp-action="ViewProducts">Каталог</a></li>
+                        <li><a href="~/html/contacts.html">Контакты</a></li>
+                        <li><a href="~/html/about_store.html">О магазине</a></li>
+                    </ul>
+                </nav>
+
                 <div class="buttons animated bounceInLeft" data-wow-delay="0.1s" data-wow-duration="0.5s">
                     <button class="btn" id="btn-basket">
                         <img src="../img/basket.svg" alt="basket" class="btn-icon">
@@ -68,7 +77,7 @@
                 <a href="/Home/Index">
                     <img src="../img/logo.svg" alt="logo" class="logo footer-logo">
                 </a>
-                <nav class="footer-nav">
+                <nav class="nav">
                     <ul>
                         <li><a href="/Home/Index">Главная</a></li>
                         <li><a href="/Products/ViewProducts">Каталог</a></li>
