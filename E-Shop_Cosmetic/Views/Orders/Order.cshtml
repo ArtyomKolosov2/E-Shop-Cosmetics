@@ -3,6 +3,17 @@
 
 <section class="product">
     <div class="container">
+        @await Html.PartialAsync("ShowOrder", Model.Order)
+        <section class="row mt-5 mb-2">
+            <div class="cards">
+            @{
+                foreach (var detail in Model.Order.OrderDetails)
+                {
+                    @await Html.PartialAsync("ShowOrderDetail", detail)
+                }
+            }
+            </div>
+        </section>
         @if (User.IsInRole("admin"))
         {
             <section>
@@ -11,11 +22,6 @@
                     <a href="/Orders/UpdateOrder/@Model.Order.Id">
                         <button class="btn btn-primary">
                             <p class="btn-text">Изменить</p>
-                        </button>
-                    </a>
-                    <a href="/Orders/DeleteOrder/@Model.Order.Id">
-                        <button class="btn btn-primary">
-                            <p class="btn-text">Удалить</p>
                         </button>
                     </a>
                 </div>

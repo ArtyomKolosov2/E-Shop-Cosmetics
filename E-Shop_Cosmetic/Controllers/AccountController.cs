@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using Microsoft.Extensions.Logging;
+using E_Shop_Cosmetic.Data.Specifications;
 
 namespace E_Shop_Cosmetic.Controllers
 {
@@ -37,7 +38,7 @@ namespace E_Shop_Cosmetic.Controllers
             _logger.LogInformation("Http Post Account\\Login called");
             if (ModelState.IsValid)
             {
-                var users = await _userRepository.GetUsersAsync();
+                var users = await _userRepository.GetUsersAsync(new UserSpecification().WithoutTracking());
                 var user = users.FirstOrDefault(u => u.Email == model.Email && u.Password == model.Password);
                 if (user != null)
                 {

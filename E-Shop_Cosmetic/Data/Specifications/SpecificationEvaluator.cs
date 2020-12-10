@@ -39,6 +39,10 @@ namespace E_Shop_Cosmetic.Data.Specifications
 				query = query.Take(specification.Take);
 			}
 
+			if (specification.IsNoTracking)
+            {
+				query.AsNoTracking();
+            }
 
 			return query;
 		}

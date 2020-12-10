@@ -53,5 +53,16 @@ namespace E_Shop_Cosmetic.Data.Specifications
             AddInclude(product => product.Category);
             return this;
         }
+        public ProductSpecification WithoutTracking()
+        {
+            IsNoTracking = true;
+            return this;
+        }
+
+        public ProductSpecification WithTracking()
+        {
+            IsNoTracking = false;
+            return this;
+        }
     }
 }

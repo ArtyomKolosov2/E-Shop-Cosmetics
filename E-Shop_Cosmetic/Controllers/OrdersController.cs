@@ -99,7 +99,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> Order(int id)
         {
-            var order = await _orderRepository.GetOrderByIdAsync(id);
+            var order = await _orderRepository.GetOrderByIdWithDetailsAsync(id);
             if (order is not null)
             {
                 return View(new ViewOrderViewModel { Order = order });
@@ -112,7 +112,13 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewOrders()
         {
-            var orders = await _orderRepository.GetOrdersAsync(new OrderSpecification().IncludeDetails().SortByTotalPrice());
+            var orders = await _orderRepository.GetOrdersAsync
+                (
+                new OrderSpecification().
+                IncludeDetails().
+                SortByTotalPrice().
+                WithoutTracking()
+                );
             return View(orders);
         }
     }

@@ -37,6 +37,7 @@ namespace E_Shop_Cosmetic.Controllers
                     new ProductSpecification().
                     IncludeCategory().
                     SortByPrice().
+                    WithoutTracking().
                     AddPagination(10)
                 ),
             };

@@ -36,8 +36,7 @@ namespace E_Shop_Cosmetic.Data.Specifications.Base
 
         public int Skip { get; set; }
         public int Take { get; set; }
-
-        
+        public bool IsNoTracking { get; set; } = false;
 
         protected void AddOrdering(Expression<Func<T, object>> expression)
         {

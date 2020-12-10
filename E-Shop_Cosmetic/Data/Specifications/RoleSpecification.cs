@@ -19,5 +19,16 @@ namespace E_Shop_Cosmetic.Data.Specifications
             AddDescendingOrdering(role => role.Name);
             return this;
         }
+        public RoleSpecification WithoutTracking()
+        {
+            IsNoTracking = true;
+            return this;
+        }
+
+        public RoleSpecification WithTracking()
+        {
+            IsNoTracking = false;
+            return this;
+        }
     }
 }

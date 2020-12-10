@@ -5,25 +5,25 @@
         <tbody class="table-body">
             <tr class="table-row">
                 <td>
-                    @Html.DisplayNameFor(model => model.Name)
+                    Имя
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.LastName)
+                    Фамилия
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Address)
+                    Адрес
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                    Номер
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Information)
+                    Доп. информация
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.TotalPrice)
+                    Полная стоимость
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.IsOrderActive)
+                    Активный заказ
                 </td>
             </tr>
             <tr class="table-row table-row-content">
@@ -46,7 +46,14 @@
                     @Html.DisplayFor(model => model.TotalPrice)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.IsOrderActive)
+                    @if (Model.IsOrderActive)
+                    {
+                        <p>Да</p>
+                    }
+                    else
+                    {
+                        <p>Нет</p>
+                    }
                 </td>
             </tr>
         </tbody>

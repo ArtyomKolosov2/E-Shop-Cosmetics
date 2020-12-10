@@ -19,5 +19,16 @@ namespace E_Shop_Cosmetic.Data.Specifications
             AddDescendingOrdering(category => category.CategoryName);
             return this;
         }
+        public CategorySpecification WithoutTracking()
+        {
+            IsNoTracking = true;
+            return this;
+        }
+
+        public CategorySpecification WithTracking()
+        {
+            IsNoTracking = false;
+            return this;
+        }
     }
 }
