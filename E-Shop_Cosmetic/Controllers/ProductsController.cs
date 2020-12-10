@@ -41,15 +41,18 @@ namespace E_Shop_Cosmetic.Controllers
             ViewBag.Title = "Товары";
             var viewModel = new ProductsViewModel
             {
-                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(new ProductSpecification().IncludeCategory()),
+                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(
+                    new ProductSpecification().
+                    IncludeCategory().
+                    WithoutTracking()),
                 ProductCategory = "Косметика",
-                SearchParams = new SearchParams()
+                SearchParams = new SearchProductsParams()
             };
             _logger.LogInformation("Products\\ViewProducts is executed");
             return View(viewModel);
         }
         [HttpGet]
-        public async Task<IActionResult> Search(SearchParams searchParams)
+        public async Task<IActionResult> Search(SearchProductsParams searchParams)
         {
             var searchSpecification = new ProductSpecification().
                 IncludeCategory().
@@ -63,13 +66,13 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 searchSpecification.WhereName(searchParams.Name);
             }
-            searchSpecification.WhereAvailable(searchParams.IsAvailable);
+            searchSpecification.WhereAvailable(searchParams.IsAvailable).WithoutTracking();
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel
             {
                 GetProducts = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
                 ProductCategory = "Косметика",
-                SearchParams = new SearchParams()
+                SearchParams = new SearchProductsParams()
             };
             _logger.LogInformation("Products\\Search is executed");
             if (!viewModel.GetProducts.Any())

@@ -21,5 +21,16 @@ namespace E_Shop_Cosmetic.Data.Specifications
             AddInclude(user => user.Role);
             return this;
         }
+        public UserSpecification WithoutTracking()
+        {
+            IsNoTracking = true;
+            return this;
+        }
+
+        public UserSpecification WithTracking()
+        {
+            IsNoTracking = false;
+            return this;
+        }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Models
 {
-    public class SearchParams
+    public class SearchProductsParams
     {
         [BindingBehavior(BindingBehavior.Optional)]
         public int? SearchProductId { get; set; }

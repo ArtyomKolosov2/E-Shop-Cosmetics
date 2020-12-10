@@ -34,9 +34,25 @@ namespace E_Shop_Cosmetic.Data.Specifications
             return this;
         }
 
+        public OrderSpecification IncludeDetails(string includeString)
+        {
+            AddInclude(includeString);
+            return this;
+        }
         public OrderSpecification IncludeDetails()
         {
             AddInclude("OrderDetails.Product");
+            return this;
+        }
+        public OrderSpecification WithoutTracking()
+        {
+            IsNoTracking = true;
+            return this;
+        }
+
+        public OrderSpecification WithTracking()
+        {
+            IsNoTracking = false;
             return this;
         }
     }

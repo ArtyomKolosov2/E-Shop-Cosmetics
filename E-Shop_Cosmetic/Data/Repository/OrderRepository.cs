@@ -1,7 +1,9 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.Data.Specifications.Base;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Repository
@@ -39,6 +41,12 @@ namespace E_Shop_Cosmetic.Data.Repository
         public async Task<IReadOnlyList<Order>> GetOrdersAsync(ISpecification<Order> specification)
         {
             return await GetAllAsync(specification);
+        }
+
+        public async Task<Order> GetOrderByIdWithDetailsAsync(int id)
+        {
+            var spec = new OrderSpecification(id).IncludeDetails("OrderDetails.Product.Category");
+            return (await GetAllAsync(spec)).FirstOrDefault();
         }
     }
 }

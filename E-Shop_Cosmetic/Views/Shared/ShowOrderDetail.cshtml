@@ -1,0 +1,22 @@
+﻿@model E_Shop_Cosmetic.Data.Models.OrderDetail
+
+<a class="wow flipInX" data-wow-duration="1s" asp-action="Product" asp-controller="Products" asp-route-id="@Model.Product.Id">
+
+    <img src="@Model.Product.ImageURL" alt="NoImage" class="card-image">
+    <div class="text">
+        <div class="card-info">
+            <div>
+                <h3>Кол-во: @Model.Amount</h3>
+            </div>
+            <div class="price" style="color: #FA842A">
+                <span>Цена: @Model.TotalPrice br</span>
+            </div>
+            <div class="price" style="color: #FA842A">
+                <span>Тек. цена: @Model.Product.Price br</span>
+            </div>
+            <div class="price" style="color: #FA842A">
+                <span>Id: @Model.Product.Id</span>
+            </div>
+        </div>
+    </div>
+</a>
