@@ -61,6 +61,7 @@ a:hover {
 .input-address {
     flex: 0.8;
     background-image: url(../img/search.svg);
+    width:87%;
 }
 
 .buttons {
@@ -152,6 +153,10 @@ a:hover {
     margin-top: 56px;
 }
 
+.logo {
+    width: 45px;
+}
+
 .section-title {
     font-size: 36px;
     font-weight: bold;
@@ -161,9 +166,19 @@ a:hover {
 }
 
 .input-search {
-    background-image: url(../img/search.svg);
     width: 306px;
-    margin-left: auto;
+}
+
+.header-input
+{
+    padding:20px 0;
+}
+
+.header-input__fix-btn {
+    margin: 0;
+    display: inline-block;
+    width: 10%;
+    float: right;
 }
 
 .cards {
