@@ -1,5 +1,4 @@
-﻿// modal filter
-export function modalFilter(filterBtn) {
+﻿export function modalFilter(filterBtn) {
     function eventModalFilter() {
         modalSearch.classList.toggle("on-click");
     }

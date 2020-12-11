@@ -1,36 +1,4 @@
-﻿function setCookie(name, value, exp_y, exp_m, exp_d, path = "/", domain = "", secure = true) {
-    let cookieString = `${name}=${escape(value)}`;
-
-    if (exp_y) {
-        const expires = new Date(exp_y, exp_m, exp_d);
-        cookieString += `; expires=${expires.toGMTString()}`;
-    }
-    if (path) {
-        cookieString += `; path=${escape(path)}`;
-    }
-    if (domain) {
-        cookieString += `; domain=${escape(domain)}`;
-    }
-    if (secure) {
-        cookieString += "; secure";
-    }
-
-    document.cookie = cookieString;
-}
-
-function deleteCookie(cookieName) {
-    let cookieDate = new Date();  // Текущая дата и время
-    cookieDate.setTime(cookieDate.getTime() - 1);
-    document.cookie = `${cookieName}=; expires=${cookieDate.toGMTString()}`;
-}
-
-function getCookie(cookieName) {
-    let results = document.cookie.match(`(^|;) ?${cookieName}=([^;]*)(;|$)`);
-
-    return results ? unescape(results[2]) : null;
-}
-
-function delElement(arr, index)
+﻿function delElement(arr, index)
 {
     let newArr = [];
     for (let i in arr) {
@@ -64,7 +32,6 @@ function createProducts(product) {
     for (let i in product) {
         addProduct(product[i]);
     }
-    console.log(JSON.parse(getCookie("products")));
 }
 
 function sumProducts(arrFoodPrice, foodPrice) {
@@ -78,7 +45,7 @@ function sumProducts(arrFoodPrice, foodPrice) {
 function parseFoodPrice(foodPrice) {
     let arrFoodPrice = []
     for (let i = 0; i < foodPrice.length; i++) {
-        arrFoodPrice.push(Number(foodPrice[i].textContent.slice(0, -2)));
+        arrFoodPrice.push(Number(foodPrice[i].innerHTML.slice(0, -2)));
     }
     return arrFoodPrice;
 }
@@ -91,13 +58,15 @@ function getPricetag() {
     return sumProducts(arrFoodPrice, counter);
 }
 
-export function uploadCart() {
-    createProducts(getCookie("products") ? JSON.parse(getCookie("products")) : []);
+export function uploadCart(getCookie) {
+    const products = getCookie("products") ? JSON.parse(getCookie("products")) : [];
+    createProducts(products);
 
-    document.querySelector('.modal-pricetag').innerHTML = getCookie("pricetag") ? getCookie("pricetag") : "0 br";
+    const pricetag = getCookie("pricetag") ? getCookie("pricetag") : 0;
+    document.querySelector('.modal-pricetag').innerHTML = `${pricetag} br`;
 }
 
-export function cartHandler() {
+export function cartHandler(getCookie, setCookie) {
     $().ready(function () {
         $('.btn-counter-close').on('click', function () {
             let parent = $(this).parent();
@@ -109,13 +78,12 @@ export function cartHandler() {
             let allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
             allProducts = delElement(allProducts, index);
 
-            const pricetag = getPricetag();
+            const pricetag = Math.round(getPricetag());
             const modalPricetag = document.querySelector('.modal-pricetag');
 
             modalPricetag.innerHTML = `${pricetag} br`;
-
-            setCookie('products', JSON.stringify(allProducts));
-            setCookie("pricetag", modalPricetag.innerHTML);
+            setCookie("products", JSON.stringify(allProducts));
+            setCookie("pricetag", pricetag);
         });
         $('.btn-counter').on('click', function () {
             const newProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
@@ -140,8 +108,8 @@ export function cartHandler() {
 
             newProducts[index].number = Number(counter[index].innerHTML);
 
-            setCookie("pricetag", modalPricetag.innerHTML);
             setCookie("products", JSON.stringify(newProducts));
+            setCookie("pricetag", pricetag);
         });
     });
 }
@@ -155,19 +123,20 @@ function isContained(allProducts, product) {
     return false;
 }
 
-export function addToCart()
+export function addToCart(getCookie, setCookie)
 {
     const productName = document.querySelector('.product-info__header');
     const cost = document.querySelector('.offer-footer__cost');
     let counter = document.querySelectorAll('.counter');
 
-    const id = Number(document.getElementById('id_product').innerHTML); //Number(document.location.href.slice(-1)); ;
+    const id = Number(document.getElementById('id_product').innerHTML);
     const product = new Object();
     product["name"] = productName.innerHTML;
     product["cost"] = Number(cost.innerHTML.slice(0, -2));
     product["id"] = id;
 
-    const allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
+    let allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
+
     const index = allProducts.length - 1;
     // The product is contained in cart
     if (isContained(allProducts, product)) {
@@ -178,61 +147,15 @@ export function addToCart()
         product["number"] = 1;
         addProduct(product);// add to basket
         allProducts.push(product); // push to array objects
+
         location.reload();
     }
 
-    let pricetag = getPricetag();
+    let pricetag = Math.round(getPricetag(), 2);
     document.querySelector('.modal-pricetag').innerHTML = `${pricetag} br`;
 
-    setCookie("pricetag", `${pricetag} br`);
-    setCookie('products', JSON.stringify(allProducts));
+    setCookie("products", JSON.stringify(allProducts));
+    setCookie("pricetag", pricetag);
 
     console.log(allProducts);
-}
-
-function addCostToOrder(cost) {
-    const products = document.getElementById('total-cost');
-    const block = document.createElement('div');
-    block.innerHTML = `
-    <div class="total-cost">
-        <span>Итого:</span><span>${cost}</span>
-    </div>
-    `;
-    products.appendChild(block);
-}
-
-function addProductToOrder(product) {
-    const products = document.getElementById('cart_info_body');
-    const block = document.createElement('div');
-    block.innerHTML = `
-    <div class="cart-info__row">
-        <span>Имя товара:</span><span>${product.name}</span>
-    </div>
-    <div class="cart-info__row">
-        <span>Количество:</span><span>${product.number}</span>
-    </div>
-    <div class="cart-info__row">
-        <span>Стоимость:</span><span>${product.cost} br</span>
-    </div>
-    <hr class="hr"/>
-    `;
-    products.appendChild(block);
-}
-
-function makingOrderProducts() {
-    const products = getCookie("products") ? JSON.parse(getCookie("products")) : [];
-    console.log(products);
-    for (let i = 0; i < products.length; i++) {
-        addProductToOrder(products[i]);
-    }
-}
-function makingOrderTotalCost() {
-    const pricetag = getCookie('pricetag') ? getCookie('pricetag') : '0 br';
-    addCostToOrder(pricetag);
-}
-
-export async function makingOrder()
-{
-    await makingOrderProducts();
-    await makingOrderTotalCost();
 }
