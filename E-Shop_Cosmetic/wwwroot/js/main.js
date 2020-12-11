@@ -1,12 +1,15 @@
 import { modalCart } from "./modules/modalCart.js";
 import { modalFilter } from "./modules/modalFilter.js";
+
 import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
-import { makingOrder, addToCart, uploadCart, cartHandler } from "./modules/cart.js";
+
+import { addToCart, uploadCart, cartHandler } from "./modules/cart.js";
+import { setCookie, deleteCookie, getCookie } from "./modules/getDataFromCookie.js";
 import { buildSlider } from "./modules/slider.js";
-//import {  } from "./modules/getDataFromCookie.js";
+
+import makingOrder from "./modules/makingOrder.js";
 
 async function main() {
-    
     modalCart();
 
     // slider for filter
@@ -27,14 +30,14 @@ async function main() {
 
     // basket
 
-    uploadCart();
-    cartHandler();
+    uploadCart(getCookie);
+    cartHandler(getCookie, setCookie);
 
     const btnAddProduct = document.getElementById('btn_add_product');
     if (btnAddProduct)
     {
         btnAddProduct.addEventListener('click', function () {
-            addToCart();
+            addToCart(getCookie, setCookie);
         });
     }
     //!basket
@@ -43,7 +46,7 @@ async function main() {
     const order = document.getElementById('order');
     if (order) {
         document.getElementById("btn-basket").remove();
-        await makingOrder();
+        await makingOrder(getCookie);
     }
     // !making order
 
