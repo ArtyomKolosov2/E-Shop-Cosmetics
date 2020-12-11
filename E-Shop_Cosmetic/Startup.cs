@@ -1,4 +1,4 @@
-using E_Shop_Cosmetic.Data;
+п»їusing E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Repository;
 using E_Shop_Cosmetic.Data.Services;
@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace E_Shop_Cosmetic
 {
@@ -33,7 +34,7 @@ namespace E_Shop_Cosmetic
 
             services.AddHttpContextAccessor();
             services.AddTransient<ICookieService, CookieService>();
-            // установка конфигурации подключения
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
@@ -44,6 +45,13 @@ namespace E_Shop_Cosmetic
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            app.UseRequestLocalization();
+            CultureInfo customCulture = new CultureInfo("ru-RU");
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            CultureInfo.DefaultThreadCurrentCulture = customCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
+
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseRouting();
