@@ -56,14 +56,18 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Search(SearchProductsParams searchParams)
         {
             var searchSpecification = new ProductSpecification().
-                IncludeCategory().
-                WhereInPriceRange(searchParams.StartPrice, searchParams.EndPrice);
-
+                IncludeCategory();
+            if (searchParams.StartPrice is not null && searchParams.EndPrice is not null)
+            {
+                searchSpecification.WhereInPriceRange(searchParams.StartPrice.Value, searchParams.EndPrice.Value);
+            }
+            var isPrimeKeyUsed = false;
             if (searchParams.SearchProductId is not null)
             {
                 searchSpecification.WhereId(searchParams.SearchProductId.Value);
+                isPrimeKeyUsed = true;
             }
-            if (searchParams.Name is not null)
+            if (searchParams.Name is not null && !isPrimeKeyUsed)
             {
                 searchSpecification.WhereName(searchParams.Name);
             }

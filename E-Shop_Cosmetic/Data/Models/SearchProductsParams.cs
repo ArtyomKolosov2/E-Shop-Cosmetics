@@ -9,11 +9,11 @@ namespace E_Shop_Cosmetic.Data.Models
         [BindingBehavior(BindingBehavior.Optional)]
         public string Name { get; set; }
 
-        public double StartPrice { get; set; }
-        public double EndPrice { get; set; }
+        public double? StartPrice { get; set; }
+        public double? EndPrice { get; set; }
 
         [BindingBehavior(BindingBehavior.Optional)]
-        public bool IsAvailable { get; set; } 
+        public bool IsAvailable { get; set; }
         [BindingBehavior(BindingBehavior.Optional)]
         public int CategoryId { get; set; }
     }

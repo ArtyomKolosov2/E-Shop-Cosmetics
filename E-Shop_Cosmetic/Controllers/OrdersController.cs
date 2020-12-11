@@ -1,5 +1,4 @@
-﻿using E_Shop_Cosmetic.Data;
-using E_Shop_Cosmetic.Data.Interfaces;
+﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
@@ -63,6 +62,7 @@ namespace E_Shop_Cosmetic.Controllers
                 SearchParams = searchParams
 
             };
+            ViewBag.Title = "Поиск";
             return View(viewModel);
         }
         [HttpGet]
