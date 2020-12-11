@@ -78,7 +78,7 @@ export function cartHandler(getCookie, setCookie) {
             let allProducts = getCookie("products") ? JSON.parse(getCookie("products")) : [];
             allProducts = delElement(allProducts, index);
 
-            const pricetag = Math.round(getPricetag());
+            const pricetag = Math.round(getPricetag() * 100) / 100;
             const modalPricetag = document.querySelector('.modal-pricetag');
 
             modalPricetag.innerHTML = `${pricetag} br`;
@@ -101,7 +101,7 @@ export function cartHandler(getCookie, setCookie) {
                     counter[index].innerHTML = 1;
                 }
             }
-            const pricetag = getPricetag();
+            const pricetag = Math.round(getPricetag() * 100) / 100;
             const modalPricetag = document.querySelector('.modal-pricetag');
 
             modalPricetag.innerHTML = `${pricetag} br`;
@@ -151,7 +151,7 @@ export function addToCart(getCookie, setCookie)
         location.reload();
     }
 
-    let pricetag = Math.round(getPricetag(), 2);
+    let pricetag = Math.round(getPricetag() * 100) / 100;
     document.querySelector('.modal-pricetag').innerHTML = `${pricetag} br`;
 
     setCookie("products", JSON.stringify(allProducts));
