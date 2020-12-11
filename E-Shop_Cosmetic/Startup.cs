@@ -1,4 +1,4 @@
-using E_Shop_Cosmetic.Data;
+п»їusing E_Shop_Cosmetic.Data;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Repository;
 using E_Shop_Cosmetic.Data.Services;
@@ -34,7 +34,7 @@ namespace E_Shop_Cosmetic
 
             services.AddHttpContextAccessor();
             services.AddTransient<ICookieService, CookieService>();
-            // установка конфигурации подключения
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {
