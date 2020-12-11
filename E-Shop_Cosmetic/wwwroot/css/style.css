@@ -317,29 +317,29 @@ a:hover {
     align-items: center;
 }
 
-.footer-nav {
+.nav {
     margin-right: auto;
     margin-left: 35px;
 }
 
-.footer-nav li {
+.nav li {
     display: inline-block;
     text-decoration: none;
     color: #595959;
     cursor: pointer;
 }
 
-.footer-nav li:not(:last-child) {
+.nav li:not(:last-child) {
     margin-right: 15px;
 }
 
-.footer-nav li a {
+.nav li a {
     font-size: 14px;
     line-height: 21px;
     color: #000;
     text-transform: uppercase;
 }
-.footer-nav li:hover
+.nav li:hover
 {
     font-size:15px;
 }
@@ -806,7 +806,6 @@ a:hover {
 .offer-footer {
     position: absolute;
     bottom: 49px;
-    right: 37%;
 }
 
 .offer-footer__btn {
