@@ -1,13 +1,19 @@
-﻿@model IEnumerable<Order>
+﻿@model SearchOrderViewModel
+
 
 <section class="row mt-5 mb-2">
+    <button class="btn btn-filter" id="btn-filter">
+        <img src="~/img/filter.svg" style="width: 16px;" class="btn-icon" alt="noImg" />
+        <p class="btn-text">Фильтр</p>
+    </button>
     <h2 class="order__title">Список заказов</h2>
     <div class="cards order-cards">
         @{
-            foreach (var order in Model)
+            foreach (var order in Model.Orders)
             {
                 @await Html.PartialAsync("ShowOrder", order)
             }
         }
     </div>
 </section>
+@await Html.PartialAsync("OrdersFilter", Model.SearchParams)

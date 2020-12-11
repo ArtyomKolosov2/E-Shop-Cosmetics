@@ -15,16 +15,45 @@ namespace E_Shop_Cosmetic.Data.Specifications
 
         public OrderSpecification(Expression<Func<Order, bool>> expression) : base(expression) { }
 
-
-        public OrderSpecification SortByName()
+        public OrderSpecification WhereName(string name)
         {
-            AddDescendingOrdering(order => order.Name);
+            AddWhere(order => order.Name.ToLower().Contains(name.ToLower()));
             return this;
         }
 
-        public OrderSpecification SortByLastName()
+        public OrderSpecification WhereLastName(string lastName)
         {
-            AddDescendingOrdering(order => order.LastName);
+            AddWhere(order => order.LastName.ToLower().Contains(lastName.ToLower()));
+            return this;
+        }
+
+        public OrderSpecification WhereId(int id)
+        {
+            AddWhere(order => order.Id == id);
+            return this;
+        }
+
+        public OrderSpecification WhereEmail(string email)
+        {
+            AddWhere(order => order.Email.Contains(email));
+            return this;
+        }
+
+        public OrderSpecification WherePhone(string phone)
+        {
+            AddWhere(order => order.PhoneNumber.Contains(phone));
+            return this;
+        }
+
+        public OrderSpecification WhereActive(bool isActive)
+        {
+            AddWhere(order => order.IsOrderActive == isActive);
+            return this;
+        }
+
+        public OrderSpecification SortByDate()
+        {
+            AddDescendingOrdering(order => order.OrderDate);
             return this;
         }
 

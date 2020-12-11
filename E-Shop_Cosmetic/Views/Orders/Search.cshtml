@@ -1,0 +1,36 @@
+﻿@model SearchOrderViewModel
+<h1>Результат поиска:</h1>
+
+<section class="view-products-header">
+    <hr />
+    <div class="view-products__block">
+        <h1 class="view-products__block__title">Вся косметика</h1>
+        <button class="btn btn-filter" id="btn-filter">
+            <img src="~/img/user.svg" alt="user" class="btn-icon">
+            <p class="btn-text">Фильтр</p>
+        </button>
+    </div>
+</section>
+
+@if (Model.Orders.Any())
+{
+    <section class="row mt-5 mb-2">
+
+        <div class="cards order-cards">
+            @{
+                foreach (var order in Model.Orders)
+                {
+                    @await Html.PartialAsync("ShowOrder", order)
+                }
+            }
+        </div>
+    </section>
+}
+else
+{
+    <p class="text-capitalize">Ничего не найдено!</p>
+}
+
+
+@await Html.PartialAsync("OrdersFilter", Model.SearchParams)
+
