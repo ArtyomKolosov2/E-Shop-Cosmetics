@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using System.Globalization;
 
 namespace E_Shop_Cosmetic
 {
@@ -44,6 +45,12 @@ namespace E_Shop_Cosmetic
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+            app.UseRequestLocalization();
+            CultureInfo customCulture = new CultureInfo("ru-RU");
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+
+            CultureInfo.DefaultThreadCurrentCulture = customCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
             app.UseRouting();
