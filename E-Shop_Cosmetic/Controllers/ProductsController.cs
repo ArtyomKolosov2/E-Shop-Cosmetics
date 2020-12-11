@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -55,14 +56,18 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Search(SearchProductsParams searchParams)
         {
             var searchSpecification = new ProductSpecification().
-                IncludeCategory().
-                WhereInPriceRange(searchParams.StartPrice, searchParams.EndPrice);
-
+                IncludeCategory();
+            if (searchParams.StartPrice is not null && searchParams.EndPrice is not null)
+            {
+                searchSpecification.WhereInPriceRange(searchParams.StartPrice.Value, searchParams.EndPrice.Value);
+            }
+            var isPrimeKeyUsed = false;
             if (searchParams.SearchProductId is not null)
             {
                 searchSpecification.WhereId(searchParams.SearchProductId.Value);
+                isPrimeKeyUsed = true;
             }
-            if (searchParams.Name is not null)
+            if (searchParams.Name is not null && !isPrimeKeyUsed)
             {
                 searchSpecification.WhereName(searchParams.Name);
             }
@@ -94,6 +99,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product newProduct)
         {
+            newProduct.Price = Math.Round(newProduct.Price, 2);
             await _cosmeticProductsRepository.AddProductAsync(newProduct);
             return RedirectToAction("ViewProducts", "Products");
         }
@@ -119,7 +125,7 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 return BadRequest();
             }
-
+            product.Price = Math.Round(product.Price, 2);
             await _cosmeticProductsRepository.UpdateProductAsync(product);
             return RedirectToAction("ViewProducts", "Products");
         }

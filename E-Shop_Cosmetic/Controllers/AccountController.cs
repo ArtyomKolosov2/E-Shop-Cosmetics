@@ -28,6 +28,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            ViewBag.Title = "Логин";
             _logger.LogInformation("Http Get Account\\Login called");
             return View();
         }
@@ -52,12 +53,14 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ViewBag.Title = "Регистрация";
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
+            
             if (ModelState.IsValid)
             {
                 var users = await _userRepository.GetUsersAsync();

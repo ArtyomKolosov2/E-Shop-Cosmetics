@@ -1,5 +1,4 @@
-﻿using E_Shop_Cosmetic.Data;
-using E_Shop_Cosmetic.Data.Interfaces;
+﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
@@ -23,6 +22,50 @@ namespace E_Shop_Cosmetic.Controllers
         }
 
         [HttpGet]
+        public async Task<IActionResult> Search(SearchOrderParams searchParams)
+        {
+            var searchSpecification = new OrderSpecification();
+            var isPrimaryKeyUsed = false;
+            if (searchParams.OrderId is not null)
+            {
+                searchSpecification.WhereId(searchParams.OrderId.Value);
+                isPrimaryKeyUsed = true;
+            }
+            if (!isPrimaryKeyUsed)
+            {
+                if (searchParams.Name is not null)
+                {
+                    searchSpecification.WhereName(searchParams.Name);
+                }
+                if (searchParams.LastName is not null)
+                {
+                    searchSpecification.WhereLastName(searchParams.LastName);
+                }
+                if (searchParams.Email is not null)
+                {
+                    searchSpecification.WhereEmail(searchParams.Email);
+                }
+
+                if (searchParams.PhoneNumber is not null)
+                {
+                    searchSpecification.WherePhone(searchParams.PhoneNumber);
+                }
+            }
+            if (searchParams.IsSortByDateRequired)
+            {
+                searchSpecification.SortByDate();
+            }
+            searchSpecification.WhereActive(searchParams.IsOrderActive).WithoutTracking();
+            var viewModel = new SearchOrderViewModel()
+            {
+                Orders = await _orderRepository.GetOrdersAsync(searchSpecification),
+                SearchParams = searchParams
+
+            };
+            ViewBag.Title = "Поиск";
+            return View(viewModel);
+        }
+        [HttpGet]
         public async Task<IActionResult> PlaceOrder()
         {
             if (await _cartService.IsAnyProductInCartAsync())
@@ -30,9 +73,8 @@ namespace E_Shop_Cosmetic.Controllers
                 return View();
             }
             return NoContent();
-            
+
         }
-        
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel)
         {
@@ -119,7 +161,12 @@ namespace E_Shop_Cosmetic.Controllers
                 SortByTotalPrice().
                 WithoutTracking()
                 );
-            return View(orders);
+            var viewModel = new SearchOrderViewModel()
+            {
+                Orders = orders,
+                SearchParams = new SearchOrderParams(),
+            };
+            return View(viewModel);
         }
     }
 }

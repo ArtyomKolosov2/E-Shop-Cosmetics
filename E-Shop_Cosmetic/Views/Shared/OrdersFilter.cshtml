@@ -1,4 +1,4 @@
-﻿@model SearchProductsParams
+﻿@model SearchOrderParams
 
 <section class="modal-search">
     <div class="modal-filter">
@@ -6,37 +6,23 @@
             <h3 class="modal-title">Фильтр</h3>
             <button class="btn-close-filter">&times;</button>
         </div>
-        <form method="get" asp-action="Search" asp-controller="Products" class="form-search form-search__property" name="form_search">
-            <input type="number" min="1" asp-for="SearchProductId" placeholder="Введите артикул" class="form-search__property" />
-            <input type="text" name="name" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
-
+        <form method="get" asp-action="Search" asp-controller="Orders" class="form-search form-search__property" name="form_search">
+            <input type="number" min="1" asp-for="OrderId" placeholder="id заказа" class="form-search__property" />
+            <input type="text" asp-for="Name" placeholder="имя" class="form-search__property" />
+            <input type="text" asp-for="LastName" placeholder="фамилия" class="form-search__property" />
+            <div class="form-group">
+                <input type="text" asp-for="Email" class="form-group__input" placeholder="e-mail" />
+                <span asp-validation-for="Email" />
+            </div>
+            <input type="text" asp-for="PhoneNumber" placeholder="телефон" class="form-search__property" />
             <div class="filter-cost">
-                <input class="js-range-slider" value="$" />
-                <span class="filter-cost__head">Цена изделия в рублях</span>
-                <div class="table">
-                    <div class="table-block">
-                        <span>от</span>
-                        <div class="table-cell">
-                            <input name="StartPrice" id="priceMin" asp-for="StartPrice" type="text" class="form-control">
-                        </div>
-                        <span>руб</span>
-                        <span class="line"></span>
-                    </div>
-                    <div class="table-block">
-                        <span>до</span>
-                        <div class="table-cell">
-                            <input name="EndPrice" asp-for="EndPrice" id="priceMax" type="text" class="form-control">
-                        </div>
-                        <span>руб</span>
-                    </div>
-                </div>
                 <div class="checkboxes">
                     <div class="under-order">
-                        <p>Под заказ:</p><input type="checkbox" class="search__under-order" />
+                        <p>Сортировка по дате:</p><input type="checkbox" asp-for="IsSortByDateRequired" class="search__under-order" />
                     </div>
                     <div class="is-available">
-                        <p>Есть в наличии:</p>
-                        <input asp-for="IsAvailable" value="true" checked="checked" type="checkbox" class="search__is-available">
+                        <p>Активный:</p>
+                        <input asp-for="IsOrderActive" checked="checked" type="checkbox" class="search__is-available">
                     </div>
                 </div>
                 <div class="modal-filter__footer">
