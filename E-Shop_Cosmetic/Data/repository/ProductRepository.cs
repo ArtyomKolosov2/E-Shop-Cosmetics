@@ -22,11 +22,6 @@ namespace E_Shop_Cosmetic.Data.Repository
             await AddAsync(product);
         }
 
-        public async Task<IReadOnlyList<Product>> GetFavoriteProductsAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Product> GetProductByIdAsync(int productId)
         {
             return await GetByIdAsync(productId);
@@ -63,11 +58,6 @@ namespace E_Shop_Cosmetic.Data.Repository
         public async Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification)
         {
             return await GetAllAsync(specification);
-        }
-
-        public Task<IReadOnlyList<Product>> GetProductsByPriceRange(int startRange, int endRange)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task DeleteProductAsync(Product product)
