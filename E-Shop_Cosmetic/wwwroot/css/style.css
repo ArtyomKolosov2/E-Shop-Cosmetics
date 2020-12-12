@@ -1009,6 +1009,9 @@ a:hover {
     right: -10px;
     width: 119px;
 }
+.fix-field-validation-error {
+    
+}
 .field-validation-valid {
     display: none;
 }

@@ -13,8 +13,8 @@
         postfix: "br",
         min: minRange,
         max: maxRange,
-        from: localStorage.getItem("SliderFrom") | minRange,
-        to: localStorage.getItem("SliderTo") | minRange + 10,
+        from: localStorage.getItem("SliderFrom") ? JSON.parse(localStorage.getItem("SliderFrom")) : minRange,
+        to: localStorage.getItem("SliderTo") ? JSON.parse(localStorage.getItem("SliderTo")) : minRange + 10,
         onStart: updateScroll,
         onChange: updateScroll,
         onFinish: updateScroll
@@ -28,8 +28,8 @@
         $inputFrom.prop("value", from);
         $inputTo.prop("value", to);
 
-        localStorage.setItem("SliderFrom", from);
-        localStorage.setItem("SliderTo", to);
+        localStorage.setItem("SliderFrom", JSON.stringify(from));
+        localStorage.setItem("SliderTo", JSON.stringify(to));
     }
 
     $inputFrom.on("input", function () {
@@ -60,7 +60,7 @@
         });
 
         $(this).prop("value", value);
-        localStorage.setItem("SliderFrom", value);
+        localStorage.setItem("SliderFrom", JSON.stringify(value));
     });
 
     $inputTo.on("input", function () {
@@ -81,6 +81,6 @@
         });
 
         $(this).prop("value", value);
-        localStorage.setItem("SliderTo", value);
+        localStorage.setItem("SliderTo", JSON.stringify(value));
     });
 }
