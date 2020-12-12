@@ -798,6 +798,12 @@ a:hover {
     padding-bottom: 10px;
 }
 
+.offer-info__description span {
+    display:block;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+
 .offer-info__cost {
     margin-top: 10%;
     margin-bottom: 15px;
@@ -948,7 +954,6 @@ a:hover {
 }
 .table-order-successful__body {
     margin: auto;
-    max-width: 775px;
 }
 .table-body {
     margin: auto;
@@ -964,11 +969,13 @@ a:hover {
     text-align: center;
 }
 .table-row-content td {
+    min-width:150px;
+    word-break:break-word;
     text-align: center;
     height: 150px;
 }
 .table-row__information {
-    width: 300px;
+    width: 350px;
     text-align: left;
     padding: 2px;
 }
