@@ -52,20 +52,11 @@ async function main() {
     // !making order
 
     // crop text
+
     const textSmall = document.querySelectorAll("#card-info__name");
     const endCharacter = '...';
     if (textSmall) {
         cropTextArray(textSmall, 20, endCharacter);
-    }
-
-    const productInfoHeader = document.querySelector(".product-info__header");
-    if (productInfoHeader) {
-        cropText(productInfoHeader, 50, endCharacter);
-    }
-
-    const infoBody = document.querySelector("#offer-info__description__body");
-    if (infoBody) {
-        cropText(infoBody, 400, endCharacter);
     }
     // !crop text
 
