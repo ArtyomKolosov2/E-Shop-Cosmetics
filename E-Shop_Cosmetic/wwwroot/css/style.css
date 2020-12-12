@@ -773,7 +773,7 @@ a:hover {
     width: 330px;
     height: 235px;
     padding: 25px;
-    object-fit: unset;
+    object-fit: scale-down;
 }
 
 .offer-info {
