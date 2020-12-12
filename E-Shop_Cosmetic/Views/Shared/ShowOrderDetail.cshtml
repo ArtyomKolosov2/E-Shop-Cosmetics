@@ -1,21 +1,17 @@
 ﻿@model E_Shop_Cosmetic.Data.Models.OrderDetail
 
 <a class="wow flipInX" data-wow-duration="1s" asp-action="Product" asp-controller="Products" asp-route-id="@Model.Product.Id">
-
-    <img src="@Model.Product.ImageURL" alt="NoImage" class="card-image">
-    <div class="text">
-        <div class="card-info">
-            <div>
+    
+    <div class="offer">
+        <div class="offers-figure">
+            <img src="@Model.Product.ImageURL" alt="NoImage" class="card-image">
+        </div>
+        <div class="offer-info">
+            <div class="offer-info__description" style="padding: 20% 0;">
                 <h3>Кол-во: @Model.Amount</h3>
-            </div>
-            <div class="price" style="color: #FA842A">
-                <span>Цена: @Model.TotalPrice br</span>
-            </div>
-            <div class="price" style="color: #FA842A">
-                <span>Тек. цена: @Model.Product.Price br</span>
-            </div>
-            <div class="price" style="color: #FA842A">
-                <span>Id: @Model.Product.Id</span>
+                <h3 id="offer-info__description__body">Цена: @Model.TotalPrice br</h3>
+                <h3>Тек. цена: @Model.Product.Price br</h3>
+                <h3>Id: @Model.Product.Id</h3>
             </div>
         </div>
     </div>

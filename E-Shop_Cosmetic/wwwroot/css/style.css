@@ -202,7 +202,7 @@ a:hover {
 .card-image {
     width: 384px;
     height: 250px;
-    object-fit: cover;
+    object-fit: unset;
 }
 
 .text {
@@ -768,7 +768,7 @@ a:hover {
     width: 330px;
     height: 235px;
     padding: 25px;
-    object-fit:cover;
+    object-fit: unset;
 }
 
 .offer-info {
@@ -777,8 +777,8 @@ a:hover {
 }
 
 .offer-info__description {
+    color:#000;
     display: block;
-    width: 610px;
 }
 
 .offer-info__description h2 {
@@ -1012,6 +1012,9 @@ input[type="checkbox"].input-validation-error {
 
 /* contacts */
 .contacts {
+    margin-top: 40px;
+}
+.contacts-content {
     margin: 80px 0;
     padding: 60px 20px;
     display: flex;
@@ -1031,6 +1034,10 @@ input[type="checkbox"].input-validation-error {
 
 /* about us */
 .about-us {
+
+}
+.about-us-content{
+    margin:40px 0;
 }
 .about-us__title
 {
@@ -1052,6 +1059,8 @@ input[type="checkbox"].input-validation-error {
 
 .about-us__title img {
     width: 100%;
+    object-fit: unset;
+    height: 550px;
 }
 
 .about-us__body p {
@@ -1077,6 +1086,11 @@ input[type="checkbox"].input-validation-error {
     height: 3px;
     top: 14px;
     left: 0;
+}
+
+.hr-center {
+    width: 300px;
+    margin: auto;
 }
 /* !about us*/
 

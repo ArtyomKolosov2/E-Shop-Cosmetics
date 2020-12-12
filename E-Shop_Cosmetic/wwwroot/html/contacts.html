@@ -18,10 +18,10 @@
 
                 <nav class="nav">
                     <ul>
-                        <li><a asp-action="Index" asp-controller="Home">Главная</a></li>
-                        <li><a asp-controller="Products" asp-action="ViewProducts">Каталог</a></li>
-                        <li><a href="../html/contacts.html">Контакты</a></li>
-                        <li><a href="../html/about_store.html">О магазине</a></li>
+                        <li><a href="/Home/Index">Главная</a></li>
+                        <li><a href="/Products/ViewProducts">Каталог</a></li>
+                        <li><a href="/html/contacts.html">Контакты</a></li>
+                        <li><a href="/html/about_store.html">О магазине</a></li>
                     </ul>
                 </nav>
 
@@ -35,10 +35,10 @@
         </div>
     </header>
 
-    <main>
+    <main class="contacts">
         <div class="container">
             <hr />
-            <div class="contacts wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
+            <div class="contacts-content wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
                 <div class="contacts-block">
                     <div class="contacts-group">
                         <img src="../img/phone.svg" style="width:15px" alt="Alternate Text" />
@@ -114,7 +114,6 @@
         </div>
     </section>
     <script src="../js/libraries/jquery.min.js"></script>
-    <script src="../js/libraries/bootstrap.min.js"></script>
     <script src="../js/libraries/wow.min.js"></script>
     <script src="../js/main.js" type="module"></script>
 </body>

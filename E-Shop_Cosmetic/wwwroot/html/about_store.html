@@ -18,10 +18,10 @@
 
                 <nav class="nav">
                     <ul>
-                        <li><a asp-action="Index" asp-controller="Home">Главная</a></li>
-                        <li><a asp-controller="Products" asp-action="ViewProducts">Каталог</a></li>
-                        <li><a href="~/html/contacts.html">Контакты</a></li>
-                        <li><a href="~/html/about_store.html">О магазине</a></li>
+                        <li><a href="/Home/Index">Главная</a></li>
+                        <li><a href="/Products/ViewProducts">Каталог</a></li>
+                        <li><a href="../html/contacts.html">Контакты</a></li>
+                        <li><a href="../html/about_store.html">О магазине</a></li>
                     </ul>
                 </nav>
 
@@ -35,24 +35,24 @@
         </div>
     </header>
     <main>
-        <section class="">
+        <section class="about-us">
             <div class="container">
-                <div class="about-us wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
+                <div class="about-us-content wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
                     <div class="about-us__title">
                         <h1>О магазине</h1>
-                        <hr style="width:300px;margin:auto;" />
-                        <h2>КОСМО - ЭТО СЕТЬ МАГАЗИНОВ КОСМЕТИКИ И ПАРФЮМЕРИИ ФОРМАТА BEAUTY STORE.</h2>
+                        <hr class="hr-center" />
+                        <h2>E-Cosmetics - ЭТО СЕТЬ МАГАЗИНОВ КОСМЕТИКИ И ПАРФЮМЕРИИ ФОРМАТА BEAUTY STORE.</h2>
                         <img src="../img/about-us.jpg" alt="Alternate Text" />
                     </div>
                     <div class="about-us__body">
                         <p>
-                            Сеть магазинов КОСМО постоянно растет и насчитывает более 20 магазинов в г. Минске, Гомеле, Могилеве, Гродно, Витебске, Бресте, Солигорске, Полоцке и Мозыре!
+                            Сеть магазинов E-Cosmetics постоянно растет и насчитывает более 20 магазинов в г. Минске, Гомеле, Могилеве, Гродно, Витебске, Бресте, Солигорске, Полоцке и Мозыре!
                         </p>
                         <p>
                             Наша задача – предложить нашим клиентам идеальный сервис, широкий выбор ассортимента товаров, превзойти ожидания и удовлетворить все потребности.
                         </p>
                         <p>
-                            КОСМО - официальный представитель ряда косметических брендов, в том числе на эксклюзивных условиях и мы:
+                            E-Cosmetics - официальный представитель ряда косметических брендов, в том числе на эксклюзивных условиях и мы:
                         </p>
                         <ul class="about-us__body__ul">
                             <li>
@@ -71,6 +71,7 @@
             </div>
         </section>
     </main>
+
     <footer class="footer animated wow bounceInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
         <div class="container">
             <div class="wrapper">
@@ -116,7 +117,6 @@
         </div>
     </section>
     <script src="../js/libraries/jquery.min.js"></script>
-    <script src="../js/libraries/bootstrap.min.js"></script>
     <script src="../js/libraries/wow.min.js"></script>
     <script src="../js/main.js" type="module"></script>
 </body>
