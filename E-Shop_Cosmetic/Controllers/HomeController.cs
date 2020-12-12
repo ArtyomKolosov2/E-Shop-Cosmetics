@@ -19,8 +19,8 @@ namespace E_Shop_Cosmetic.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            ViewBag.Title = "E-Cosmetics";
             StringBuilder messageBuilder = new StringBuilder($"Приветствуем на сайте");
+            ViewBag.Title = "Добро пожаловать";
             if (User.Identity.IsAuthenticated)
             {
                 messageBuilder.Append($", {User.Identity.Name}!");

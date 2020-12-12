@@ -5,6 +5,7 @@ using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -61,18 +62,18 @@ namespace E_Shop_Cosmetic.Controllers
                 SearchParams = searchParams
 
             };
-            ViewBag.Title = "Поиск по товарам";
+            ViewBag.Title = "Поиск";
             return View(viewModel);
         }
         [HttpGet]
         public async Task<IActionResult> PlaceOrder()
         {
-            ViewBag.Title = "Оформление заказа";
             if (await _cartService.IsAnyProductInCartAsync())
             {
                 return View();
             }
             return NoContent();
+
         }
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel)
@@ -114,12 +115,12 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateOrder(int id)
         {
-            ViewBag.Title = "Изменение заказа";
             var order = await _orderRepository.GetOrderByIdAsync(id);
             if (order is not null)
             {
                 return View(order);
             }
+
             return NoContent();
         }
 
@@ -140,7 +141,6 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> Order(int id)
         {
-            ViewBag.Title = "Заказ";
             var order = await _orderRepository.GetOrderByIdWithDetailsAsync(id);
             if (order is not null)
             {
@@ -154,7 +154,6 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> ViewOrders()
         {
-            ViewBag.Title = "Вывод заказов";
             var orders = await _orderRepository.GetOrdersAsync
                 (
                 new OrderSpecification().
