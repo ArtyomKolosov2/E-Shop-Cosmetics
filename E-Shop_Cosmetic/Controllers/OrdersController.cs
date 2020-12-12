@@ -80,7 +80,7 @@ namespace E_Shop_Cosmetic.Controllers
             var ordersDetails = await _cartService.GetOrderDetailsAsync();
             if (ordersDetails.Any())
             {
-                var totalPrice = ordersDetails.Sum(detail => detail.TotalPrice);
+                var totalPrice = Math.Round(ordersDetails.Sum(detail => detail.TotalPrice), 2);
                 var newOrder = new Order()
                 {
                     Address = orderViewModel.Address,
@@ -96,6 +96,7 @@ namespace E_Shop_Cosmetic.Controllers
 
                 };
                 await _orderRepository.AddOrderAsync(newOrder);
+                await _cartService.ClearCartAsync();
                 return RedirectToAction("OrderSuccessful", newOrder);
             }
             else

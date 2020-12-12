@@ -15,6 +15,7 @@ namespace E_Shop_Cosmetic.ViewModels
 
         [Required(ErrorMessage = "Не указан пароль")]
         [DataType(DataType.Password)]
+        [StringLength(20, MinimumLength = 6, ErrorMessage = "Неверный размер")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]

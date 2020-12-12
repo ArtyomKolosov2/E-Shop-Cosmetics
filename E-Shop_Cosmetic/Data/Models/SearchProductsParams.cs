@@ -15,6 +15,8 @@ namespace E_Shop_Cosmetic.Data.Models
         [BindingBehavior(BindingBehavior.Optional)]
         public bool IsAvailable { get; set; }
         [BindingBehavior(BindingBehavior.Optional)]
+        public bool IsSortByPriceRequired { get; set; }
+        [BindingBehavior(BindingBehavior.Optional)]
         public int CategoryId { get; set; }
     }
 }

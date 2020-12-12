@@ -38,7 +38,7 @@ namespace E_Shop_Cosmetic.Controllers
                     IncludeCategory().
                     SortByPrice().
                     WithoutTracking().
-                    AddPagination(10)
+                    AddPagination(9)
                 ),
             };
             _logger.LogInformation("Home/Index is executed");
