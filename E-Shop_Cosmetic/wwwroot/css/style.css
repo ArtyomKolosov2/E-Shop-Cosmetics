@@ -206,7 +206,7 @@ a:hover {
 }
 
 .text {
-    padding: 20px 23px 35px 23px;
+    padding: 10px 5px;
 }
 
 .card-block {
@@ -238,7 +238,8 @@ a:hover {
 .card-info {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content:flex-start;
+    max-width: 384px;
 }
 
 .card-info__name {
@@ -746,7 +747,10 @@ a:hover {
     padding: 20px 20px;
     font-size: 24px;
 }
+.product-info__header:hover
+{
 
+}
 .line-bold {
 }
 
@@ -774,7 +778,7 @@ a:hover {
 
 .offer-info__description {
     display: block;
-    width: 450px;
+    width: 610px;
 }
 
 .offer-info__description h2 {
@@ -789,6 +793,7 @@ a:hover {
 }
 
 .offer-info__description p {
+    word-break: break-word;
     font-size: 16px;
     padding-bottom: 10px;
 }
@@ -1074,6 +1079,12 @@ input[type="checkbox"].input-validation-error {
     left: 0;
 }
 /* !about us*/
+
+/* fix text */
+
+/* !fix text */
+
+
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {
