@@ -29,8 +29,10 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> Product(int id)
         {
+            ViewBag.Title = "Продукт";
             _logger.LogInformation("Products\\Product is executed");
             var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+
             if (product is not null)
             {
                 return View(product);
@@ -50,11 +52,14 @@ namespace E_Shop_Cosmetic.Controllers
                 SearchParams = new SearchProductsParams()
             };
             _logger.LogInformation("Products\\ViewProducts is executed");
+
+            ViewBag.Title = "Вывод продуктов";
             return View(viewModel);
         }
         [HttpGet]
         public async Task<IActionResult> Search(SearchProductsParams searchParams)
         {
+            ViewBag.Title = "Поиск";
             var searchSpecification = new ProductSpecification().
                 IncludeCategory();
             if (searchParams.StartPrice is not null && searchParams.EndPrice is not null)
@@ -84,6 +89,7 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 _logger.LogWarning("Search unsuccesful!");
             }
+
             return View(viewModel);
         }
 
@@ -91,7 +97,9 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> AddProduct()
         {
+            ViewBag.Title = "Добавление продукта";
             ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+
             return View();
         }
 
@@ -108,6 +116,7 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int id)
         {
+            ViewBag.Title = "Изменение продукта";
             var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
             if (searchResult is null)
             {
@@ -134,12 +143,13 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteProduct(int id)
         {
+            ViewBag.Title = "Удаление продукта";
             var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
             if (searchResult is null)
             {
                 return NoContent();
             }
-            
+
             return View(searchResult);
         }
 
@@ -150,6 +160,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
             await _cosmeticProductsRepository.DeleteProductAsync(product); 
+
             return RedirectToAction("ViewProducts", "Products");
         }
     }
