@@ -13,8 +13,12 @@ import { cropText, cropTextArray } from "./modules/cropText.js";
 async function main() {
     modalCart();
 
+    const filterAdminBtn = document.querySelector('#btn_filter_admin');
+    if (filterAdminBtn) {
+        modalFilter(filterAdminBtn);
+    }
     // slider for filter
-    const filterBtn = document.querySelector('#btn-filter');
+    const filterBtn = document.querySelector('#btn_filter');
     if (filterBtn) {
         modalFilter(filterBtn);
 
