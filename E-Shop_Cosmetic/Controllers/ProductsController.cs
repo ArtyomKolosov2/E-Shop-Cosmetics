@@ -72,9 +72,15 @@ namespace E_Shop_Cosmetic.Controllers
                 searchSpecification.WhereId(searchParams.SearchProductId.Value);
                 isPrimeKeyUsed = true;
             }
-            if (searchParams.Name is not null && !isPrimeKeyUsed)
-            {
-                searchSpecification.WhereName(searchParams.Name);
+            if (!isPrimeKeyUsed) {
+                if (searchParams.Name is not null)
+                {
+                    searchSpecification.WhereName(searchParams.Name);
+                }
+                if (searchParams.IsSortByPriceRequired)
+                {
+                    searchSpecification.SortByPrice();
+                }
             }
             searchSpecification.WhereAvailable(searchParams.IsAvailable).WithoutTracking();
             ViewBag.Title = "Искомый товар";

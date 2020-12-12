@@ -21,7 +21,13 @@ namespace E_Shop_Cosmetic.Data
             var categories = new Category[]
             {
                 new Category {CategoryName="CHI", Description="Косметика от CHI"},
-                new Category {CategoryName="Faberlic", Description="Косметика от faberlic"}
+                new Category {CategoryName="Faberlic", Description="Косметика от faberlic"},
+                new Category {CategoryName="Духи", Description="Самые приятные духи"},
+                new Category {CategoryName="Краски для волос", Description="Краски"},
+                new Category {CategoryName="Шампуни", Description="Шампуни для волос"},
+                new Category {CategoryName="Укладка волос", Description="Для Ваших волос"},
+                new Category {CategoryName="Помада", Description="Помада для Ваших губ"},
+                
             };
             await appDB.Categories.AddRangeAsync(categories);
             await appDB.SaveChangesAsync();
