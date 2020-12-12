@@ -23,11 +23,13 @@
     </div>
     @if (User.IsInRole("admin"))
     {
-        <a asp-action="AddProduct" asp-controller="Products">
-            <button class="btn btn-primary">
-                <p class="btn-text">Добавить</p>
-            </button>
-        </a>
+        <div class="btn-block">
+            <a asp-action="AddProduct" asp-controller="Products">
+                <button class="btn btn-primary" style="margin-right:0;width: 150px;">
+                    <p class="btn-text">Добавить</p>
+                </button>
+            </a>
+        </div> 
     }
 </section>
 

@@ -202,7 +202,7 @@ a:hover {
 .card-image {
     width: 384px;
     height: 250px;
-    object-fit: unset;
+    object-fit: contain;
 }
 
 .text {
@@ -588,6 +588,11 @@ a:hover {
 
 .under-order {
     margin-left: 20px;
+}
+
+.search__is-available {
+    margin-left: 5px;
+    margin-top: 2px;
 }
 
 .is-available {
