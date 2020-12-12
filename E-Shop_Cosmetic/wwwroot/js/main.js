@@ -65,7 +65,7 @@ async function main() {
 
     const infoBody = document.querySelector("#offer-info__description__body");
     if (infoBody) {
-        cropText(infoBody, 300, endCharacter);
+        cropText(infoBody, 400, endCharacter);
     }
     // !crop text
 
