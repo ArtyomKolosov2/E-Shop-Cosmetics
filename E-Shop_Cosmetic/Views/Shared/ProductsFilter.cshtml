@@ -32,16 +32,16 @@
                 </div>
                 <div class="checkboxes">
                     <div class="under-order">
-                        <p>Сортировать по цене:</p><input asp-for="IsSortByPriceRequired" value="true" checked="checked" type="checkbox" class="search__under-order" />
+                        <p>По цене:</p>
+                        <input asp-for="IsSortByPriceRequired" checked="checked" type="checkbox" class="search__under-order" />
                     </div>
                     <div class="is-available">
-                        <p>Есть в наличии:</p>
+                        <p>В наличии:</p>
                         <input asp-for="IsAvailable" value="true" checked="checked" type="checkbox" class="search__is-available">
                     </div>
                 </div>
                 <div class="modal-filter__footer">
                     <button class="btn btn-primary">Отправить</button>
-                    <button class="btn btn-cancel-filter">Очистить</button>
                 </div>
             </div>
         </form>

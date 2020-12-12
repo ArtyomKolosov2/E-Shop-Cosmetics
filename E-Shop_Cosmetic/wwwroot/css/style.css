@@ -83,12 +83,14 @@ a:hover {
 }
 
 .btn-primary {
-    background: #1890ff;
-    border: 1px solid #1890ff;
+    background: #007fff;
+    border: 1px solid #007fff;
     color: #fff;
     margin-right: 10px;
 }
-
+.btn-primary:hover {
+    background: #1890ff;
+}
 .btn-icon {
     margin-right: 6px;
 }
@@ -512,7 +514,7 @@ a:hover {
 .modal-filter {
     min-width: 400px;
     width: 500px;
-    height: 450px;
+    height: 480px;
     margin: auto;
     border-radius: 5px;
     background-color: #fff;
@@ -527,7 +529,6 @@ a:hover {
 }
 
 .filter-cost {
-    width: 300px;
     display: block;
     margin: auto;
 }
@@ -605,7 +606,7 @@ a:hover {
 .form-search__property {
     display: block;
     margin: 0 auto;
-    width: 300px;
+    width: 320px;
     height: 30px;
     margin-bottom: 20px;
 }
@@ -617,6 +618,10 @@ a:hover {
 }
 
 .btn-cancel-filter {
+    background-color: #FFFFF0;
+}
+.btn-cancel-filter:hover {
+    background-color: #fff;
 }
 /* !modal filter*/
 
@@ -659,6 +664,10 @@ a:hover {
     padding: 8px;
     width: 45%;
     max-height: 40px;
+}
+.form-group__text-fix {
+    word-break: break-word;
+    font-size: 16px
 }
 
 .btn-block {
@@ -750,9 +759,11 @@ a:hover {
 }
 
 .product-info__header {
+    display: inline-block;
     padding: 20px 20px;
     font-size: 24px;
     min-height: 60px;
+    cursor: pointer;
 }
 .product-info__header:hover {
     font-size: 25px;
