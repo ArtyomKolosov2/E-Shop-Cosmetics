@@ -202,11 +202,11 @@ a:hover {
 .card-image {
     width: 384px;
     height: 250px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .text {
-    padding: 20px 23px 35px 23px;
+    padding: 10px 5px;
 }
 
 .card-block {
@@ -238,7 +238,8 @@ a:hover {
 .card-info {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
+    justify-content:flex-start;
+    max-width: 384px;
 }
 
 .card-info__name {
@@ -589,6 +590,11 @@ a:hover {
     margin-left: 20px;
 }
 
+.search__is-available {
+    margin-left: 5px;
+    margin-top: 2px;
+}
+
 .is-available {
     margin-left: 20px;
 }
@@ -746,7 +752,10 @@ a:hover {
     padding: 20px 20px;
     font-size: 24px;
 }
+.product-info__header:hover
+{
 
+}
 .line-bold {
 }
 
@@ -764,7 +773,7 @@ a:hover {
     width: 330px;
     height: 235px;
     padding: 25px;
-    object-fit:cover;
+    object-fit: unset;
 }
 
 .offer-info {
@@ -773,8 +782,8 @@ a:hover {
 }
 
 .offer-info__description {
+    color:#000;
     display: block;
-    width: 450px;
 }
 
 .offer-info__description h2 {
@@ -789,7 +798,14 @@ a:hover {
 }
 
 .offer-info__description p {
+    word-break: break-word;
     font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.offer-info__description span {
+    display:block;
+    font-size: 20px;
     padding-bottom: 10px;
 }
 
@@ -943,7 +959,6 @@ a:hover {
 }
 .table-order-successful__body {
     margin: auto;
-    max-width: 775px;
 }
 .table-body {
     margin: auto;
@@ -959,11 +974,13 @@ a:hover {
     text-align: center;
 }
 .table-row-content td {
+    min-width:150px;
+    word-break:break-word;
     text-align: center;
     height: 150px;
 }
 .table-row__information {
-    width: 300px;
+    width: 350px;
     text-align: left;
     padding: 2px;
 }
@@ -1007,6 +1024,9 @@ input[type="checkbox"].input-validation-error {
 
 /* contacts */
 .contacts {
+    margin-top: 40px;
+}
+.contacts-content {
     margin: 80px 0;
     padding: 60px 20px;
     display: flex;
@@ -1026,6 +1046,10 @@ input[type="checkbox"].input-validation-error {
 
 /* about us */
 .about-us {
+
+}
+.about-us-content{
+    margin:40px 0;
 }
 .about-us__title
 {
@@ -1047,6 +1071,8 @@ input[type="checkbox"].input-validation-error {
 
 .about-us__title img {
     width: 100%;
+    object-fit: unset;
+    height: 550px;
 }
 
 .about-us__body p {
@@ -1073,7 +1099,18 @@ input[type="checkbox"].input-validation-error {
     top: 14px;
     left: 0;
 }
+
+.hr-center {
+    width: 300px;
+    margin: auto;
+}
 /* !about us*/
+
+/* fix text */
+
+/* !fix text */
+
+
 /* ноутбуки и компьютеры*/
 @media(max-width:1366px) {
     .container {

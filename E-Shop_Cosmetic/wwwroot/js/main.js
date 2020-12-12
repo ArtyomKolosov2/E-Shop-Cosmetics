@@ -2,12 +2,13 @@ import { modalCart } from "./modules/modalCart.js";
 import { modalFilter } from "./modules/modalFilter.js";
 
 import { getMinPrice, getMaxPrice, setMinMaxPrice } from "./modules/getDataFromDB.js";
-
-import { addToCart, uploadCart, cartHandler } from "./modules/cart.js";
 import { setCookie, deleteCookie, getCookie } from "./modules/getDataFromCookie.js";
-import { buildSlider } from "./modules/slider.js";
+import { addToCart, uploadCart, cartHandler } from "./modules/cart.js";
 
+import { buildSlider } from "./modules/slider.js";
 import makingOrder from "./modules/makingOrder.js";
+
+import { cropText, cropTextArray } from "./modules/cropText.js";
 
 async function main() {
     modalCart();
@@ -49,6 +50,24 @@ async function main() {
         await makingOrder(getCookie);
     }
     // !making order
+
+    // crop text
+    const textSmall = document.querySelectorAll("#card-info__name");
+    const endCharacter = '...';
+    if (textSmall) {
+        cropTextArray(textSmall, 20, endCharacter);
+    }
+
+    const productInfoHeader = document.querySelector(".product-info__header");
+    if (productInfoHeader) {
+        cropText(productInfoHeader, 50, endCharacter);
+    }
+
+    const infoBody = document.querySelector("#offer-info__description__body");
+    if (infoBody) {
+        cropText(infoBody, 400, endCharacter);
+    }
+    // !crop text
 
     //длинна анимации
     new WOW().init();

@@ -4,47 +4,21 @@
     <table border="1" class="table table-order-successful__body">
         <tbody class="table-body">
             <tr class="table-row">
-                <td>
-                    Имя
-                </td>
-                <td>
-                    Фамилия
-                </td>
-                <td>
-                    Адрес
-                </td>
-                <td>
-                    Номер
-                </td>
-                <td>
-                    Доп. информация
-                </td>
-                <td>
-                    Полная стоимость
-                </td>
-                <td>
-                    Активный заказ
-                </td>
+                <td>Имя</td>
+                <td>Фамилия</td>
+                <td>Адрес</td>
+                <td>Номер</td>
+                <td>Доп. информация</td>
+                <td>Полная стоимость</td>
+                <td>Активный заказ</td>
             </tr>
             <tr class="table-row table-row-content">
-                <td>
-                    @Html.DisplayFor(model => model.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.LastName)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Address)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.PhoneNumber)
-                </td>
-                <td class="table-row__information">
-                    @Html.DisplayFor(model => model.Information)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.TotalPrice)
-                </td>
+                <td>@Html.DisplayFor(model => model.Name)</td>
+                <td>@Html.DisplayFor(model => model.LastName)</td>
+                <td>@Html.DisplayFor(model => model.Address)</td>
+                <td>@Html.DisplayFor(model => model.PhoneNumber)</td>
+                <td class="table-row__information">@Html.DisplayFor(model => model.Information)</td>
+                <td>@Html.DisplayFor(model => model.TotalPrice)</td>
                 <td>
                     @if (Model.IsOrderActive)
                     {
