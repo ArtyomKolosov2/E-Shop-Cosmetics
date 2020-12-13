@@ -15,7 +15,7 @@
 <section class="row mt-5 mb-2">
     <div class="cards">
     @{
-        foreach (var product in Model.GetProducts)
+        foreach (var product in Model.Products)
         {
             @await Html.PartialAsync("ShowProduct", product)
         }

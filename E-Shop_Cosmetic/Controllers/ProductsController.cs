@@ -44,7 +44,7 @@ namespace E_Shop_Cosmetic.Controllers
             ViewBag.Title = "Товары";
             var viewModel = new ProductsViewModel
             {
-                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(
+                Products = await _cosmeticProductsRepository.GetProductsAsync(
                     new ProductSpecification().
                     IncludeCategory().
                     WithoutTracking()),
@@ -86,12 +86,12 @@ namespace E_Shop_Cosmetic.Controllers
             ViewBag.Title = "Искомый товар";
             ProductsViewModel viewModel = new ProductsViewModel
             {
-                GetProducts = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
+                Products = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
                 ProductCategory = "Косметика",
                 SearchParams = new SearchProductsParams()
             };
             _logger.LogInformation("Products\\Search is executed");
-            if (!viewModel.GetProducts.Any())
+            if (!viewModel.Products.Any())
             {
                 _logger.LogWarning("Search unsuccesful!");
             }

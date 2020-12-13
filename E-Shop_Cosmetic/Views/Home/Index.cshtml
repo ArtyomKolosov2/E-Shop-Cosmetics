@@ -2,8 +2,7 @@
 
 <div class="header-input">
     <form method="get" asp-controller="Products" asp-action="Search">
-        <input type="text" name="Name" class="input input-address" placeholder="Поиск по названию">
-        <input name="IsAvailable" value="true" style="display:none">
+        <input type="text" name="Name" class="input input-address" placeholder="Поиск по названию"/>
         <button class="btn btn-primary header-input__fix-btn">Искать</button>
     </form>
 </div>
@@ -28,7 +27,7 @@
 <section class="row mb-2">
     <div class="cards">
         @{
-            foreach (var product in Model.GetProducts)
+            foreach (var product in Model.Products)
             {
                 @await Html.PartialAsync("ShowProduct", product)
             }
