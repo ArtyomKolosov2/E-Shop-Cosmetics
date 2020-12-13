@@ -643,6 +643,7 @@ a:hover {
 }
 
 .form-group {
+    position:relative;
     display: flex;
     justify-content: center;
     padding-top: 10px;
@@ -1010,7 +1011,10 @@ a:hover {
     width: 119px;
 }
 .fix-field-validation-error {
-    
+    right: -100px;
+}
+.fix-order-field-validation-error {
+    right: -92px;
 }
 .field-validation-valid {
     display: none;

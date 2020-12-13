@@ -25,31 +25,31 @@
                     <div class="form-group">
                         <label asp-for="Name" class="form-group__header">Введите Имя</label>
                         <input type="text" asp-for="Name" class="form-group__input" placeholder="Иван" />
-                        <span asp-validation-for="Name" />
+                        <span asp-validation-for="Name" class="fix-order-field-validation-error" />
                     </div>
                     <div class="form-group">
                         <label asp-for="LastName" class="form-group__header">Введите фамилию</label>
                         <input type="text" asp-for="LastName" class="form-group__input" placeholder="Иванов" />
-                        <span asp-validation-for="LastName" />
+                        <span asp-validation-for="LastName" class="fix-order-field-validation-error" />
                     </div>
                     <div class="form-group">
                         <label asp-for="Address" class="form-group__header">Введите адрес</label>
                         <input type="text" asp-for="Address" class="form-group__input" placeholder="г.Москва ул Ленина 77" />
-                        <span asp-validation-for="Address" />
+                        <span asp-validation-for="Address" class="fix-order-field-validation-error"/>
                     </div>
                     <div class="form-group">
                         <label asp-for="Email" class="form-group__header">Введите e-mail</label>
                         <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
-                        <span asp-validation-for="Email" />
+                        <span asp-validation-for="Email" class="fix-order-field-validation-error" />
                     </div>
                     <div class="form-group">
                         <label asp-for="PhoneNumber" class="form-group__header">Введите телефон</label>
                         <input asp-for="PhoneNumber" class="form-group__input" placeholder="+375(**)***-**-**" />
-                        <span asp-validation-for="PhoneNumber" />
+                        <span asp-validation-for="PhoneNumber" class="fix-order-field-validation-error" />
                     </div>
                     <div class="form-group">
                         <label asp-for="Information" class="form-group__header form-group__wishes">Введите ваши пожелания:</label>
-                        <span asp-validation-for="Information" />
+                        <span asp-validation-for="Information" class="fix-order-field-validation-error" />
                     </div>
                     <div class="form-group">
                         <textarea asp-for="Information" class="form-group__textarea" placeholder="Ваш текст"></textarea>
