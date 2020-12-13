@@ -83,12 +83,14 @@ a:hover {
 }
 
 .btn-primary {
-    background: #1890ff;
-    border: 1px solid #1890ff;
+    background: #007fff;
+    border: 1px solid #007fff;
     color: #fff;
     margin-right: 10px;
 }
-
+.btn-primary:hover {
+    background: #1890ff;
+}
 .btn-icon {
     margin-right: 6px;
 }
@@ -244,7 +246,7 @@ a:hover {
 
 .card-info__name {
     color: #000;
-    box-shadow: 0 0 10px rgb(0, 0, 0, 0.15);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
 .raiting {
@@ -512,7 +514,7 @@ a:hover {
 .modal-filter {
     min-width: 400px;
     width: 500px;
-    height: 450px;
+    height: 460px;
     margin: auto;
     border-radius: 5px;
     background-color: #fff;
@@ -527,7 +529,6 @@ a:hover {
 }
 
 .filter-cost {
-    width: 300px;
     display: block;
     margin: auto;
 }
@@ -605,7 +606,7 @@ a:hover {
 .form-search__property {
     display: block;
     margin: 0 auto;
-    width: 300px;
+    width: 320px;
     height: 30px;
     margin-bottom: 20px;
 }
@@ -617,6 +618,10 @@ a:hover {
 }
 
 .btn-cancel-filter {
+    background-color: #FFFFF0;
+}
+.btn-cancel-filter:hover {
+    background-color: #fff;
 }
 /* !modal filter*/
 
@@ -659,6 +664,13 @@ a:hover {
     padding: 8px;
     width: 45%;
     max-height: 40px;
+}
+.form-group-order__input {
+    width: 80%;
+}
+.form-group__text-fix {
+    word-break: break-word;
+    font-size: 16px
 }
 
 .btn-block {
@@ -743,26 +755,29 @@ a:hover {
 /* Products*/
 .product {
     margin: 20px 0;
+    position: relative;
 }
 
 .product-info {
 }
 
 .product-info__header {
+    display: inline-block;
     padding: 20px 20px;
-    font-size: 24px;
+    font-size: 20px;
+    min-height: 60px;
+    cursor: pointer;
 }
-.product-info__header:hover
-{
+.product-info__header:hover {
+    font-size: 20.2px;
+}
 
-}
 .line-bold {
 }
 
 .offer {
     display: inline-flex;
     padding: 20px 0;
-    position: relative;
 }
 
 .offers-figure {
@@ -772,8 +787,9 @@ a:hover {
 .offers-figure__img {
     width: 330px;
     height: 235px;
-    padding: 25px;
+    padding: 5px;
     object-fit: scale-down;
+    box-shadow: 0 8px 4px rgba(0, 0, 0, 0.09);
 }
 
 .offer-info {
@@ -823,8 +839,8 @@ a:hover {
 }
 
 .offer-footer {
-    position: absolute;
-    bottom: 49px;
+    padding-bottom: 4%;
+    padding-left: 6%;
 }
 
 .offer-footer__btn {
@@ -992,6 +1008,9 @@ a:hover {
     position: absolute;
     right: -10px;
     width: 119px;
+}
+.fix-field-validation-error {
+    
 }
 .field-validation-valid {
     display: none;

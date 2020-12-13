@@ -1,13 +1,10 @@
 ﻿@model E_Shop_Cosmetic.Data.Models.Product
 
-@{
-    ViewData["Title"] = "Delete";
-}
 <section id="delete-product">
     <form asp-action="DeleteProduct" asp-controller="Products" asp-antiforgery="true" class="form form-delete-product">
-        <h3 class="form-header">Вы правда хотите удалить это?</h3>
+        <h3 class="form-header">Вы правда хотите удалить товар?</h3>
         <dl class="dl-horizontal">
-            <dt class="form-group" style="font-size:16px">
+            <dt class="form-group form-group__text-fix">
                 Название товара:@Model.Name
             </dt>
             <dt class="form-group">

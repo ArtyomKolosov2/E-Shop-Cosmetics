@@ -13,8 +13,12 @@ import { cropText, cropTextArray } from "./modules/cropText.js";
 async function main() {
     modalCart();
 
+    const filterAdminBtn = document.querySelector('#btn_filter_admin');
+    if (filterAdminBtn) {
+        modalFilter(filterAdminBtn);
+    }
     // slider for filter
-    const filterBtn = document.querySelector('#btn-filter');
+    const filterBtn = document.querySelector('#btn_filter');
     if (filterBtn) {
         modalFilter(filterBtn);
 
@@ -52,20 +56,11 @@ async function main() {
     // !making order
 
     // crop text
+
     const textSmall = document.querySelectorAll("#card-info__name");
     const endCharacter = '...';
     if (textSmall) {
         cropTextArray(textSmall, 20, endCharacter);
-    }
-
-    const productInfoHeader = document.querySelector(".product-info__header");
-    if (productInfoHeader) {
-        cropText(productInfoHeader, 50, endCharacter);
-    }
-
-    const infoBody = document.querySelector("#offer-info__description__body");
-    if (infoBody) {
-        cropText(infoBody, 300, endCharacter);
     }
     // !crop text
 
