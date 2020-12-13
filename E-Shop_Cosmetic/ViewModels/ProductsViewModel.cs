@@ -5,7 +5,7 @@ namespace E_Shop_Cosmetic.ViewModels
 {
     public class ProductsViewModel
     {
-        public IEnumerable<Product> GetProducts { get; set; }
+        public IEnumerable<Product> Products { get; set; }
         public SearchProductsParams SearchParams { get; set; }
         public string ProductCategory { get; set; }
     }

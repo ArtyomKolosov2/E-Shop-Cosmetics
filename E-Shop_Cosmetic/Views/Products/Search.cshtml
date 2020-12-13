@@ -13,13 +13,13 @@
     <h3 class="view-products-header__category">@Model.ProductCategory</h3>
 </section>
 
-@if (Model.GetProducts.Any())
+@if (Model.Products.Any())
 {
     <section class="row mt-5 mb-2">
 
         <div class="cards">
             @{
-                foreach (var product in Model.GetProducts)
+                foreach (var product in Model.Products)
                 {
                     @await Html.PartialAsync("ShowProduct", product)
                 }

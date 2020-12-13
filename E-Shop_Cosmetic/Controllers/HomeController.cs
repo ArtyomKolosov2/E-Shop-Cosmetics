@@ -32,7 +32,7 @@ namespace E_Shop_Cosmetic.Controllers
             var obj = new HomeViewModel
             {
                 Message = messageBuilder.ToString(),
-                GetProducts = await _productsRepository.GetProductsAsync
+                Products = await _productsRepository.GetProductsAsync
                 (
                     new ProductSpecification().
                     IncludeCategory().
