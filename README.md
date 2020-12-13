@@ -19,4 +19,6 @@ Developer role grants access to API of our E-SHOP
 ### Backend: [ArtyomKolosov2](https://github.com/ArtyomKolosov2)
 ### Frontend: [Kuzmich](https://github.com/kuzmiich)
 ***
-## Created with .NET 5, ASP.NET Core, Entity Framework Core 5, JS, HTML, CSS
+## Created using: 
+- .NET 5, ASP.NET Core, Entity Framework Core 5
+- JS, Jquery + bootstrap, HTML, CSS + bootstrap
