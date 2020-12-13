@@ -8,7 +8,7 @@
         </div>
         <form method="get" asp-action="Search" asp-controller="Products" class="form-search form-search__property" name="form_search">
             <input type="number" min="1" asp-for="SearchProductId" placeholder="Введите артикул" class="form-search__property" />
-            <input type="text" name="name" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
+            <input type="text" asp-for="Name" placeholder="Введите название товара" class="form-search__property" />
             
             <div class="filter-cost">
                 <input class="js-range-slider" value="$" />
@@ -17,7 +17,7 @@
                     <div class="table-block">
                         <span>от</span>
                         <div class="table-cell">
-                            <input name="StartPrice" asp-for="StartPrice" type="text" id="priceMin" class="form-control">
+                            <input asp-for="StartPrice" type="text" id="priceMin" class="form-control">
                         </div>
                         <span>руб</span>
                         <span class="line"></span>
@@ -25,7 +25,7 @@
                     <div class="table-block">
                         <span>до</span>
                         <div class="table-cell">
-                            <input name="EndPrice" asp-for="EndPrice" type="text" id="priceMax" class="form-control">
+                            <input asp-for="EndPrice" type="text" id="priceMax" class="form-control">
                         </div>
                         <span>руб</span>
                     </div>
@@ -33,11 +33,11 @@
                 <div class="checkboxes">
                     <div class="under-order">
                         <p>По цене:</p>
-                        <input asp-for="IsSortByPriceRequired" checked="checked" type="checkbox" class="search__under-order" />
+                        <input asp-for="IsSortByPriceRequired" type="checkbox" class="search__under-order" />
                     </div>
                     <div class="is-available">
                         <p>В наличии:</p>
-                        <input asp-for="IsAvailable" value="true" checked="checked" type="checkbox" class="search__is-available">
+                        <input asp-for="IsAvailable" type="checkbox" class="search__is-available">
                     </div>
                 </div>
                 <div class="modal-filter__footer">

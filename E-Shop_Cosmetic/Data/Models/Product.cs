@@ -11,6 +11,8 @@ namespace E_Shop_Cosmetic.Data.Models
         public string LongDescription { get; set; }
 
         [DataType(DataType.ImageUrl)]
+        [Url(ErrorMessage = "Неверный формат")]
+        [Required(ErrorMessage = "Добавьте картинку")]
         public string ImageURL { get; set; }
 
         [DataType(DataType.Currency)]

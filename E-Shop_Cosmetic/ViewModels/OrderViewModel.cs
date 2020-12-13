@@ -1,6 +1,4 @@
-﻿using E_Shop_Cosmetic.Data.Models;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace E_Shop_Cosmetic.ViewModels
 {
