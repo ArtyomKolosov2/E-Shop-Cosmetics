@@ -34,16 +34,16 @@ function createProducts(product) {
     }
 }
 
-function sumProducts(arrFoodPrice, foodPrice) {
+function sumProducts(arrFoodPrice, counter) {
     let sum = 0;
-    for (let i = 0; i < foodPrice.length; i++) {
-        sum += arrFoodPrice[i] * foodPrice[i].innerHTML;
+    for (let i = 0; i < counter.length; i++) {
+        sum += arrFoodPrice[i] * counter[i].innerHTML;
     }
     return sum;
 }
 
 function parseFoodPrice(foodPrice) {
-    let arrFoodPrice = []
+    let arrFoodPrice = [];
     for (let i = 0; i < foodPrice.length; i++) {
         arrFoodPrice.push(Number(foodPrice[i].innerHTML.slice(0, -2)));
     }
