@@ -10,12 +10,12 @@
             <div class="form-group">
                 <label asp-for="Email" class="form-group__header">Введите Email</label>
                 <input type="text" asp-for="Email" class="form-group__input" placeholder="user@gmail.com" />
-                <span asp-validation-for="Email" />
+                <span asp-validation-for="Email" class="fix-field-validation-error"/>
             </div>
             <div class="form-group">
                 <label asp-for="Password" class="form-group__header">Введите пароль</label>
                 <input asp-for="Password" class="form-group__input" placeholder="*******" />
-                <span asp-validation-for="Password" />
+                <span asp-validation-for="Password" class="fix-field-validation-error"/>
             </div>
             <div class="form-group">
                 Если не зарегестрирован → <a asp-action="Register" asp-controller="Account" class="register-link">Регистрация</a>
