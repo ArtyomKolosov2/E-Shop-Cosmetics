@@ -1,7 +1,7 @@
 ﻿@model SearchProductsParams
 
 <section class="modal-search">
-    <div class="modal-filter">
+    <div class="modal-filter" style="height: 500px;">
         <div class="modal-header modal-header-filter">
             <h3 class="modal-title">Фильтр</h3>
             <button class="btn-close-filter">&times;</button>
@@ -31,8 +31,8 @@
                     </div>
                 </div>
                 <div class="btn-block">
-                    <label asp-for="CategoryId" class="btn-block__header"></label>
-                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
+                    <label asp-for="CategoryId" class="btn-block__header" style=" font-size: 20px;"></label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select" style="width: 35%;">
                         <option value=""></option>
                     </select>
                     <span asp-validation-for="CategoryId" class="fix-field-validation-error"></span>
