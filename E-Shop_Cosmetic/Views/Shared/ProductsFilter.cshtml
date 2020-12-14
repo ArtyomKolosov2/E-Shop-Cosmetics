@@ -30,6 +30,13 @@
                         <span>руб</span>
                     </div>
                 </div>
+                <div class="btn-block">
+                    <label asp-for="CategoryId" class="btn-block__header"></label>
+                    <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="btn-block__select">
+                        <option value=""></option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="fix-field-validation-error"></span>
+                </div>
                 <div class="checkboxes">
                     <div class="under-order">
                         <p>По цене:</p>

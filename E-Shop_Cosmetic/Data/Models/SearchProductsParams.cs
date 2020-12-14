@@ -13,10 +13,12 @@ namespace E_Shop_Cosmetic.Data.Models
         public double? EndPrice { get; set; }
 
         [BindingBehavior(BindingBehavior.Optional)]
+        public int? CategoryId { get; set; }
+
+        [BindingBehavior(BindingBehavior.Optional)]
         public bool IsAvailable { get; set; } = true;
         [BindingBehavior(BindingBehavior.Optional)]
         public bool IsSortByPriceRequired { get; set; }
-        [BindingBehavior(BindingBehavior.Optional)]
-        public int CategoryId { get; set; }
+       
     }
 }

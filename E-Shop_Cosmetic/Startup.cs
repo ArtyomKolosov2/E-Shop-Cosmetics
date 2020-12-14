@@ -34,7 +34,6 @@ namespace E_Shop_Cosmetic
 
             services.AddHttpContextAccessor();
             services.AddTransient<ICookieService, CookieService>();
-            // ��������� ������������ �����������
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => //CookieAuthenticationOptions
                 {

@@ -41,7 +41,6 @@ namespace E_Shop_Cosmetic.Controllers
         }
         public async Task<IActionResult> ViewProducts()
         {
-            ViewBag.Title = "Товары";
             var viewModel = new ProductsViewModel
             {
                 Products = await _cosmeticProductsRepository.GetProductsAsync(
@@ -52,7 +51,7 @@ namespace E_Shop_Cosmetic.Controllers
                 SearchParams = new SearchProductsParams()
             };
             _logger.LogInformation("Products\\ViewProducts is executed");
-
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
             ViewBag.Title = "Вывод продуктов";
             return View(viewModel);
         }
@@ -84,6 +83,7 @@ namespace E_Shop_Cosmetic.Controllers
             }
             searchSpecification.WhereAvailable(searchParams.IsAvailable).WithoutTracking();
             ViewBag.Title = "Искомый товар";
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
             ProductsViewModel viewModel = new ProductsViewModel
             {
                 Products = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
