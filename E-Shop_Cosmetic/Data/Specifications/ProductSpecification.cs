@@ -32,6 +32,12 @@ namespace E_Shop_Cosmetic.Data.Specifications
             return this;
         }
 
+        public ProductSpecification WhereCategoryId(int id)
+        {
+            AddWhere(product => product.CategoryId == id);
+            return this;
+        }
+
         public ProductSpecification WhereAvailable(bool isAvailable)
         {
             AddWhere(product => product.IsAvailable == isAvailable);

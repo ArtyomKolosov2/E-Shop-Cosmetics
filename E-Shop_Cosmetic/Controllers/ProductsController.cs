@@ -80,6 +80,10 @@ namespace E_Shop_Cosmetic.Controllers
                 {
                     searchSpecification.SortByPrice();
                 }
+                if (searchParams.CategoryId is not null)
+                {
+                    searchSpecification.WhereCategoryId(searchParams.CategoryId.Value);
+                }
             }
             searchSpecification.WhereAvailable(searchParams.IsAvailable).WithoutTracking();
             ViewBag.Title = "Искомый товар";
