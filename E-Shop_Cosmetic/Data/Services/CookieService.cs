@@ -18,6 +18,7 @@ namespace E_Shop_Cosmetic.Data.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private const string CartCookieKey = "products";
         private const string PriceTagCookieKey = "pricetag";
+
         private class Detail
         {
             public int id { get; set; }
@@ -25,6 +26,7 @@ namespace E_Shop_Cosmetic.Data.Services
             public string name { get; set; }
             public double cost { get; set; }
         }
+
         public CookieService(IHttpContextAccessor httpContextAccessor, IProductsRepository repository)
         {
             _cookieCollection = httpContextAccessor.HttpContext.Request.Cookies;
@@ -48,6 +50,7 @@ namespace E_Shop_Cosmetic.Data.Services
             return orderDetailsList;
 
         }
+
         public async Task<bool> IsAnyProductInCartAsync()
         {
             return await Task.Run(() => GetCookieOrderDetails().Any());
@@ -64,6 +67,7 @@ namespace E_Shop_Cosmetic.Data.Services
 
             return cookieCartLines;
         }
+
         public void ClearCart()
         {
             _httpContextAccessor.HttpContext.Response.Cookies.Delete(CartCookieKey);

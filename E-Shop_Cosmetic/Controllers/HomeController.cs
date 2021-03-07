@@ -12,23 +12,28 @@ namespace E_Shop_Cosmetic.Controllers
     {
         private readonly ILogger _logger;
         private readonly IProductsRepository _productsRepository;
+
         public HomeController(ILogger<HomeController> logger, IProductsRepository productsRepository)
         {
             _logger = logger;
             _productsRepository = productsRepository;
         }
+
         public async Task<IActionResult> Index()
         {
             ViewBag.Title = "E-Cosmetics";
-            StringBuilder messageBuilder = new StringBuilder($"Приветствуем на сайте");
+            var messageBuilder = new StringBuilder($"Приветствуем на сайте");
+
             if (User.Identity.IsAuthenticated)
             {
                 messageBuilder.Append($", {User.Identity.Name}!");
             }
+
             else
             {
                 messageBuilder.Append('!');
             }
+
             var obj = new HomeViewModel
             {
                 Message = messageBuilder.ToString(),
@@ -41,7 +46,9 @@ namespace E_Shop_Cosmetic.Controllers
                     AddPagination(9)
                 ),
             };
+
             _logger.LogInformation("Home/Index is executed");
+
             return View(obj);
         }
     }
