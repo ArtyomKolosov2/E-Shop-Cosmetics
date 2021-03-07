@@ -1,5 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Other;
 using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -37,64 +38,86 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 return View(product);
             }
+
             return NoContent();
         }
+
         public async Task<IActionResult> ViewProducts()
         {
             var viewModel = new ProductsViewModel
             {
                 Products = await _cosmeticProductsRepository.GetProductsAsync(
                     new ProductSpecification().
-                    IncludeCategory().
-                    WithoutTracking()),
+                             IncludeCategory().
+                             WithoutTracking()),
+
                 ProductCategory = "Косметика",
                 SearchParams = new SearchProductsParams()
             };
+
             _logger.LogInformation("Products\\ViewProducts is executed");
-            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+
+            var categories = await _categoriesRepository.GetCategoriesAsync();
+
+            ViewBag.Categories = new SelectList(categories, "Id", "CategoryName");
             ViewBag.Title = "Вывод продуктов";
+
             return View(viewModel);
         }
+
         [HttpGet]
         public async Task<IActionResult> Search(SearchProductsParams searchParams)
         {
             ViewBag.Title = "Поиск";
-            var searchSpecification = new ProductSpecification().
-                IncludeCategory();
+            var searchSpecification = new ProductSpecification().IncludeCategory();
+
             if (searchParams.StartPrice is not null && searchParams.EndPrice is not null)
             {
                 searchSpecification.WhereInPriceRange(searchParams.StartPrice.Value, searchParams.EndPrice.Value);
             }
+
             var isPrimeKeyUsed = false;
+
             if (searchParams.SearchProductId is not null)
             {
                 searchSpecification.WhereId(searchParams.SearchProductId.Value);
                 isPrimeKeyUsed = true;
             }
-            if (!isPrimeKeyUsed) {
+
+            if (!isPrimeKeyUsed) 
+            {
+
                 if (searchParams.Name is not null)
                 {
                     searchSpecification.WhereName(searchParams.Name);
                 }
+
                 if (searchParams.IsSortByPriceRequired)
                 {
                     searchSpecification.SortByPrice();
                 }
+
                 if (searchParams.CategoryId is not null)
                 {
                     searchSpecification.WhereCategoryId(searchParams.CategoryId.Value);
                 }
             }
-            searchSpecification.WhereAvailable(searchParams.IsAvailable).WithoutTracking();
+
+            searchSpecification.WhereAvailable(searchParams.IsAvailable)
+                               .WithoutTracking();
+
             ViewBag.Title = "Искомый товар";
             ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
-            ProductsViewModel viewModel = new ProductsViewModel
+
+            var viewModel = new ProductsViewModel
             {
                 Products = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
                 ProductCategory = "Косметика",
                 SearchParams = new SearchProductsParams()
             };
+
             _logger.LogInformation("Products\\Search is executed");
+
             if (!viewModel.Products.Any())
             {
                 _logger.LogWarning("Search unsuccesful!");
@@ -103,7 +126,7 @@ namespace E_Shop_Cosmetic.Controllers
             return View(viewModel);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> AddProduct()
         {
@@ -113,30 +136,35 @@ namespace E_Shop_Cosmetic.Controllers
             return View();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpPost]
         public async Task<IActionResult> AddProduct(Product newProduct)
         {
             newProduct.Price = Math.Round(newProduct.Price, 2);
+
             await _cosmeticProductsRepository.AddProductAsync(newProduct);
+
             return RedirectToAction("ViewProducts", "Products");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> UpdateProduct(int id)
         {
             ViewBag.Title = "Изменение продукта";
             var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+
             if (searchResult is null)
             {
                 return NoContent();
             }
+
             ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+
             return View(searchResult);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpPost]
         public async Task<IActionResult> UpdateProduct(int id, Product product)
         {
@@ -144,17 +172,20 @@ namespace E_Shop_Cosmetic.Controllers
             {
                 return BadRequest();
             }
+
             product.Price = Math.Round(product.Price, 2);
             await _cosmeticProductsRepository.UpdateProductAsync(product);
+
             return RedirectToAction("ViewProducts", "Products");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> DeleteProduct(int id)
         {
             ViewBag.Title = "Удаление продукта";
             var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+
             if (searchResult is null)
             {
                 return NoContent();
@@ -163,7 +194,7 @@ namespace E_Shop_Cosmetic.Controllers
             return View(searchResult);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id, IFormCollection collection)

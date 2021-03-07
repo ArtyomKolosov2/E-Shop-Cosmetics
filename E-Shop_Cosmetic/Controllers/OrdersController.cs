@@ -1,5 +1,6 @@
 ﻿using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
+using E_Shop_Cosmetic.Data.Other;
 using E_Shop_Cosmetic.Data.Specifications;
 using E_Shop_Cosmetic.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -14,6 +15,7 @@ namespace E_Shop_Cosmetic.Controllers
     {
         private readonly ICookieService _cartService;
         private readonly IOrderRepository _orderRepository;
+
         public OrdersController(ICookieService cartService, IOrderRepository orderRepository)
         {
             _cartService = cartService;
@@ -30,6 +32,7 @@ namespace E_Shop_Cosmetic.Controllers
                 searchSpecification.WhereId(searchParams.OrderId.Value);
                 isPrimaryKeyUsed = true;
             }
+
             if (!isPrimaryKeyUsed)
             {
                 if (searchParams.Name is not null)
@@ -50,10 +53,12 @@ namespace E_Shop_Cosmetic.Controllers
                     searchSpecification.WherePhone(searchParams.PhoneNumber);
                 }
             }
+
             if (searchParams.IsSortByDateRequired)
             {
                 searchSpecification.SortByDate();
             }
+
             searchSpecification.WhereActive(searchParams.IsOrderActive).WithoutTracking();
             var viewModel = new SearchOrderViewModel()
             {
@@ -61,26 +66,34 @@ namespace E_Shop_Cosmetic.Controllers
                 SearchParams = searchParams
 
             };
+
             ViewBag.Title = "Поиск по товарам";
+
             return View(viewModel);
         }
+
         [HttpGet]
         public async Task<IActionResult> PlaceOrder()
         {
             ViewBag.Title = "Оформление заказа";
+
             if (await _cartService.IsAnyProductInCartAsync())
             {
                 return View();
             }
+
             return NoContent();
         }
+
         [HttpPost]
         public async Task<IActionResult> PlaceOrder(OrderViewModel orderViewModel)
         {
             var ordersDetails = await _cartService.GetOrderDetailsAsync();
+
             if (ordersDetails.Any())
             {
                 var totalPrice = Math.Round(ordersDetails.Sum(detail => detail.TotalPrice), 2);
+
                 var newOrder = new Order()
                 {
                     Address = orderViewModel.Address,
@@ -95,10 +108,13 @@ namespace E_Shop_Cosmetic.Controllers
                     Email = orderViewModel.Email
 
                 };
+
                 await _orderRepository.AddOrderAsync(newOrder);
                 await _cartService.ClearCartAsync();
+
                 return RedirectToAction("OrderSuccessful", newOrder);
             }
+
             else
             {
                 return NoContent();
@@ -111,7 +127,7 @@ namespace E_Shop_Cosmetic.Controllers
             return View(order);
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> UpdateOrder(int id)
         {
@@ -124,7 +140,7 @@ namespace E_Shop_Cosmetic.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpPost]
         public async Task<IActionResult> UpdateOrder(int id, Order order)
         {
@@ -134,15 +150,17 @@ namespace E_Shop_Cosmetic.Controllers
             }
 
             await _orderRepository.UpdateOrderAsync(order);
+
             return RedirectToAction("ViewOrders", "Orders");
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> Order(int id)
         {
             ViewBag.Title = "Заказ";
             var order = await _orderRepository.GetOrderByIdWithDetailsAsync(id);
+
             if (order is not null)
             {
                 return View(new ViewOrderViewModel { Order = order });
@@ -151,23 +169,25 @@ namespace E_Shop_Cosmetic.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = IdentityRoleConstants.Admin)]
         [HttpGet]
         public async Task<IActionResult> ViewOrders()
         {
             ViewBag.Title = "Вывод заказов";
-            var orders = await _orderRepository.GetOrdersAsync
-                (
+
+            var orders = await _orderRepository.GetOrdersAsync(
                 new OrderSpecification().
-                IncludeDetails().
-                SortByTotalPrice().
-                WithoutTracking()
+                        IncludeDetails().
+                        SortByTotalPrice().
+                        WithoutTracking()
                 );
+
             var viewModel = new SearchOrderViewModel()
             {
                 Orders = orders,
                 SearchParams = new SearchOrderParams(),
             };
+
             return View(viewModel);
         }
     }
