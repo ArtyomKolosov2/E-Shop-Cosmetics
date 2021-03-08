@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Services
 {
+    
     public class CookieService : ICookieService
     {
         private readonly IRequestCookieCollection _cookieCollection;
@@ -37,7 +38,8 @@ namespace E_Shop_Cosmetic.Data.Services
         public async Task<List<OrderDetail>> GetOrderDetailsAsync()
         {
             var cartLines = GetCookieOrderDetails();
-            var products = await _productRepository.GetProductsByIdsAsync(cartLines.Select(p => p.id));
+            var products = await _productRepository.GetProductsByIds(cartLines.Select(p => p.id));
+
             var orderDetailsList = products.Zip(cartLines,
                 (product, line) => new OrderDetail 
                 { 
@@ -47,6 +49,7 @@ namespace E_Shop_Cosmetic.Data.Services
                     PriceOnOrderTime = line.cost
                 })
                 .ToList();
+
             return orderDetailsList;
 
         }

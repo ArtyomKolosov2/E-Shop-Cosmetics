@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Interfaces
 {
-    public interface IOrderRepository
+    public interface IOrderRepository : IRepository<Order>
     {
-        Task<IReadOnlyList<Order>> GetOrdersAsync();
-        Task<IReadOnlyList<Order>> GetOrdersAsync(ISpecification<Order> specification);
-        Task<Order> GetOrderByIdAsync(int id);
-        Task<Order> GetOrderByIdWithDetailsAsync(int id);
-        Task AddOrderAsync(Order order);
-        Task DeleteOrderAsync(Order order);
-        Task UpdateOrderAsync(Order order);
+        Task<Order> GetOrderByIdWithDetailsOrDefault(int id);
     }
 }

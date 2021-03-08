@@ -37,13 +37,13 @@ namespace E_Shop_Cosmetic.Controllers
             var obj = new HomeViewModel
             {
                 Message = messageBuilder.ToString(),
-                Products = await _productsRepository.GetProductsAsync
+                Products = await _productsRepository.GetAll
                 (
-                    new ProductSpecification().
-                    IncludeCategory().
-                    SortByPrice().
-                    WithoutTracking().
-                    AddPagination(9)
+                    new ProductSpecification()
+                        .IncludeCategory()
+                        .SortByPrice()
+                        .WithoutTracking()
+                        .AddPagination(9)
                 ),
             };
 
