@@ -17,57 +17,25 @@ namespace E_Shop_Cosmetic.Data.Repository
 
         }
 
-        public async Task AddProductAsync(Product product)
+        public async Task<Product> GetProductByName(string name)
         {
-            await AddAsync(product);
-        }
+            var collection = await GetAll();
 
-        public async Task<Product> GetProductByIdAsync(int productId)
-        {
-            return await GetByIdAsync(productId);
-        }
-
-        public async Task<Product> GetProductByNameAsync(string name)
-        {
-            var collection = await GetAllAsync();
             return collection.FirstOrDefault(n => n.Name.Equals(name));
         }
 
-        public async Task<Product> GetProductByPriceAsync(int price)
+        public async Task<Product> GetProductByPrice(int price)
         {
-            var collection = await GetAllAsync();
+            var collection = await GetAll();
+
             return collection.FirstOrDefault(n => n.Price == price);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
-        {
-            return await GetAllAsync();
-        }
-
-        public async Task<IReadOnlyList<Product>> GetProductsAsync(ISpecification<Product> specification)
-        {
-            return await GetAllAsync(specification);
-        }
-
-        public async Task<IReadOnlyList<Product>> GetProductsByIdsAsync(IEnumerable<int> ids)
+        public Task<IReadOnlyList<Product>> GetProductsByIds(IEnumerable<int> ids)
         {
             var specification = new ProductSpecification(prod => ids.Contains(prod.Id));
-            return await GetAllAsync(specification);
+            return GetAll(specification);
         }
 
-        public async Task<IReadOnlyList<Product>> GetProductListAsync(ISpecification<Product> specification)
-        {
-            return await GetAllAsync(specification);
-        }
-
-        public async Task DeleteProductAsync(Product product)
-        {
-            await DeleteAsync(product);
-        }
-
-        public async Task UpdateProductAsync(Product product)
-        {
-            await UpdateAsync(product);
-        }
     }
 }

@@ -10,9 +10,9 @@ namespace E_Shop_Cosmetic.Controllers.Api
     [ApiController]
     public class CategoriesApiController : ControllerBase
     {
-        private readonly ICategoriesRepository _categoriesRepository;
+        private readonly IRepository<Category> _categoriesRepository;
 
-        public CategoriesApiController(ICategoriesRepository categoriesRepository)
+        public CategoriesApiController(IRepository<Category> categoriesRepository)
         {
             _categoriesRepository = categoriesRepository;
         }
@@ -21,14 +21,14 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return new ActionResult<IEnumerable<Category>>(await _categoriesRepository.GetCategoriesAsync());
+            return new ActionResult<IEnumerable<Category>>(await _categoriesRepository.GetAll());
         }
 
         // GET: api/CategoriesApi/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var category = await _categoriesRepository.GetCategoryByIdAsync(id);
+            var category = await _categoriesRepository.GetById(id);
 
             if (category == null)
             {
@@ -37,9 +37,6 @@ namespace E_Shop_Cosmetic.Controllers.Api
 
             return category;
         }
-
-        // PUT: api/CategoriesApi/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCategory(int id, Category category)
         {
@@ -48,17 +45,15 @@ namespace E_Shop_Cosmetic.Controllers.Api
                 return BadRequest();
             }
 
-            await _categoriesRepository.UpdateCategoryAsync(category);
+            await _categoriesRepository.Update(category);
 
             return NoContent();
         }
 
-        // POST: api/CategoriesApi
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            await _categoriesRepository.AddCategoryAsync(category);
+            await _categoriesRepository.Add(category);
 
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
         }
@@ -67,7 +62,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _categoriesRepository.GetCategoryByIdAsync(id);
+            var category = await _categoriesRepository.GetById(id);
             if (category == null)
             {
                 return NotFound();

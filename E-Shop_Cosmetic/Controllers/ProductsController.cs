@@ -17,10 +17,10 @@ namespace E_Shop_Cosmetic.Controllers
     public class ProductsController : Controller
     {
         private readonly IProductsRepository _cosmeticProductsRepository;
-        private readonly ICategoriesRepository _categoriesRepository;
+        private readonly IRepository<Category> _categoriesRepository;
         private readonly ILogger _logger;
 
-        public ProductsController(IProductsRepository products, ICategoriesRepository category, ILogger<ProductsController> logger)
+        public ProductsController(IProductsRepository products, IRepository<Category> category, ILogger<ProductsController> logger)
         {
             _cosmeticProductsRepository = products;
             _categoriesRepository = category;
@@ -32,7 +32,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Продукт";
             _logger.LogInformation("Products\\Product is executed");
-            var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            var product = await _cosmeticProductsRepository.GetById(id);
 
             if (product is not null)
             {
@@ -46,7 +46,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             var viewModel = new ProductsViewModel
             {
-                Products = await _cosmeticProductsRepository.GetProductsAsync(
+                Products = await _cosmeticProductsRepository.GetAll(
                     new ProductSpecification().
                              IncludeCategory().
                              WithoutTracking()),
@@ -57,7 +57,7 @@ namespace E_Shop_Cosmetic.Controllers
 
             _logger.LogInformation("Products\\ViewProducts is executed");
 
-            var categories = await _categoriesRepository.GetCategoriesAsync();
+            var categories = await _categoriesRepository.GetAll();
 
             ViewBag.Categories = new SelectList(categories, "Id", "CategoryName");
             ViewBag.Title = "Вывод продуктов";
@@ -107,11 +107,11 @@ namespace E_Shop_Cosmetic.Controllers
                                .WithoutTracking();
 
             ViewBag.Title = "Искомый товар";
-            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetAll(), "Id", "CategoryName");
 
             var viewModel = new ProductsViewModel
             {
-                Products = await _cosmeticProductsRepository.GetProductsAsync(searchSpecification),
+                Products = await _cosmeticProductsRepository.GetAll(searchSpecification),
                 ProductCategory = "Косметика",
                 SearchParams = new SearchProductsParams()
             };
@@ -131,7 +131,7 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> AddProduct()
         {
             ViewBag.Title = "Добавление продукта";
-            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetAll(), "Id", "CategoryName");
 
             return View();
         }
@@ -142,7 +142,7 @@ namespace E_Shop_Cosmetic.Controllers
         {
             newProduct.Price = Math.Round(newProduct.Price, 2);
 
-            await _cosmeticProductsRepository.AddProductAsync(newProduct);
+            await _cosmeticProductsRepository.Add(newProduct);
 
             return RedirectToAction("ViewProducts", "Products");
         }
@@ -152,14 +152,14 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> UpdateProduct(int id)
         {
             ViewBag.Title = "Изменение продукта";
-            var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            var searchResult = await _cosmeticProductsRepository.GetById(id);
 
             if (searchResult is null)
             {
                 return NoContent();
             }
 
-            ViewBag.Categories = new SelectList(await _categoriesRepository.GetCategoriesAsync(), "Id", "CategoryName");
+            ViewBag.Categories = new SelectList(await _categoriesRepository.GetAll(), "Id", "CategoryName");
 
             return View(searchResult);
         }
@@ -174,7 +174,7 @@ namespace E_Shop_Cosmetic.Controllers
             }
 
             product.Price = Math.Round(product.Price, 2);
-            await _cosmeticProductsRepository.UpdateProductAsync(product);
+            await _cosmeticProductsRepository.Update(product);
 
             return RedirectToAction("ViewProducts", "Products");
         }
@@ -184,7 +184,7 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> DeleteProduct(int id)
         {
             ViewBag.Title = "Удаление продукта";
-            var searchResult = await _cosmeticProductsRepository.GetProductByIdAsync(id);
+            var searchResult = await _cosmeticProductsRepository.GetById(id);
 
             if (searchResult is null)
             {
@@ -199,8 +199,8 @@ namespace E_Shop_Cosmetic.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteProduct(int id, IFormCollection collection)
         {
-            var product = await _cosmeticProductsRepository.GetProductByIdAsync(id);
-            await _cosmeticProductsRepository.DeleteProductAsync(product); 
+            var product = await _cosmeticProductsRepository.GetById(id);
+            await _cosmeticProductsRepository.Delete(product); 
 
             return RedirectToAction("ViewProducts", "Products");
         }

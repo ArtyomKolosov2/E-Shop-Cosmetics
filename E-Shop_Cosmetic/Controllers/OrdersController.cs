@@ -62,7 +62,7 @@ namespace E_Shop_Cosmetic.Controllers
             searchSpecification.WhereActive(searchParams.IsOrderActive).WithoutTracking();
             var viewModel = new SearchOrderViewModel()
             {
-                Orders = await _orderRepository.GetOrdersAsync(searchSpecification),
+                Orders = await _orderRepository.GetAll(searchSpecification),
                 SearchParams = searchParams
 
             };
@@ -109,7 +109,7 @@ namespace E_Shop_Cosmetic.Controllers
 
                 };
 
-                await _orderRepository.AddOrderAsync(newOrder);
+                await _orderRepository.Add(newOrder);
                 await _cartService.ClearCartAsync();
 
                 return RedirectToAction("OrderSuccessful", newOrder);
@@ -132,7 +132,7 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> UpdateOrder(int id)
         {
             ViewBag.Title = "Изменение заказа";
-            var order = await _orderRepository.GetOrderByIdAsync(id);
+            var order = await _orderRepository.GetById(id);
             if (order is not null)
             {
                 return View(order);
@@ -149,7 +149,7 @@ namespace E_Shop_Cosmetic.Controllers
                 return BadRequest();
             }
 
-            await _orderRepository.UpdateOrderAsync(order);
+            await _orderRepository.Update(order);
 
             return RedirectToAction("ViewOrders", "Orders");
         }
@@ -159,7 +159,7 @@ namespace E_Shop_Cosmetic.Controllers
         public async Task<IActionResult> Order(int id)
         {
             ViewBag.Title = "Заказ";
-            var order = await _orderRepository.GetOrderByIdWithDetailsAsync(id);
+            var order = await _orderRepository.GetOrderByIdWithDetailsOrDefault(id);
 
             if (order is not null)
             {
@@ -175,11 +175,11 @@ namespace E_Shop_Cosmetic.Controllers
         {
             ViewBag.Title = "Вывод заказов";
 
-            var orders = await _orderRepository.GetOrdersAsync(
-                new OrderSpecification().
-                        IncludeDetails().
-                        SortByTotalPrice().
-                        WithoutTracking()
+            var orders = await _orderRepository.GetAll(
+                new OrderSpecification()
+                    .IncludeDetails()
+                    .SortByTotalPrice()
+                    .WithoutTracking()
                 );
 
             var viewModel = new SearchOrderViewModel()

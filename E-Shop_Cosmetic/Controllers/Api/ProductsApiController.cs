@@ -28,7 +28,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            var products = await _productsRepository.GetProductsAsync();
+            var products = await _productsRepository.GetAll();
 
             return new ActionResult<IEnumerable<Product>>(products);
         }
@@ -37,7 +37,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet("MinPrice")]
         public async Task<JsonResult> GetMinPrice()
         {
-            var products = await _productsRepository.GetProductsAsync();
+            var products = await _productsRepository.GetAll();
 
             return new JsonResult(new {Min = products.Min(p => p.Price) });
         }
@@ -46,7 +46,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet("MaxPrice")]
         public async Task<JsonResult> GetMaxPrice()
         {
-            var products = await _productsRepository.GetProductsAsync();
+            var products = await _productsRepository.GetAll();
 
             return new JsonResult(new { Max = products.Max(p => p.Price) });
         }
@@ -55,7 +55,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet("MinMaxPrice")]
         public async Task<JsonResult> GetMinMaxPrice()
         {
-            var products = await _productsRepository.GetProductsAsync();
+            var products = await _productsRepository.GetAll();
             return new JsonResult(new { Max = products.Max(p => p.Price), Min = products.Min(p => p.Price) });
         }
 
@@ -63,7 +63,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _productsRepository.GetProductByIdAsync(id);
+            var product = await _productsRepository.GetById(id);
 
             if (product == null)
             {
@@ -83,7 +83,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
                 return BadRequest();
             }
 
-            await _productsRepository.UpdateProductAsync(product);
+            await _productsRepository.Update(product);
 
             return NoContent();
         }
@@ -93,7 +93,7 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [Authorize(Roles = IdentityRoleConstants.Admin)]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            await _productsRepository.AddProductAsync(product);
+            await _productsRepository.Add(product);
 
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
@@ -103,13 +103,13 @@ namespace E_Shop_Cosmetic.Controllers.Api
         [Authorize(Roles = IdentityRoleConstants.Admin)]
         public async Task<ActionResult<Product>> DeleteProduct(int id)
         {
-            var product = await _productsRepository.GetProductByIdAsync(id);
+            var product = await _productsRepository.GetById(id);
             if (product == null)
             {
                 return NotFound();
             }
 
-            await _productsRepository.DeleteProductAsync(product);
+            await _productsRepository.Delete(product);
 
             return product;
         }

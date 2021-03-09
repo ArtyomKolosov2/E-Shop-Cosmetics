@@ -10,12 +10,12 @@ namespace E_Shop_Cosmetic.Data.Interfaces
 {
     public interface IRepository<T> where T : Entity
     {
-        public Task<IReadOnlyList<T>> GetAllAsync();
-        public  Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> specification);
-        Task<T> AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(T entity);
-        Task<T> GetByIdAsync(int id);
-        Task<int> CountAsync(Expression<Func<T, bool>> predicate);
+        public Task<IReadOnlyList<T>> GetAll();
+        public  Task<IReadOnlyList<T>> GetAll(ISpecification<T> specification);
+        Task<T> Add(T entity);
+        Task Update(T entity);
+        Task Delete(T entity);
+        Task<T> GetById(int id);
+        Task<int> Count(Expression<Func<T, bool>> predicate);
     }
 }

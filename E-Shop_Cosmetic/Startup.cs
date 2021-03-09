@@ -1,4 +1,5 @@
 ﻿using E_Shop_Cosmetic.Data;
+using E_Shop_Cosmetic.Data.Extensions.IApplicationBuilderExtensions;
 using E_Shop_Cosmetic.Data.Interfaces;
 using E_Shop_Cosmetic.Data.Models;
 using E_Shop_Cosmetic.Data.Repository;
@@ -45,7 +46,7 @@ namespace E_Shop_Cosmetic
 
 
             services.AddScoped<IUserClaimsPrincipalFactory<User>, UserClaimsPrincipalFactory<User, IdentityRole<int>>>();
-            services.AddScoped<ICategoriesRepository, CategoryRepository>();
+            services.AddScoped<IRepository<Category>, Repository<Category>>();
             services.AddScoped<IProductsRepository, ProductRepository>();
             services.AddScoped<IOrderRepository, OrderRepository>();
 
@@ -67,11 +68,8 @@ namespace E_Shop_Cosmetic
         {
      
             app.UseRequestLocalization();
-            CultureInfo customCulture = new CultureInfo("ru-RU");
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
 
-            CultureInfo.DefaultThreadCurrentCulture = customCulture;
-            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
+            app.UseCulture();
 
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
@@ -82,9 +80,7 @@ namespace E_Shop_Cosmetic
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

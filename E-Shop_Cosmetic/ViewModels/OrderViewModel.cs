@@ -2,10 +2,6 @@
 
 namespace E_Shop_Cosmetic.ViewModels
 {
-    /*adress
-    wish
-    phone
-    cost*/
     public class OrderViewModel
     {
         [Required]

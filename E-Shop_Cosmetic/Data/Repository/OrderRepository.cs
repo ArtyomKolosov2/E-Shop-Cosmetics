@@ -14,39 +14,15 @@ namespace E_Shop_Cosmetic.Data.Repository
         {
 
         }
-        public async Task AddOrderAsync(Order order)
-        {
-            await AddAsync(order);
-        }
 
-        public async Task DeleteOrderAsync(Order order)
+        public async Task<Order> GetOrderByIdWithDetailsOrDefault(int id)
         {
-            await DeleteAsync(order);
-        }
-        public async Task UpdateOrderAsync(Order order)
-        {
-            await UpdateAsync(order);
-        }
+            var spec = new OrderSpecification(id)
+                .IncludeDetails("OrderDetails.Product.Category");
 
-        public async Task<Order> GetOrderByIdAsync(int id)
-        {
-            return await GetByIdAsync(id);
-        }
+            var orders = await GetAll(spec);
 
-        public async Task<IReadOnlyList<Order>> GetOrdersAsync()
-        {
-            return await GetAllAsync();
-        }
-
-        public async Task<IReadOnlyList<Order>> GetOrdersAsync(ISpecification<Order> specification)
-        {
-            return await GetAllAsync(specification);
-        }
-
-        public async Task<Order> GetOrderByIdWithDetailsAsync(int id)
-        {
-            var spec = new OrderSpecification(id).IncludeDetails("OrderDetails.Product.Category");
-            return (await GetAllAsync(spec)).FirstOrDefault();
+            return orders.FirstOrDefault();
         }
     }
 }

@@ -21,43 +21,44 @@ namespace E_Shop_Cosmetic.Data.Repository
             Context = appDBContext;
         }
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<T> Add(T entity)
         {
             await Context.AddAsync(entity);
             await Context.SaveChangesAsync();
+
             return entity; 
         }
 
-        public async Task<int> CountAsync(Expression<Func<T, bool>> predicate)
+        public Task<int> Count(Expression<Func<T, bool>> predicate)
         {
-            return await EntitySet.Where(predicate).CountAsync();
+            return EntitySet.Where(predicate).CountAsync();
         }
 
-        public async Task DeleteAsync(T entity)
+        public Task Delete(T entity)
         {
             EntitySet.Remove(entity);
-            await Context.SaveChangesAsync();
+            return Context.SaveChangesAsync();
         }
 
-        public async Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAll()
         {
             return await EntitySet.ToListAsync();
         }
 
-        public async Task<T> GetByIdAsync(int id)
+        public async Task<IReadOnlyList<T>> GetAll(ISpecification<T> specification)
+        {
+            return await ApplySpecification(specification).ToListAsync();
+        }
+
+        public async Task<T> GetById(int id)
         {
             return await EntitySet.FindAsync(id);
         }
 
-        public async Task UpdateAsync(T entity)
+        public Task Update(T entity)
         {
             Context.Entry(entity).State = EntityState.Modified;
-            await Context.SaveChangesAsync();
-        }
-
-        public async Task<IReadOnlyList<T>> GetAllAsync(ISpecification<T> specification)
-        {
-            return await ApplySpecification(specification).ToListAsync();
+            return Context.SaveChangesAsync();
         }
 
         protected IQueryable<T> ApplySpecification(ISpecification<T> spec)
