@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace E_Shop_Cosmetic.Data.Interfaces
 {
-    public interface IRepository<T> where T : Entity
+    public interface IRepository<TEntity> where TEntity : Entity
     {
-        public Task<IReadOnlyList<T>> GetAll();
-        public  Task<IReadOnlyList<T>> GetAll(ISpecification<T> specification);
-        Task<T> Add(T entity);
-        Task Update(T entity);
-        Task Delete(T entity);
-        Task<T> GetById(int id);
-        Task<int> Count(Expression<Func<T, bool>> predicate);
+        public Task<IReadOnlyList<TEntity>> GetAll();
+        public Task<IReadOnlyList<TEntity>> GetAll(ISpecification<TEntity> specification);
+        Task<TEntity> Add(TEntity entity);
+        Task<TEntity> Update(TEntity entity);
+        Task Delete(TEntity entity);
+        Task<TEntity> GetById(int id);
     }
 }
